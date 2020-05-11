@@ -51,5 +51,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar value) { return std::exp(value); }
 		};
+
+		template<typename Scalar>
+		struct SinOP
+		{
+			static inline Scalar op(Scalar value) { return std::sin(value); }
+		};
 	}
 }

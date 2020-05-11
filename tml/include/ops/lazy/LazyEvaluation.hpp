@@ -9,3 +9,5 @@
 #include "Sqrt.hpp"
 #include "Square.hpp"
 #include "Exp.hpp"
+
+#include "Sin.hpp"
