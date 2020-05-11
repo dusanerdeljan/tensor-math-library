@@ -13,3 +13,4 @@
 #include "Sin.hpp"
 #include "Cos.hpp"
 #include "Tan.hpp"
+#include "Cot.hpp"
