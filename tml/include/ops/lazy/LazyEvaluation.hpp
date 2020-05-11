@@ -8,3 +8,4 @@
 #include "Log.hpp"
 #include "Sqrt.hpp"
 #include "Square.hpp"
+#include "Exp.hpp"
