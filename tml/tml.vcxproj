@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="include\matrix\Matrix.hpp" />
     <ClInclude Include="include\matrix\Shape.hpp" />
+    <ClInclude Include="include\ops\lazy\Cosh.hpp" />
     <ClInclude Include="include\ops\lazy\Add.hpp" />
     <ClInclude Include="include\ops\lazy\BinaryOP.hpp" />
     <ClInclude Include="include\ops\lazy\Cos.hpp" />

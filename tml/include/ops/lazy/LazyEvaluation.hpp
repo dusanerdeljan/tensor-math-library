@@ -15,3 +15,4 @@
 #include "Tan.hpp"
 #include "Cot.hpp"
 #include "Sinh.hpp"
+#include "Cosh.hpp"

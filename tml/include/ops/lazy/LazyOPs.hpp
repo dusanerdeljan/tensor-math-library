@@ -81,5 +81,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar value) { return std::sinh(value); }
 		};
+
+		template<typename Scalar>
+		struct CoshOP
+		{
+			static inline Scalar op(Scalar value) { return std::cosh(value); }
+		};
 	}
 }
