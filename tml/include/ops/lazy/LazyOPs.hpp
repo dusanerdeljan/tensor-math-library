@@ -15,5 +15,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar left, Scalar right) { return left - right; }
 		};
+
+		template<typename Scalar>
+		struct MulOP
+		{
+			static inline Scalar op(Scalar left, Scalar right) { return left*right; }
+		};
 	}
 }
