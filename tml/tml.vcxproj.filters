@@ -35,9 +35,6 @@
     <ClInclude Include="include\ops\lazy\BinaryOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Add.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ops\lazy\LazyOPs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -47,55 +44,58 @@
     <ClInclude Include="include\ops\lazy\ScalarExpr.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Sub.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ops\lazy\Mul.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ops\lazy\Div.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ops\lazy\Log.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ops\lazy\UnaryOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Sqrt.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Abs.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Square.hpp">
+    <ClInclude Include="include\ops\lazy\binary\Add.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Exp.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Cos.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Sin.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Cosh.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Cos.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Cot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Tan.hpp">
+    <ClInclude Include="include\ops\lazy\binary\Div.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Cot.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Exp.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Sinh.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Log.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Cosh.hpp">
+    <ClInclude Include="include\ops\lazy\binary\Mul.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Tanh.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Neg.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Neg.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Sin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\lazy\Abs.hpp">
+    <ClInclude Include="include\ops\lazy\unary\Sinh.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\unary\Sqrt.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\unary\Square.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\binary\Sub.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\unary\Tan.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\unary\Tanh.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

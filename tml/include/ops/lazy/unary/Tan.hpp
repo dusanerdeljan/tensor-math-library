@@ -1,10 +1,10 @@
 #pragma once
 
-#include "LazyOPs.hpp"
-#include "Expr.hpp"
-#include "UnaryOP.hpp"
-#include "ScalarExpr.hpp"
-#include "..\..\matrix\Matrix.hpp"
+#include "..\LazyOPs.hpp"
+#include "..\Expr.hpp"
+#include "..\UnaryOP.hpp"
+#include "..\ScalarExpr.hpp"
+#include "..\..\..\matrix\Matrix.hpp"
 
 namespace tml
 {
