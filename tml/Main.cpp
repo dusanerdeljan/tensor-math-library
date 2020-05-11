@@ -5,7 +5,7 @@ int main()
 {
 	tml::Matrix<int> m1(3, 3);
 	tml::Matrix<int> m2(3, 3);
-	tml::Matrix<int> res = m1 + 80 + 10 + (m2 + m1) + m2 + 15 + m1;
+	tml::Matrix<int> res = m1 - (m1 + m2) + (m2 + m2) - m1 + 15;
 	std::cout << res << std::endl;
 	std::cin.get();
 	return 0;

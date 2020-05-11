@@ -47,5 +47,8 @@
     <ClInclude Include="include\ops\lazy\ScalarExpr.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\Sub.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
