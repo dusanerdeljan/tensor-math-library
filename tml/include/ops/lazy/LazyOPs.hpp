@@ -21,5 +21,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar left, Scalar right) { return left*right; }
 		};
+
+		template<typename Scalar>
+		struct DivOP
+		{
+			static inline Scalar op(Scalar left, Scalar right) { return left / right; }
+		};
 	}
 }

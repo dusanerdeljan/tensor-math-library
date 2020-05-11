@@ -117,6 +117,7 @@
     <ClInclude Include="include\matrix\Shape.hpp" />
     <ClInclude Include="include\ops\lazy\Add.hpp" />
     <ClInclude Include="include\ops\lazy\BinaryOP.hpp" />
+    <ClInclude Include="include\ops\lazy\Div.hpp" />
     <ClInclude Include="include\ops\lazy\Expr.hpp" />
     <ClInclude Include="include\ops\lazy\LazyEvaluation.hpp" />
     <ClInclude Include="include\ops\lazy\LazyOPs.hpp" />
