@@ -124,6 +124,7 @@
     <ClInclude Include="include\ops\lazy\Log.hpp" />
     <ClInclude Include="include\ops\lazy\Mul.hpp" />
     <ClInclude Include="include\ops\lazy\ScalarExpr.hpp" />
+    <ClInclude Include="include\ops\lazy\Sqrt.hpp" />
     <ClInclude Include="include\ops\lazy\Sub.hpp" />
     <ClInclude Include="include\ops\lazy\UnaryOP.hpp" />
     <ClInclude Include="include\tml.hpp" />
