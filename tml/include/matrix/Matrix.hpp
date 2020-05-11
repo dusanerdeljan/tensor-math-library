@@ -7,7 +7,7 @@
 
 namespace tml
 {
-	template<typename Scalar>
+	template<typename Scalar=double>
 	class Matrix
 	{
 	private:
@@ -74,7 +74,7 @@ namespace tml
 			for (size_t i = 0; i < matrix.Rows(); ++i)
 			{
 				for (size_t j = 0; j < matrix.Columns(); ++j)
-					std::cout << std::setw(6) << std::left << matrix(i, j);
+					std::cout << std::setw(12) << std::left << matrix(i, j);
 				std::cout << std::endl;
 			}
 			return out;

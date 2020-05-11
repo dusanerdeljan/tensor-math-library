@@ -27,5 +27,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar left, Scalar right) { return left / right; }
 		};
+
+		template<typename Scalar>
+		struct LogOP
+		{
+			static inline Scalar op(Scalar value) { return std::log(value); }
+		};
 	}
 }

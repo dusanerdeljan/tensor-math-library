@@ -4,3 +4,5 @@
 #include "Sub.hpp"
 #include "Mul.hpp"
 #include "Div.hpp"
+
+#include "Log.hpp"
