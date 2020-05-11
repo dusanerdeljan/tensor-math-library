@@ -29,6 +29,12 @@ namespace tml
 		};
 
 		template<typename Scalar>
+		struct NegOP
+		{
+			static inline Scalar op(Scalar value) { return -value; }
+		};
+
+		template<typename Scalar>
 		struct LogOP
 		{
 			static inline Scalar op(Scalar value) { return std::log(value); }

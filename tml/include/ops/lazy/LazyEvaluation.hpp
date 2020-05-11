@@ -4,6 +4,7 @@
 #include "Sub.hpp"
 #include "Mul.hpp"
 #include "Div.hpp"
+#include "Neg.hpp"
 
 #include "Log.hpp"
 #include "Sqrt.hpp"
