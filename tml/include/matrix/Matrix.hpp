@@ -18,9 +18,23 @@ namespace tml
 		typedef const Scalar* const_iterator;
 		Matrix(size_t rows, size_t cols) : m_Data(new Scalar[rows*cols]), m_Shape(rows, cols)
 		{
-			for (size_t i = 0; i < m_Shape.Size; ++i) m_Data[i] = i;
+			for (size_t i = 0; i < m_Shape.Size; ++i) m_Data[i] = (Scalar)i;
 		}
 		~Matrix() { delete[] m_Data; }
+
+		template<typename Expr>
+		Matrix& operator=(const Expr& expr)
+		{
+			Expr iter = expr;
+			iterator beginIter = begin();
+			iterator endIter = end();
+			do
+			{
+				*beginIter = *iter;
+				++iter;
+			} while (++beginIter != endIter);
+			return *this;
+		}
 
 		inline Scalar& operator() (size_t i, size_t j) { return m_Data[j + i*m_Shape.Columns]; }
 		inline const Scalar& operator() (size_t i, size_t j) const { return m_Data[j + i*m_Shape.Columns]; }
@@ -29,9 +43,9 @@ namespace tml
 
 		inline const_iterator cbegin() const { return m_Data; }
 
-		inline iterator end() { return m_Data + m_Rows*m_Cols; }
+		inline iterator end() { return m_Data + m_Shape.Size; }
 
-		inline const_iterator cend() const { return m_Data + m_Rows*m_Cols; }
+		inline const_iterator cend() const { return m_Data + m_Shape.Size; }
 
 		inline size_t Size() const { return m_Shape.Size; }
 

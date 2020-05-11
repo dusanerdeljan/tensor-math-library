@@ -3,11 +3,11 @@
 
 int main()
 {
-	tml::Matrix<double> m1(5, 5);
-	std::cout << m1 << std::endl;
-
+	tml::Matrix<int> m1(3, 3);
 	tml::Matrix<int> m2(3, 3);
-	std::cout << m2 << std::endl;
+	tml::Matrix<int> res(3, 3);
+	res = m1 + 80 + 10 + (m2 + m1) + m2 + 15 + m1;
+	std::cout << res << std::endl;
 	std::cin.get();
 	return 0;
 }

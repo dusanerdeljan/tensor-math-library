@@ -115,6 +115,12 @@
   <ItemGroup>
     <ClInclude Include="include\matrix\Matrix.hpp" />
     <ClInclude Include="include\matrix\Shape.hpp" />
+    <ClInclude Include="include\ops\lazy\Add.hpp" />
+    <ClInclude Include="include\ops\lazy\BinaryOP.hpp" />
+    <ClInclude Include="include\ops\lazy\Expr.hpp" />
+    <ClInclude Include="include\ops\lazy\LazyEvaluation.hpp" />
+    <ClInclude Include="include\ops\lazy\LazyOPs.hpp" />
+    <ClInclude Include="include\ops\lazy\ScalarExpr.hpp" />
     <ClInclude Include="include\tml.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
