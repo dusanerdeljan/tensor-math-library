@@ -10,6 +10,7 @@
 #include "Sqrt.hpp"
 #include "Square.hpp"
 #include "Exp.hpp"
+#include "Abs.hpp"
 
 #include "Sin.hpp"
 #include "Cos.hpp"

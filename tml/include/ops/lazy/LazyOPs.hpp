@@ -99,5 +99,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar value) { return std::tanh(value); }
 		};
+
+		template<typename Scalar>
+		struct AbsOP
+		{
+			static inline Scalar op(Scalar value) { return std::abs(value); }
+		};
 	}
 }
