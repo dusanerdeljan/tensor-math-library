@@ -11,3 +11,4 @@
 #include "Exp.hpp"
 
 #include "Sin.hpp"
+#include "Cos.hpp"

@@ -57,5 +57,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar value) { return std::sin(value); }
 		};
+
+		template<typename Scalar>
+		struct CosOP
+		{
+			static inline Scalar op(Scalar value) { return std::cos(value); }
+		};
 	}
 }
