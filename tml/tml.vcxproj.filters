@@ -20,10 +20,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Matrix.hpp">
+    <ClInclude Include="include\tml.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Shape.hpp">
+    <ClInclude Include="include\matrix\Matrix.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\matrix\Shape.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

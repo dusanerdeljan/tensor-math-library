@@ -113,8 +113,9 @@
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\Matrix.hpp" />
-    <ClInclude Include="include\Shape.hpp" />
+    <ClInclude Include="include\matrix\Matrix.hpp" />
+    <ClInclude Include="include\matrix\Shape.hpp" />
+    <ClInclude Include="include\tml.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
