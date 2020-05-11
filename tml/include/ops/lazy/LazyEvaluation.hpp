@@ -16,3 +16,4 @@
 #include "Cot.hpp"
 #include "Sinh.hpp"
 #include "Cosh.hpp"
+#include "Tanh.hpp"

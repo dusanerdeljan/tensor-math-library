@@ -134,6 +134,7 @@
     <ClInclude Include="include\ops\lazy\Square.hpp" />
     <ClInclude Include="include\ops\lazy\Sub.hpp" />
     <ClInclude Include="include\ops\lazy\Tan.hpp" />
+    <ClInclude Include="include\ops\lazy\Tanh.hpp" />
     <ClInclude Include="include\ops\lazy\UnaryOP.hpp" />
     <ClInclude Include="include\tml.hpp" />
   </ItemGroup>
