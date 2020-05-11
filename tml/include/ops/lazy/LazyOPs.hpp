@@ -39,5 +39,11 @@ namespace tml
 		{
 			static inline Scalar op(Scalar value) { return std::sqrt(value); }
 		};
+
+		template<typename Scalar>
+		struct SquareOP
+		{
+			static inline Scalar op(Scalar value) { return value*value; }
+		};
 	}
 }

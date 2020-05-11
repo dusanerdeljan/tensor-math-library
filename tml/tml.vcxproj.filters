@@ -65,5 +65,8 @@
     <ClInclude Include="include\ops\lazy\Sqrt.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\Square.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
