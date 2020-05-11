@@ -14,3 +14,4 @@
 #include "Cos.hpp"
 #include "Tan.hpp"
 #include "Cot.hpp"
+#include "Sinh.hpp"

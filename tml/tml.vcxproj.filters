@@ -83,5 +83,8 @@
     <ClInclude Include="include\ops\lazy\Cot.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\Sinh.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
