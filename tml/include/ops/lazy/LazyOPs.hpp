@@ -29,6 +29,12 @@ namespace tml
 		};
 
 		template<typename Scalar>
+		struct EqualOP
+		{
+			static inline Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left == right); }
+		};
+
+		template<typename Scalar>
 		struct NegOP
 		{
 			static inline Scalar op(Scalar value) { return -value; }

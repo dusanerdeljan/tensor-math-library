@@ -98,5 +98,8 @@
     <ClInclude Include="include\ops\lazy\unary\Tanh.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\binary\Equal.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

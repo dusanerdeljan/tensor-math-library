@@ -6,6 +6,8 @@
 #include "binary\Div.hpp"
 #include "unary\Neg.hpp"
 
+#include "binary\Equal.hpp"
+
 #include "unary\Log.hpp"
 #include "unary\Sqrt.hpp"
 #include "unary\Square.hpp"
