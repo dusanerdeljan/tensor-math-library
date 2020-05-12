@@ -10,8 +10,8 @@ int main()
 {
 	tml::Matrix<double> m1(4, 4);
 	tml::Matrix<double> m2(4, 4);
-	tml::Matrix<double> result = tml::lazy::CustomOP(m1+m2, [](double x) { return 2 * x + 3; });
-	tml::Matrix<double> res = 2.0*(m1 + m2) + 3.0;
+	tml::Matrix<double> result = tml::lazy::CustomOP(3.0*m1, 5.0*m2, [](double x, double y) { return x + y; });
+	tml::Matrix<double> res = 3.0*m1 + m2*5.0;
 	std::cout << result << std::endl;
 	std::cout << res << std::endl;
 	std::cin.get();
