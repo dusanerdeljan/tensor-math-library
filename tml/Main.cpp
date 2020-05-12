@@ -3,12 +3,16 @@
 
 namespace tmll = tml::lazy;
 
+void foo(const tml::Matrix<double>& matrix)
+{
+	std::cout << matrix << std::endl;
+}
+
 int main()
 {
 	tml::Matrix<double> m1(3, 3);
 	tml::Matrix<double> m2(3, 3);
-	tml::Matrix<double> res = tmll::Abs(-tmll::Square(-(m1 + 10.0)));
-	std::cout << res << std::endl;
+	foo(m1 + m2);
 	std::cin.get();
 	return 0;
 }

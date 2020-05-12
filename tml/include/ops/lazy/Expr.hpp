@@ -10,4 +10,9 @@ struct ExprOP
 	ExprOP(const T& it, tml::Shape shape) : iter(it), shape(shape) {}
 	Scalar operator*() const { return *iter; }
 	void operator++() { ++iter; }
+	operator tml::Matrix<Scalar>() const
+	{
+		tml::Matrix<Scalar> res = *this;
+		return res;
+	}
 };

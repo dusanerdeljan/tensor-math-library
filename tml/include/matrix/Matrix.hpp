@@ -25,6 +25,7 @@ namespace tml
 		template<typename Expr>
 		Matrix(Expr expr) : m_Data(new Scalar[expr.shape.Size]), m_Shape(expr.shape)
 		{
+			std::cout << "expr constructor" << std::endl;
 			iterator beginIter = begin();
 			iterator endIter = end();
 			do
@@ -34,11 +35,24 @@ namespace tml
 			} while (++beginIter != endIter);
 		}
 
+		Matrix(const Matrix<Scalar>& matrix) : m_Data(new Scalar[matrix.m_Shape.Size]), m_Shape(matrix.m_Shape)
+		{
+			std::cout << "copy constructor" << std::endl;
+			memcpy(m_Data, matrix.m_Data, sizeof(Scalar)*m_Shape.Size);
+		}
+
+		Matrix(Matrix<Scalar>&& matrix) : m_Data(matrix.m_Data), m_Shape(matrix.m_Shape)
+		{
+			std::cout << "move constructor" << std::endl;
+			matrix.m_Data = nullptr;
+		}
+
 		~Matrix() { delete[] m_Data; }
 
 		template<typename Expr>
 		Matrix& operator=(const Expr& expr)
 		{
+			std::cout << "expr assignment" << std::endl;
 			Expr iter = expr;
 			iterator beginIter = begin();
 			iterator endIter = end();
@@ -47,6 +61,27 @@ namespace tml
 				*beginIter = *iter;
 				++iter;
 			} while (++beginIter != endIter);
+			return *this;
+		}
+
+		Matrix& operator=(const Matrix& matrix)
+		{
+			std::cout << "copy assignment" << std::endl;
+			Scalar* data = new Scalar[matrix.m_Shape.Size];
+			memcpy(data, matrix.m_Data, sizeof(Scalar)*matrix.m_Shape.Size);
+			delete[] m_Data;
+			m_Data = data;
+			m_Shape = matrix.m_Shape;
+			return *this;
+		}
+
+		Matrix& operator=(Matrix&& matrix)
+		{
+			std::cout << "move assignment" << std::endl;
+			delete[] m_Data;
+			m_Data = matrix.m_Data;
+			m_Shape = matrix.m_Shape;
+			matrix.m_Data = nullptr;
 			return *this;
 		}
 
