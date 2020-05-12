@@ -116,6 +116,7 @@
     <ClInclude Include="include\matrix\Matrix.hpp" />
     <ClInclude Include="include\matrix\Shape.hpp" />
     <ClInclude Include="include\ops\lazy\binary\Equal.hpp" />
+    <ClInclude Include="include\ops\lazy\binary\GreaterEqualThan.hpp" />
     <ClInclude Include="include\ops\lazy\binary\GreaterThan.hpp" />
     <ClInclude Include="include\ops\lazy\binary\LessThan.hpp" />
     <ClInclude Include="include\ops\lazy\binary\NotEqual.hpp" />
