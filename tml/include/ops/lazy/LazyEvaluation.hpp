@@ -7,6 +7,7 @@
 #include "unary\Neg.hpp"
 
 #include "binary\Equal.hpp"
+#include "binary\NotEqual.hpp"
 
 #include "unary\Log.hpp"
 #include "unary\Sqrt.hpp"
