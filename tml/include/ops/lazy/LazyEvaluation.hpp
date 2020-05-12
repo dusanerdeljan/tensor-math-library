@@ -11,6 +11,7 @@
 #include "binary\GreaterThan.hpp"
 #include "binary\LessThan.hpp"
 #include "binary\GreaterEqualThan.hpp"
+#include "binary\LessEqualThan.hpp"
 
 #include "unary\Log.hpp"
 #include "unary\Sqrt.hpp"

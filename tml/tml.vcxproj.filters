@@ -113,5 +113,8 @@
     <ClInclude Include="include\ops\lazy\binary\GreaterEqualThan.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\binary\LessEqualThan.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
