@@ -37,13 +37,13 @@ namespace tml
 		template<typename Scalar>
 		struct LogOP
 		{
-			static inline Scalar op(Scalar value) { return std::log(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::log(value)); }
 		};
 
 		template<typename Scalar>
 		struct SqrtOP
 		{
-			static inline Scalar op(Scalar value) { return std::sqrt(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::sqrt(value)); }
 		};
 
 		template<typename Scalar>
@@ -55,49 +55,49 @@ namespace tml
 		template<typename Scalar>
 		struct ExpOP
 		{
-			static inline Scalar op(Scalar value) { return std::exp(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::exp(value)); }
 		};
 
 		template<typename Scalar>
 		struct SinOP
 		{
-			static inline Scalar op(Scalar value) { return std::sin(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::sin(value)); }
 		};
 
 		template<typename Scalar>
 		struct CosOP
 		{
-			static inline Scalar op(Scalar value) { return std::cos(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::cos(value)); }
 		};
 
 		template<typename Scalar>
 		struct TanOP
 		{
-			static inline Scalar op(Scalar value) { return std::tan(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::tan(value)); }
 		};
 
 		template<typename Scalar>
 		struct CotOP
 		{
-			static inline Scalar op(Scalar value) { return 1.0 / std::tan(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(1.0 / std::tan(value)); }
 		};
 
 		template<typename Scalar>
 		struct SinhOP
 		{
-			static inline Scalar op(Scalar value) { return std::sinh(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::sinh(value)); }
 		};
 
 		template<typename Scalar>
 		struct CoshOP
 		{
-			static inline Scalar op(Scalar value) { return std::cosh(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::cosh(value)); }
 		};
 
 		template<typename Scalar>
 		struct TanhOP
 		{
-			static inline Scalar op(Scalar value) { return std::tanh(value); }
+			static inline Scalar op(Scalar value) { return static_cast<Scalar>(std::tanh(value)); }
 		};
 
 		template<typename Scalar>

@@ -10,9 +10,9 @@ void foo(const tml::Matrix<double>& matrix)
 
 int main()
 {
-	tml::Matrix<double> m1(3, 3);
-	tml::Matrix<double> m2(3, 3);
-	foo(m1 + m2);
+	tml::Matrix<int> m1(3, 3);
+	tml::Matrix<double> m2 = tml::Matrix<double>::OnesLike(m1);
+	std::cout << m2 << std::endl;
 	std::cin.get();
 	return 0;
 }

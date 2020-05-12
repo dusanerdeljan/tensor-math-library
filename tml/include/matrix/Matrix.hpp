@@ -17,10 +17,17 @@ namespace tml
 		typedef Scalar* iterator;
 		typedef const Scalar* const_iterator;
 
+		// TODO: Make theese 2 constructors private they are only used for debugging and testing
 		Matrix(size_t rows, size_t cols) : m_Data(new Scalar[rows*cols]), m_Shape(rows, cols)
 		{
 			for (size_t i = 0; i < m_Shape.Size; ++i) m_Data[i] = (Scalar)i;
 		}
+
+		Matrix(Shape shape) : m_Data(new Scalar[shape.Size]), m_Shape(shape)
+		{
+			std::cout << "shape constructor" << std::endl;
+		}
+		// ENDTODO
 
 		template<typename Expr>
 		Matrix(Expr expr) : m_Data(new Scalar[expr.shape.Size]), m_Shape(expr.shape)
@@ -50,7 +57,7 @@ namespace tml
 		~Matrix() { delete[] m_Data; }
 
 		template<typename Expr>
-		Matrix& operator=(const Expr& expr)
+		Matrix<Scalar>& operator=(const Expr& expr)
 		{
 			std::cout << "expr assignment" << std::endl;
 			Expr iter = expr;
@@ -64,7 +71,7 @@ namespace tml
 			return *this;
 		}
 
-		Matrix& operator=(const Matrix& matrix)
+		Matrix<Scalar>& operator=(const Matrix<Scalar>& matrix)
 		{
 			std::cout << "copy assignment" << std::endl;
 			Scalar* data = new Scalar[matrix.m_Shape.Size];
@@ -75,7 +82,7 @@ namespace tml
 			return *this;
 		}
 
-		Matrix& operator=(Matrix&& matrix)
+		Matrix<Scalar>& operator=(Matrix<Scalar>&& matrix)
 		{
 			std::cout << "move assignment" << std::endl;
 			delete[] m_Data;
@@ -83,6 +90,36 @@ namespace tml
 			m_Shape = matrix.m_Shape;
 			matrix.m_Data = nullptr;
 			return *this;
+		}
+
+		static Matrix<Scalar> Zeros(Shape shape)
+		{
+			Matrix<Scalar> matrix(shape);
+			std::fill(matrix.begin(), matrix.end(), static_cast<Scalar>(0.0));
+			return matrix;
+		}
+
+		template<typename DType>
+		static Matrix<Scalar> ZerosLike(const Matrix<DType>& matrix)
+		{
+			Matrix<Scalar> result (matrix.GetShape());
+			std::fill(result.begin(), result.end(), static_cast<Scalar>(0.0));
+			return result;
+		}
+
+		static Matrix<Scalar> Ones(Shape shape)
+		{
+			Matrix<Scalar> matrix(shape);
+			std::fill(matrix.begin(), matrix.end(), static_cast<Scalar>(1.0));
+			return matrix;
+		}
+
+		template<typename DType>
+		static Matrix<Scalar> OnesLike(const Matrix<DType>& matrix)
+		{
+			Matrix<Scalar> result(matrix.GetShape());
+			std::fill(result.begin(), result.end(), static_cast<Scalar>(1.0));
+			return result;
 		}
 
 		Shape GetShape() const { return m_Shape; }
@@ -104,16 +141,17 @@ namespace tml
 
 		inline size_t Columns() const { return m_Shape.Columns; }
 
-		friend std::ostream& operator << (std::ostream& out, const Matrix<Scalar>& matrix)
-		{
-			for (size_t i = 0; i < matrix.Rows(); ++i)
-			{
-				for (size_t j = 0; j < matrix.Columns(); ++j)
-					std::cout << std::setw(12) << std::left << matrix(i, j);
-				std::cout << std::endl;
-			}
-			return out;
-		}
-
 	};
+
+	template<typename Scalar>
+	std::ostream& operator << (std::ostream& out, const Matrix<Scalar>& matrix)
+	{
+		for (size_t i = 0; i < matrix.Rows(); ++i)
+		{
+			for (size_t j = 0; j < matrix.Columns(); ++j)
+				std::cout << std::setw(12) << std::left << matrix(i, j);
+			std::cout << std::endl;
+		}
+		return out;
+	}
 }
