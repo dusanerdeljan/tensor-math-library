@@ -12,6 +12,7 @@
 #include "binary\LessThan.hpp"
 #include "binary\GreaterEqualThan.hpp"
 #include "binary\LessEqualThan.hpp"
+#include "binary\Maximum.hpp"
 
 #include "unary\Log.hpp"
 #include "unary\Sqrt.hpp"

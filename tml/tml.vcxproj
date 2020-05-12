@@ -120,6 +120,7 @@
     <ClInclude Include="include\ops\lazy\binary\GreaterThan.hpp" />
     <ClInclude Include="include\ops\lazy\binary\LessEqualThan.hpp" />
     <ClInclude Include="include\ops\lazy\binary\LessThan.hpp" />
+    <ClInclude Include="include\ops\lazy\binary\Maximum.hpp" />
     <ClInclude Include="include\ops\lazy\binary\NotEqual.hpp" />
     <ClInclude Include="include\ops\lazy\unary\Abs.hpp" />
     <ClInclude Include="include\ops\lazy\unary\Cosh.hpp" />

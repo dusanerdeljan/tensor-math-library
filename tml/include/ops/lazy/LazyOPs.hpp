@@ -1,4 +1,5 @@
 #pragma once
+#include <algorithm>
 
 namespace tml
 {
@@ -62,6 +63,12 @@ namespace tml
 		struct LessEqualThanOP
 		{
 			static inline Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left <= right); }
+		};
+
+		template<typename Scalar>
+		struct MaximumOP
+		{
+			static inline Scalar op(Scalar left, Scalar right) { return std::max(left, right); }
 		};
 
 		template<typename Scalar>
