@@ -96,7 +96,7 @@ namespace tml
 		{
 			Matrix<Scalar> matrix(shape);
 			std::fill(matrix.begin(), matrix.end(), static_cast<Scalar>(0.0));
-			return matrix;
+			return std::move(matrix);
 		}
 
 		template<typename DType>
@@ -104,14 +104,14 @@ namespace tml
 		{
 			Matrix<Scalar> result (matrix.GetShape());
 			std::fill(result.begin(), result.end(), static_cast<Scalar>(0.0));
-			return result;
+			return std::move(matrix);
 		}
 
 		static Matrix<Scalar> Ones(Shape shape)
 		{
 			Matrix<Scalar> matrix(shape);
 			std::fill(matrix.begin(), matrix.end(), static_cast<Scalar>(1.0));
-			return matrix;
+			return std::move(matrix);
 		}
 
 		template<typename DType>
@@ -119,7 +119,7 @@ namespace tml
 		{
 			Matrix<Scalar> result(matrix.GetShape());
 			std::fill(result.begin(), result.end(), static_cast<Scalar>(1.0));
-			return result;
+			return std::move(matrix);
 		}
 
 		Shape GetShape() const { return m_Shape; }
