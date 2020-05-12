@@ -12,7 +12,7 @@ int main()
 {
 	tml::Matrix<double> m1(3, 3);
 	tml::Matrix<double> m2(3, 3);
-	tml::Matrix<double> result = tmll::Minimum(5.0*m1+1.0, m2*m2);
+	tml::Matrix<double> result = tmll::Pow(m1, 2.0*m2);
 	std::cout << result << std::endl;
 	std::cin.get();
 	return 0;

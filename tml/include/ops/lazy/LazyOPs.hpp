@@ -78,6 +78,12 @@ namespace tml
 		};
 
 		template<typename Scalar>
+		struct PowOP
+		{
+			static inline Scalar op(Scalar left, Scalar right) { return std::pow(left, right); }
+		};
+
+		template<typename Scalar>
 		struct NegOP
 		{
 			static inline Scalar op(Scalar value) { return -value; }
