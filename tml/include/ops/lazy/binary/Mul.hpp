@@ -64,7 +64,7 @@ operator *(const ExprOP<Scalar, T>& left, Scalar right)
 
 template<typename Scalar, typename T>
 ExprOP<Scalar, BinaryOP<Scalar, ScalarExpr<Scalar>, ExprOP<Scalar, T>, tml::lazy::MulOP<Scalar>>>
-operator *(Scalar left, const ExprOP<T, Scalar>& right)
+operator *(Scalar left, const ExprOP<Scalar, T>& right)
 {
 	typedef BinaryOP<Scalar, ScalarExpr<Scalar>, ExprOP<Scalar, T>, tml::lazy::MulOP<Scalar>> ExprType;
 	return ExprOP<Scalar, ExprType>(ExprType(left, right), right.shape);
