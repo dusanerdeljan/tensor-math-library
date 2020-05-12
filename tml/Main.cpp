@@ -12,7 +12,7 @@ int main()
 {
 	tml::Matrix<double> m1(3, 3);
 	tml::Matrix<double> m2(3, 3);
-	tml::Matrix<double> result = m1 != (m2 + 1.0);
+	tml::Matrix<double> result = m1 > (m1 - 1.0);
 	std::cout << result << std::endl;
 	std::cin.get();
 	return 0;
