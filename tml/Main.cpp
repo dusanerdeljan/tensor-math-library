@@ -1,8 +1,6 @@
 #include <iostream>
 #include "include\tml.hpp"
 
-namespace tmll = tml::lazy;
-
 void foo(const tml::Matrix<double>& matrix)
 {
 	std::cout << matrix << std::endl;
@@ -10,9 +8,9 @@ void foo(const tml::Matrix<double>& matrix)
 
 int main()
 {
-	tml::Matrix<double> m1(3, 3);
-	tml::Matrix<double> m2(3, 3);
-	tml::Matrix<double> result = tmll::Pow(m1, 2.0*m2);
+	tml::Matrix<double> m1(4, 4);
+	tml::Matrix<double> m2(4, 4);
+	tml::Matrix<double> result = tml::lazy::Reshape(m1+15.0, { 2, 8 });
 	std::cout << result << std::endl;
 	std::cin.get();
 	return 0;

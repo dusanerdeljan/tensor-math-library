@@ -17,6 +17,8 @@
 #include "binary\Minimum.hpp"
 #include "binary\Pow.hpp"
 
+#include "binary\Reshape.hpp"
+
 #include "unary\Log.hpp"
 #include "unary\Sqrt.hpp"
 #include "unary\Square.hpp"
