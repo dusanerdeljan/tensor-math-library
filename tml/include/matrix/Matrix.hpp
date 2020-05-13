@@ -124,6 +124,8 @@ namespace tml
 
 		Shape GetShape() const { return m_Shape; }
 
+		void SetShape(const Shape& shape) { m_Shape = shape; }
+
 		inline Scalar& operator() (size_t i, size_t j) { return m_Data[j + i*m_Shape.Columns]; }
 		inline const Scalar& operator() (size_t i, size_t j) const { return m_Data[j + i*m_Shape.Columns]; }
 
