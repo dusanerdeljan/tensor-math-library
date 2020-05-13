@@ -161,6 +161,8 @@ namespace tml
 		inline size_t Columns() const { return m_Shape.Columns; }
 
 		Scalar& operator[] (size_t index) { return m_Data[index]; }
+
+		const Scalar& operator[] (size_t index) const { return m_Data[index]; }
 	private:
 		template<typename Expr>
 		void AssignExpr(Expr expr)

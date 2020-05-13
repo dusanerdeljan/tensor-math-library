@@ -7,5 +7,5 @@ namespace tml
 
 	enum ExecutionPolicy { SERIAL, PARALLEL };
 
-	enum ParallelismPolicy { SINGLE_ELEMENT, SINGLE_ROW, ONE_OVER_CORES, PARALLEL_FOR };
+	enum ParallelismPolicy { SINGLE_ROW, SINGLE_COLUMN, ONE_OVER_CORES, PARALLEL_FOR };
 }

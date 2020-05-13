@@ -20,8 +20,7 @@ int main()
 {
 	tml::Matrix<double> m1(4, 4);
 	tml::Matrix<double> m2(4, 4);
-	tml::Matrix<int> result(8, 8);
-	result = m1;
+	auto result = tml::eager::CustomUnaryOP(m1, [](double x) { return 5 * x; }, tml::PARALLEL, tml::PARALLEL_FOR);
 	std::cout << result << std::endl;
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();

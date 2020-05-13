@@ -14,6 +14,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				CustomSerialUnaryOP(matrix, result, std::move(op));
+			else
+				ParallelCustomUnaryOP(matrix, result, std::move(op), parallelism);
 			return std::move(result);
 		}
 
