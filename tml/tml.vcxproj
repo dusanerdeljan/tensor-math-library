@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="include\matrix\Matrix.hpp" />
     <ClInclude Include="include\matrix\Shape.hpp" />
+    <ClInclude Include="include\ops\eager\binary\Add.hpp" />
     <ClInclude Include="include\ops\eager\EagerExecution.h" />
     <ClInclude Include="include\ops\eager\EagerUnaryOPs.hpp" />
     <ClInclude Include="include\ops\eager\ExecutionPolicy.hpp" />

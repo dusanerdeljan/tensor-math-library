@@ -158,5 +158,8 @@
     <ClInclude Include="include\ops\eager\serial\SerialBinaryOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\binary\Add.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
