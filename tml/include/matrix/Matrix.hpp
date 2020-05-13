@@ -47,6 +47,16 @@ namespace tml
 			memcpy(m_Data, matrix.m_Data, sizeof(Scalar)*m_Shape.Size);
 		}
 
+		template<typename DType>
+		Matrix(const Matrix<DType>& matrix) : m_Data(new Scalar[matrix.Size()]), m_Shape(matrix.GetShape())
+		{
+			std::cout << "copy new type constructor" << std::endl;
+#pragma message("[TML WARNING] You are copying a matrix of different type. Possible loss of data.")
+			iterator writer = begin();
+			for (auto it = matrix.cbegin(); it != matrix.cend(); ++it, ++writer)
+				*writer = static_cast<Scalar>(*it);
+		}
+
 		Matrix(Matrix<Scalar>&& matrix) : m_Data(matrix.m_Data), m_Shape(matrix.m_Shape)
 		{
 			std::cout << "move constructor" << std::endl;
@@ -71,6 +81,21 @@ namespace tml
 			delete[] m_Data;
 			m_Data = data;
 			m_Shape = matrix.m_Shape;
+			return *this;
+		}
+
+		template<typename DType>
+		Matrix<Scalar>& operator=(const Matrix<DType>& matrix)
+		{
+			std::cout << "copy new type assignment" << std::endl;
+#pragma message("[TML WARNING] You are copying a matrix of different type. Possible loss of data.")
+			Scalar* data = new Scalar[matrix.Size()];
+			iterator writer = data;
+			for (auto it = matrix.cbegin(); it != matrix.cend(); ++it, ++writer)
+				*writer = static_cast<Scalar>(*it);
+			delete[] m_Data;
+			m_Data = data;
+			m_Shape = matrix.GetShape();
 			return *this;
 		}
 
