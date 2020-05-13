@@ -119,6 +119,7 @@
     <ClInclude Include="include\ops\eager\binary\Div.hpp" />
     <ClInclude Include="include\ops\eager\binary\Equal.hpp" />
     <ClInclude Include="include\ops\eager\binary\GreaterThan.hpp" />
+    <ClInclude Include="include\ops\eager\binary\LessThan.hpp" />
     <ClInclude Include="include\ops\eager\binary\Mul.hpp" />
     <ClInclude Include="include\ops\eager\binary\NotEqual.hpp" />
     <ClInclude Include="include\ops\eager\binary\Sub.hpp" />
