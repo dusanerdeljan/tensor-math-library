@@ -12,7 +12,7 @@ int main()
 {
 	tml::Matrix<double> m1(4, 4);
 	tml::Matrix<double> m2(4, 4);
-	auto result = tml::eager::Reshape(1.0 + m1*2.0, { 2, 8 });
+	auto result = tml::eager::CustomBinaryOP(m1*2.0, m2*3.0, [](double x, double y) { return x + y + 1.0; });
 	std::cout << result << std::endl;
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();

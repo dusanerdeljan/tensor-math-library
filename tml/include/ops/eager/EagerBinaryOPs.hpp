@@ -14,5 +14,6 @@
 #include "binary\Minimum.hpp"
 #include "binary\Pow.hpp"
 #include "binary\Reshape.hpp"
+#include "binary\CustomBinaryOP.hpp"
 
 

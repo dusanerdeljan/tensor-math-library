@@ -8,7 +8,7 @@ namespace tml
 	namespace eager
 	{
 		template<typename Scalar, typename OP>
-		void CustomSerialBinaryOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result, OP&& op)
+		void SerialCustomBinaryOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result, OP&& op)
 		{
 			std::transform(left.cbegin(), left.cend(), right.cbegin(), result.begin(), op);
 		}
