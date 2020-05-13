@@ -12,5 +12,6 @@
 #include "binary\LessEqualThan.hpp"
 #include "binary\Maximum.hpp"
 #include "binary\Minimum.hpp"
+#include "binary\Pow.hpp"
 
 

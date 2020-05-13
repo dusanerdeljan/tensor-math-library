@@ -194,5 +194,8 @@
     <ClInclude Include="include\ops\eager\binary\Minimum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\binary\Pow.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
