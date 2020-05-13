@@ -10,5 +10,6 @@
 #include "binary\LessThan.hpp"
 #include "binary\GraterEqualThan.hpp"
 #include "binary\LessEqualThan.hpp"
+#include "binary\Maximum.hpp"
 
 

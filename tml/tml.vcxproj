@@ -122,6 +122,7 @@
     <ClInclude Include="include\ops\eager\binary\GreaterThan.hpp" />
     <ClInclude Include="include\ops\eager\binary\LessEqualThan.hpp" />
     <ClInclude Include="include\ops\eager\binary\LessThan.hpp" />
+    <ClInclude Include="include\ops\eager\binary\Maximum.hpp" />
     <ClInclude Include="include\ops\eager\binary\Mul.hpp" />
     <ClInclude Include="include\ops\eager\binary\NotEqual.hpp" />
     <ClInclude Include="include\ops\eager\binary\Sub.hpp" />
