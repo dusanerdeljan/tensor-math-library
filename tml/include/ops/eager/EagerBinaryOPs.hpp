@@ -5,5 +5,6 @@
 #include "binary\Mul.hpp"
 #include "binary\Div.hpp"
 #include "binary\Equal.hpp"
+#include "binary\NotEqual.hpp"
 
 
