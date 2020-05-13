@@ -167,5 +167,8 @@
     <ClInclude Include="include\ops\eager\binary\Mul.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\binary\Div.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
