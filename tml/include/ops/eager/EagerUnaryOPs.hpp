@@ -266,6 +266,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialTan(matrix, result);
+			else
+				ParallelTanh(matrix, result, parallelism);
 			return std::move(result);
 		}
 
