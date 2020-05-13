@@ -54,7 +54,34 @@ namespace tml
 		template<typename Scalar, typename OP>
 		void ParallelCustomUnaryOPOneOverCores(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
 		{
-#pragma message("[TML ERROR] ParallelCustomUnaryOPOneOverCores not yet implemented.")
+			size_t size = matrix.Size();
+			typedef tml::UnaryTask<typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::iterator, OP> TaskType;
+			if (size <= tml::HardawreConcurrency)
+			{
+				tbb::task::spawn_root_and_wait(*(new (tbb::task::allocate_root()) TaskType(matrix.cbegin(), matrix.cend(), result.begin(), std::move(op))));
+			}
+			else if (size % tml::HardawreConcurrency == 0)
+			{
+				tbb::task_list tasks;
+				size_t stepSize = size / tml::HardawreConcurrency;
+				for (size_t i = 0; i < size; i += stepSize)
+					tasks.push_back(*(new(tbb::task::allocate_root()) TaskType(matrix.cbegin() + i, matrix.cbegin() + i + stepSize, result.begin() + i, std::move(op))));
+				tbb::task::spawn_root_and_wait(tasks);
+			}
+			else
+			{
+				size_t treshold = tml::HardawreConcurrency - (size % tml::HardawreConcurrency);
+				size_t value = size / tml::HardawreConcurrency;
+				tbb::task_list tasks;
+				size_t beginIndex = 0;
+				for (size_t i = 0; i<tml::HardawreConcurrency; ++i)
+				{
+					size_t segmentLength = value + (i >= treshold);
+					tasks.push_back(*(new(tbb::task::allocate_root()) TaskType(matrix.cbegin() + beginIndex, matrix.cbegin() + beginIndex + segmentLength, result.begin() + beginIndex, std::move(op))));
+					beginIndex += segmentLength;
+				}
+				tbb::task::spawn_root_and_wait(tasks);
+			}
 		}
 
 		template<typename Scalar, typename OP>

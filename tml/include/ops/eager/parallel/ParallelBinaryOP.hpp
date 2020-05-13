@@ -57,7 +57,34 @@ namespace tml
 		template<typename Scalar, typename OP>
 		void ParallelCustomBinaryOPOneOverCores(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result, OP&& op)
 		{
-#pragma message("[TML ERROR] ParallelCustomBinaryOPOneOverCores not yet implemented.")
+			size_t size = left.Size();
+			typedef tml::BinaryTask<typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::iterator, OP> TaskType;
+			if (size <= tml::HardawreConcurrency)
+			{
+				tbb::task::spawn_root_and_wait(*(new (tbb::task::allocate_root()) TaskType(left.cbegin(), left.cend(), right.cbegin(), result.begin(), std::move(op))));
+			}
+			else if (size % tml::HardawreConcurrency == 0)
+			{
+				tbb::task_list tasks;
+				size_t stepSize = size / tml::HardawreConcurrency;
+				for (size_t i = 0; i < size; i += stepSize)
+					tasks.push_back(*(new(tbb::task::allocate_root()) TaskType(left.cbegin() + i, left.cbegin() + i + stepSize, right.cbegin() + i, result.begin() + i, std::move(op))));
+				tbb::task::spawn_root_and_wait(tasks);
+			}
+			else
+			{
+				size_t treshold = tml::HardawreConcurrency - (size % tml::HardawreConcurrency);
+				size_t value = size / tml::HardawreConcurrency;
+				tbb::task_list tasks;
+				size_t beginIndex = 0;
+				for (size_t i = 0; i<tml::HardawreConcurrency; ++i)
+				{
+					size_t segmentLength = value + (i >= treshold);
+					tasks.push_back(*(new(tbb::task::allocate_root()) TaskType(left.cbegin() + beginIndex, left.cbegin() + beginIndex + segmentLength, right.cbegin() + beginIndex, result.begin() + beginIndex, std::move(op))));
+					beginIndex += segmentLength;
+				}
+				tbb::task::spawn_root_and_wait(tasks);
+			}
 		}
 
 		template<typename Scalar, typename OP>

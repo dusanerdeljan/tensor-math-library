@@ -20,7 +20,7 @@ int main()
 {
 	tml::Matrix<double> m1(4, 4);
 	tml::Matrix<double> m2(4, 4);
-	auto result = tml::eager::GreaterThan(m1+1.0, m2, tml::PARALLEL, tml::PARALLEL_FOR);
+	auto result = tml::eager::Add(m1, m2, tml::PARALLEL, tml::ONE_OVER_CORES);
 	std::cout << result << std::endl;
 	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;
