@@ -3,7 +3,14 @@
 #include <iostream>
 #include <iomanip>
 
+#include <tbb\tbb.h>
+#include <tbb\parallel_for.h>
+#include <tbb\blocked_range.h>
+
 #include "Shape.hpp"
+
+// TODO: Implement expr assignment policy configuration
+#define TML_USE_PARALLEL_ASSIGNMENT
 
 namespace tml
 {
@@ -17,7 +24,6 @@ namespace tml
 		typedef Scalar* iterator;
 		typedef const Scalar* const_iterator;
 
-		// TODO: Make theese 2 constructors private they are only used for debugging and testing
 		Matrix(size_t rows, size_t cols) : m_Data(new Scalar[rows*cols]), m_Shape(rows, cols)
 		{
 			for (size_t i = 0; i < m_Shape.Size; ++i) m_Data[i] = (Scalar)i;
@@ -27,19 +33,12 @@ namespace tml
 		{
 			std::cout << "shape constructor" << std::endl;
 		}
-		// ENDTODO
 
 		template<typename Expr>
 		Matrix(Expr expr) : m_Data(new Scalar[expr.shape.Size]), m_Shape(expr.shape)
 		{
 			std::cout << "expr constructor" << std::endl;
-			iterator beginIter = begin();
-			iterator endIter = end();
-			do
-			{
-				*beginIter = *expr;
-				++expr;
-			} while (++beginIter != endIter);
+			AssignExpr(expr);
 		}
 
 		Matrix(const Matrix<Scalar>& matrix) : m_Data(new Scalar[matrix.m_Shape.Size]), m_Shape(matrix.m_Shape)
@@ -60,14 +59,7 @@ namespace tml
 		Matrix<Scalar>& operator=(const Expr& expr)
 		{
 			std::cout << "expr assignment" << std::endl;
-			Expr iter = expr;
-			iterator beginIter = begin();
-			iterator endIter = end();
-			do
-			{
-				*beginIter = *iter;
-				++iter;
-			} while (++beginIter != endIter);
+			AssignExpr(expr);
 			return *this;
 		}
 
@@ -143,6 +135,28 @@ namespace tml
 
 		inline size_t Columns() const { return m_Shape.Columns; }
 
+		Scalar& operator[] (size_t index) { return m_Data[index]; }
+	private:
+		template<typename Expr>
+		void AssignExpr(Expr expr)
+		{
+#ifdef TML_USE_PARALLEL_ASSIGNMENT
+			size_t grainSize =  m_Shape.Size / tml::HardawreConcurrency;
+			tbb::parallel_for(tbb::blocked_range<size_t>(0, m_Shape.Size, grainSize), [&](tbb::blocked_range<size_t> range)
+			{
+				for (size_t i = range.begin(); i != range.end(); ++i)
+					m_Data[i] = expr[i];
+			});
+#else
+			iterator beginIter = begin();
+			iterator endIter = end();
+			do
+			{
+				*beginIter = *expr;
+				++expr;
+			} while (++beginIter != endIter);
+#endif
+		}
 	};
 
 	template<typename Scalar>

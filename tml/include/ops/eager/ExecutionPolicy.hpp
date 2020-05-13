@@ -3,7 +3,7 @@
 
 namespace tml
 {
-	static unsigned int HardawreConcurrency = std::thread::hardware_concurrency();
+	static const unsigned int HardawreConcurrency = std::thread::hardware_concurrency();
 
 	enum ExecutionPolicy { SERIAL, PARALLEL };
 
