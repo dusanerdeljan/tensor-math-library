@@ -17,7 +17,7 @@ namespace tml
 		WriteIter m_Result;
 		OP m_Op;
 	public:
-		UnaryTask(ReadIter begin, ReadIter end, WriteIter result, OP&& op) : m_Begin(begin), m_End(end), m_Result(result), m_Op(std::move(op)) {}
+		UnaryTask(const ReadIter& begin, const ReadIter& end, const WriteIter& result, OP&& op) : m_Begin(begin), m_End(end), m_Result(result), m_Op(std::move(op)) {}
 		tbb::task* execute()
 		{
 			std::transform(m_Begin, m_End, m_Result, m_Op);

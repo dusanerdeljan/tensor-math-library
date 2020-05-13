@@ -20,9 +20,10 @@ int main()
 {
 	tml::Matrix<double> m1(4, 4);
 	tml::Matrix<double> m2(4, 4);
-	/*auto result = tml::eager::CustomUnaryOP(m1, [](double x) { return 5 * x; }, tml::PARALLEL, tml::PARALLEL_FOR);
-	std::cout << result << std::endl;*/
-	TestProfile();
+	tml::Matrix<double> result(m1.GetShape());
+	tml::eager::ParallelCustomBinaryOP(20.0, m1, result, [](double x, double y) { return 2*x + y; }, tml::SINGLE_ROW);
+	std::cout << result << std::endl;
+	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();
 	return 0;
