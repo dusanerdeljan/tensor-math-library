@@ -26,6 +26,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				CustomSerialUnaryOP(matrix, result, std::move(op));
+			else
+				ParallelCustomUnaryOP(matrix, result, std::move(op), parallelism);
 			return std::move(result);
 		}
 
@@ -36,6 +38,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialAbs(matrix, result);
+			else
+				ParallelAbs(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -46,6 +50,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialAbs(matrix, result);
+			else
+				ParallelAbs(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -56,6 +62,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialCos(matrix, result);
+			else
+				ParallelCos(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -66,6 +74,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialCos(matrix, result);
+			else
+				ParallelCos(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -76,6 +86,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialCosh(matrix, result);
+			else
+				ParallelCosh(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -86,6 +98,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialCosh(matrix, result);
+			else
+				ParallelCosh(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -96,6 +110,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialCot(matrix, result);
+			else
+				ParallelCot(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -106,6 +122,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialCot(matrix, result);
+			else
+				ParallelCot(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -116,6 +134,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialExp(matrix, result);
+			else
+				ParallelExp(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -126,6 +146,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialExp(matrix, result);
+			else
+				ParallelExp(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -136,6 +158,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialLog(matrix, result);
+			else
+				ParallelLog(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -146,6 +170,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialLog(matrix, result);
+			else
+				ParallelLog(matrix, result);
 			return std::move(result);
 		}
 
@@ -156,6 +182,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialNeg(matrix, result);
+			else
+				ParallelNeg(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -166,6 +194,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialNeg(matrix, result);
+			else
+				ParallelNeg(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -176,6 +206,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSin(matrix, result);
+			else
+				ParallelSin(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -186,6 +218,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSin(matrix, result);
+			else
+				ParallelSin(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -196,6 +230,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSinh(matrix, result);
+			else
+				ParallelSinh(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -206,6 +242,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSinh(matrix, result);
+			else
+				ParallelSinh(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -216,6 +254,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSqrt(matrix, result);
+			else
+				ParallelSqrt(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -226,6 +266,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSqrt(matrix, result);
+			else
+				ParallelSqrt(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -236,6 +278,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSquare(matrix, result);
+			else
+				ParallelSquare(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -246,6 +290,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialSquare(matrix, result);
+			else
+				ParallelSquare(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -256,6 +302,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialTan(matrix, result);
+			else
+				ParallelTan(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -267,7 +315,7 @@ namespace tml
 			if (execPolicy == tml::SERIAL)
 				SerialTan(matrix, result);
 			else
-				ParallelTanh(matrix, result, parallelism);
+				ParallelTan(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -278,6 +326,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialTanh(matrix, result);
+			else
+				ParallelTanh(matrix, result, parallelism);
 			return std::move(result);
 		}
 
@@ -288,6 +338,8 @@ namespace tml
 			tml::Matrix<Scalar> result(matrix.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialTanh(matrix, result);
+			else
+				ParallelTanh(matrix, result, parallelism);
 			return std::move(result);
 		}
 	}
