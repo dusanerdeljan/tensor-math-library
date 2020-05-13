@@ -9,5 +9,6 @@
 #include "binary\GreaterThan.hpp"
 #include "binary\LessThan.hpp"
 #include "binary\GraterEqualThan.hpp"
+#include "binary\LessEqualThan.hpp"
 
 
