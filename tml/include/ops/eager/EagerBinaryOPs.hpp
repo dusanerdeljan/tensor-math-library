@@ -8,5 +8,6 @@
 #include "binary\NotEqual.hpp"
 #include "binary\GreaterThan.hpp"
 #include "binary\LessThan.hpp"
+#include "binary\GraterEqualThan.hpp"
 
 
