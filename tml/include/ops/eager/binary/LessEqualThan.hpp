@@ -15,6 +15,8 @@ namespace tml
 			tml::Matrix<Scalar> result(left.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 
@@ -25,6 +27,8 @@ namespace tml
 			tml::Matrix<Scalar> right = rightExpr;
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 
@@ -35,6 +39,8 @@ namespace tml
 			tml::Matrix<Scalar> left = leftExpr;
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 
@@ -46,6 +52,8 @@ namespace tml
 			tml::Matrix<Scalar> result(leftExpr.shape);
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 
@@ -55,6 +63,8 @@ namespace tml
 			tml::Matrix<Scalar> result(left.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 
@@ -64,6 +74,8 @@ namespace tml
 			tml::Matrix<Scalar> result(right.GetShape());
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 
@@ -74,6 +86,8 @@ namespace tml
 			tml::Matrix<Scalar> result(leftExpr.shape);
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 
@@ -84,6 +98,8 @@ namespace tml
 			tml::Matrix<Scalar> result(rightExpr.shape);
 			if (execPolicy == tml::SERIAL)
 				SerialLessEqualThan(left, right, result);
+			else
+				ParallelLessEqualThan(left, right, result, parallelism);
 			return std::move(result);
 		}
 	}
