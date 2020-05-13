@@ -176,5 +176,8 @@
     <ClInclude Include="include\ops\eager\binary\NotEqual.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\binary\GreaterThan.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

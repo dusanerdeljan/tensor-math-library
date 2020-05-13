@@ -6,5 +6,6 @@
 #include "binary\Div.hpp"
 #include "binary\Equal.hpp"
 #include "binary\NotEqual.hpp"
+#include "binary\GreaterThan.hpp"
 
 
