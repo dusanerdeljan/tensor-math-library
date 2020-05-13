@@ -13,7 +13,7 @@ int main()
 	tml::Matrix<double> m1(4, 4);
 	tml::Matrix<double> m2(4, 4);
 	tml::Matrix<double> result(m1.GetShape());
-	tml::eager::SerialGreaterEqualThan(m1, m2, result);
+	tml::eager::SerialPow(2.0, m1, result);
 	std::cout << result << std::endl;
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();

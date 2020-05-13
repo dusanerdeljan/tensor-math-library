@@ -228,5 +228,23 @@ namespace tml
 		{
 			std::transform(right.cbegin(), right.cend(), result.begin(), [=](Scalar x) { return std::min(left, x); });
 		}
+
+		template<typename Scalar>
+		void SerialPow(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
+		{
+			std::transform(left.cbegin(), left.cend(), right.cbegin(), result.begin(), [](Scalar x, Scalar y) { return std::pow(x, y); });
+		}
+
+		template<typename Scalar>
+		void SerialPow(const tml::Matrix<Scalar>& left, Scalar right, tml::Matrix<Scalar>& result)
+		{
+			std::transform(left.cbegin(), left.cend(), result.begin(), [=](Scalar x) { return std::pow(x, right); });
+		}
+
+		template<typename Scalar>
+		void SerialPow(Scalar left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
+		{
+			std::transform(right.cbegin(), right.cend(), result.begin(), [=](Scalar x) { return std::pow(left, x); });
+		}
 	}
 }
