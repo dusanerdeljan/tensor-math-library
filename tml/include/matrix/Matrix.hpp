@@ -14,12 +14,15 @@
 
 namespace tml
 {
+	enum OwnershipPolicy {VIEW, COPY};
+
 	template<typename Scalar=double>
 	class Matrix
 	{
 	private:
 		Scalar* m_Data;
 		Shape m_Shape;
+		bool m_View = false;
 	public:
 		typedef Scalar* iterator;
 		typedef const Scalar* const_iterator;
@@ -27,6 +30,20 @@ namespace tml
 		Matrix(size_t rows, size_t cols) : m_Data(new Scalar[rows*cols]), m_Shape(rows, cols)
 		{
 			for (size_t i = 0; i < m_Shape.Size; ++i) m_Data[i] = (Scalar)i;
+		}
+
+		Matrix(Scalar* data, const Shape& shape, tml::OwnershipPolicy ownership = tml::VIEW) : m_Data(nullptr), m_Shape(shape)
+		{
+			if (ownership == tml::VIEW)
+			{
+				m_Data = data;
+				m_View = true;
+			}
+			else
+			{
+				m_Data = new Scalar[shape.Size];
+				memcpy(m_Data, data, sizeof(Scalar)*shape.Size);
+			}
 		}
 
 		Matrix(Shape shape) : m_Data(new Scalar[shape.Size]), m_Shape(shape)
@@ -63,7 +80,7 @@ namespace tml
 			matrix.m_Data = nullptr;
 		}
 
-		~Matrix() { delete[] m_Data; }
+		~Matrix() { if (!m_View) { delete[] m_Data; } }
 
 		template<typename Expr>
 		Matrix<Scalar>& operator=(const Expr& expr)

@@ -18,10 +18,14 @@ void TestProfile()
 
 int main()
 {
-	tml::Matrix<double> m1(4, 4);
-	tml::Matrix<double> m2(4, 4);
-	auto result = tml::eager::Add(m1, m2, tml::PARALLEL, tml::ONE_OVER_CORES);
-	std::cout << result << std::endl;
+	std::vector<double> mat = { 1, 2, 3, 4, 5, 6 };
+	tml::Matrix<double> m1(&mat[0], {3, 2}, tml::VIEW);
+	mat[3] = 99;
+	std::cout << m1 << std::endl;
+	std::cout << "=================" << std::endl;
+	for (auto x : mat)
+		std::cout << x << " ";
+	std::cout << std::endl;
 	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();
