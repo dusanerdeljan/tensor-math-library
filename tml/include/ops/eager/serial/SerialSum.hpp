@@ -27,13 +27,9 @@ namespace tml
 			void SerialSumColumns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 			{
 				size_t rows = matrix.Rows(), cols = matrix.Columns();
-				for (size_t j = 0; j < cols; ++j)
-				{
-					Scalar temp = static_cast<Scalar>(0);
-					for (size_t i = 0; i < rows; ++i)
-						temp += matrix(i, j);
-					result[j] = temp;
-				}
+				const tml::Matrix<Scalar> transposed = tml::eager::Transpose(matrix, tml::SERIAL);
+				for (size_t i = 0; i < cols; ++i)
+					result[i] = std::accumulate(transposed.cbegin() + i*rows, transposed.cbegin() + (i + 1)*rows, static_cast<Scalar>(0));
 			}
 		}
 	}
