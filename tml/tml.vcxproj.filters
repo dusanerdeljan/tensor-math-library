@@ -224,5 +224,8 @@
     <ClInclude Include="include\ops\eager\EagerMatrixMultiplication.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\ParallelMatrixMultiplication.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
