@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CustomLazyOP.hpp"
+#include "LazyTranspose.hpp"
 
 #include "binary\Add.hpp"
 #include "binary\Sub.hpp"

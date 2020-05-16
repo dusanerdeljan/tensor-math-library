@@ -188,7 +188,7 @@ namespace tml
 			size_t grainSize =  m_Shape.Size / tml::HardawreConcurrency;
 			tbb::parallel_for(tbb::blocked_range<size_t>(0, m_Shape.Size, grainSize), [&](tbb::blocked_range<size_t> range)
 			{
-				for (size_t i = range.begin(); i != range.end(); ++i)
+				for (size_t i = 0; i < m_Shape.Size; ++i)
 					m_Data[i] = expr[i];
 			});
 #else

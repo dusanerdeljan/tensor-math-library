@@ -156,7 +156,9 @@
     <ClInclude Include="include\ops\lazy\binary\Pow.hpp" />
     <ClInclude Include="include\ops\lazy\binary\Reshape.hpp" />
     <ClInclude Include="include\ops\lazy\CustomLazyOP.hpp" />
+    <ClInclude Include="include\ops\lazy\LazyTranspose.hpp" />
     <ClInclude Include="include\ops\lazy\ReshapeOP.hpp" />
+    <ClInclude Include="include\ops\lazy\TransposeExpr.hpp" />
     <ClInclude Include="include\ops\lazy\unary\Abs.hpp" />
     <ClInclude Include="include\ops\lazy\unary\Cosh.hpp" />
     <ClInclude Include="include\ops\lazy\binary\Add.hpp" />

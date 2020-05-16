@@ -20,9 +20,11 @@ int main()
 {
 	tml::Matrix<double> matrix(3, 8);
 	std::cout << matrix << std::endl;
-	matrix = tml::eager::Transpose(matrix, tml::PARALLEL);
-	std::cout << matrix << std::endl;
-	TestProfile();
+	tml::Matrix<double> res = tml::lazy::Transpose(matrix);
+	std::cout << res << std::endl;
+	tml::Matrix<double> result = tml::eager::Transpose(matrix);
+	std::cout << result << std::endl;
+	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();
 	return 0;

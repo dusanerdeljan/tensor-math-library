@@ -212,5 +212,11 @@
     <ClInclude Include="include\ops\eager\parallel\ParallelTranspose.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\TransposeExpr.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\LazyTranspose.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
