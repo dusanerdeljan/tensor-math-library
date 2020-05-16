@@ -140,6 +140,7 @@
     <ClInclude Include="include\ops\eager\ExecutionPolicy.hpp" />
     <ClInclude Include="include\ops\eager\EagerBinaryOPs.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelBinaryOP.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\ParallelTranspose.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelUnaryOP.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialBinaryOP.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialTranspose.hpp" />

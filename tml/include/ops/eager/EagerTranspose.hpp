@@ -2,6 +2,7 @@
 
 #include "ExecutionPolicy.hpp"
 #include "serial\SerialTranspose.hpp"
+#include "parallel\ParallelTranspose.hpp"
 
 namespace tml
 {
@@ -13,6 +14,8 @@ namespace tml
 			tml::Matrix<Scalar> result(tml::Shape{ matrix.Columns(), matrix.Rows() });
 			if (execPolicy == tml::SERIAL)
 				SerialTranspose(matrix, result);
+			else
+				ParallelTranspose(matrix, result);
 			return result;
 		}
 
@@ -23,6 +26,8 @@ namespace tml
 			tml::Matrix<Scalar> result(tml::Shape{ matrix.Columns(), matrix.Rows() });
 			if (execPolicy == tml::SERIAL)
 				SerialTranspose(matrix, result);
+			else
+				ParallelTranspose(matrix, result);
 			return result;
 		}
 	}

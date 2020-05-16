@@ -10,7 +10,7 @@ void TestProfile()
 	tbb::tick_count end = tbb::tick_count::now();
 	std::cout << "Elapsed tme: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
 	begin = tbb::tick_count::now();
-	//result = tml::eager::Transpose(m1, tml::PARALLEL, tml::PARALLEL_FOR);
+	result = tml::eager::Transpose(m1, tml::PARALLEL);
 	end = tbb::tick_count::now();
 	std::cout << "Elapsed tme: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
 	//std::cout << result << std::endl;
@@ -20,7 +20,7 @@ int main()
 {
 	tml::Matrix<double> matrix(3, 8);
 	std::cout << matrix << std::endl;
-	matrix = tml::eager::Transpose(matrix);
+	matrix = tml::eager::Transpose(matrix, tml::PARALLEL);
 	std::cout << matrix << std::endl;
 	TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;
