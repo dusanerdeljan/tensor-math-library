@@ -17,6 +17,7 @@ struct TransposeExpr
 	}
 	Scalar operator*() const
 	{
+		// TODO: Maybe rework this later
 		const size_t row = idx / rows;
 		const size_t col = idx - row*rows;
 		return operand[row + col*cols];
