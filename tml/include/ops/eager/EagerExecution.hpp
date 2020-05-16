@@ -5,3 +5,4 @@
 #include "EagerUnaryOPs.hpp"
 #include "EagerTranspose.hpp"
 #include "EagerMatrixMultiplication.hpp"
+#include "EagerSum.hpp"

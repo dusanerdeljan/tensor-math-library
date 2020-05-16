@@ -20,9 +20,9 @@ int main()
 {
 	tml::Matrix<double> m1(7, 10);
 	tml::Matrix<double> m2(10, 9);
-	tml::Matrix<double> result = tml::eager::Matmul(m1, m2, tml::PARALLEL, tml::SINGLE_ROW);
-	std::cout << result << std::endl;
-	TestProfile();
+	std::cout << m1 << std::endl;
+	auto sum = tml::eager::SumColumns(m1, tml::SERIAL);
+	std::cout << sum << std::endl;
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();
 	return 0;
