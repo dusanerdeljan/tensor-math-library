@@ -135,6 +135,7 @@
     <ClInclude Include="include\ops\eager\binary\Reshape.hpp" />
     <ClInclude Include="include\ops\eager\binary\Sub.hpp" />
     <ClInclude Include="include\ops\eager\EagerExecution.hpp" />
+    <ClInclude Include="include\ops\eager\EagerMatrixMultiplication.hpp" />
     <ClInclude Include="include\ops\eager\EagerTranspose.hpp" />
     <ClInclude Include="include\ops\eager\EagerUnaryOPs.hpp" />
     <ClInclude Include="include\ops\eager\ExecutionPolicy.hpp" />
@@ -143,6 +144,7 @@
     <ClInclude Include="include\ops\eager\parallel\ParallelTranspose.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelUnaryOP.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialBinaryOP.hpp" />
+    <ClInclude Include="include\ops\eager\serial\SerialMatrixMultiplication.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialTranspose.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialUnaryOP.hpp" />
     <ClInclude Include="include\ops\lazy\binary\Equal.hpp" />

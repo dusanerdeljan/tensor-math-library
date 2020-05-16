@@ -3,14 +3,14 @@
 
 void TestProfile()
 {
-	tml::Matrix<double> m1(5000, 5000);
-	tml::Matrix<double> m2(5000, 5000);
+	tml::Matrix<double> m1(1000, 1000);
+	tml::Matrix<double> m2(1000, 1000);
 	tbb::tick_count begin = tbb::tick_count::now();
-	tml::Matrix<double> result = tml::eager::Transpose(m1);
+	tml::Matrix<double> result = tml::eager::Matmul(m1, m2);
 	tbb::tick_count end = tbb::tick_count::now();
 	std::cout << "Elapsed tme: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
 	begin = tbb::tick_count::now();
-	result = tml::eager::Transpose(m1, tml::PARALLEL);
+	result = tml::eager::Matmul(m1+1.0-1.0, m2+1.0-1.0);
 	end = tbb::tick_count::now();
 	std::cout << "Elapsed tme: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
 	//std::cout << result << std::endl;
@@ -18,13 +18,11 @@ void TestProfile()
 
 int main()
 {
-	tml::Matrix<double> matrix(3, 8);
-	std::cout << matrix << std::endl;
-	tml::Matrix<double> res = tml::lazy::Transpose(matrix);
-	std::cout << res << std::endl;
-	tml::Matrix<double> result = tml::eager::Mul(matrix, matrix, tml::PARALLEL);
+	tml::Matrix<double> m1(7, 10);
+	tml::Matrix<double> m2(10, 9);
+	tml::Matrix<double> result = tml::eager::Matmul(m1+1.0-1.0, m2, tml::SERIAL);
 	std::cout << result << std::endl;
-	//TestProfile();
+	TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();
 	return 0;

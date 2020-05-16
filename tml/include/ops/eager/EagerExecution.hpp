@@ -4,3 +4,4 @@
 #include "EagerBinaryOPs.hpp"
 #include "EagerUnaryOPs.hpp"
 #include "EagerTranspose.hpp"
+#include "EagerMatrixMultiplication.hpp"
