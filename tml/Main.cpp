@@ -22,7 +22,7 @@ int main()
 	std::cout << matrix << std::endl;
 	tml::Matrix<double> res = tml::lazy::Transpose(matrix);
 	std::cout << res << std::endl;
-	tml::Matrix<double> result = tml::eager::Transpose(matrix);
+	tml::Matrix<double> result = tml::eager::Mul(matrix, matrix, tml::PARALLEL);
 	std::cout << result << std::endl;
 	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;

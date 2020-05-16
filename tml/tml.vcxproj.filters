@@ -134,9 +134,6 @@
     <ClInclude Include="include\ops\lazy\CustomLazyOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\eager\EagerExecution.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ops\eager\ExecutionPolicy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -216,6 +213,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\lazy\LazyTranspose.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\EagerExecution.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

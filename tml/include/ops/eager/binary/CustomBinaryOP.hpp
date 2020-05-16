@@ -14,9 +14,9 @@ namespace tml
 		{
 			tml::Matrix<Scalar> result(left.GetShape());
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 
@@ -26,9 +26,9 @@ namespace tml
 			tml::Matrix<Scalar> result(rightExpr.shape);
 			tml::Matrix<Scalar> right = rightExpr;
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 
@@ -38,9 +38,9 @@ namespace tml
 			tml::Matrix<Scalar> result(leftExpr.shape);
 			tml::Matrix<Scalar> left = leftExpr;
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 
@@ -51,9 +51,9 @@ namespace tml
 			tml::Matrix<Scalar> right = rightExpr;
 			tml::Matrix<Scalar> result(leftExpr.shape);
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 
@@ -62,9 +62,9 @@ namespace tml
 		{
 			tml::Matrix<Scalar> result(left.GetShape());
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 
@@ -73,9 +73,9 @@ namespace tml
 		{
 			tml::Matrix<Scalar> result(right.GetShape());
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 
@@ -85,9 +85,9 @@ namespace tml
 			tml::Matrix<Scalar> left = leftExpr;
 			tml::Matrix<Scalar> result(leftExpr.shape);
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 
@@ -97,9 +97,9 @@ namespace tml
 			tml::Matrix<Scalar> right = rightExpr;
 			tml::Matrix<Scalar> result(rightExpr.shape);
 			if (execPolicy == tml::SERIAL)
-				SerialCustomBinaryOP(left, right, result, std::move(op));
+				details::SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
-				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
+				details::ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
 			return result;
 		}
 	}

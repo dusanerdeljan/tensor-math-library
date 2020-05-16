@@ -13,9 +13,9 @@ namespace tml
 		{
 			tml::Matrix<Scalar> result(tml::Shape{ matrix.Columns(), matrix.Rows() });
 			if (execPolicy == tml::SERIAL)
-				SerialTranspose(matrix, result);
+				details::SerialTranspose(matrix, result);
 			else
-				ParallelTranspose(matrix, result);
+				details::ParallelTranspose(matrix, result);
 			return result;
 		}
 
@@ -25,7 +25,7 @@ namespace tml
 			tml::Matrix<Scalar> matrix = expr;
 			tml::Matrix<Scalar> result(tml::Shape{ matrix.Columns(), matrix.Rows() });
 			if (execPolicy == tml::SERIAL)
-				SerialTranspose(matrix, result);
+				details::SerialTranspose(matrix, result);
 			else
 				ParallelTranspose(matrix, result);
 			return result;
