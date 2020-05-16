@@ -16,7 +16,7 @@ namespace tml
 				CustomSerialUnaryOP(matrix, result, std::move(op));
 			else
 				ParallelCustomUnaryOP(matrix, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T, typename OP>
@@ -28,7 +28,7 @@ namespace tml
 				CustomSerialUnaryOP(matrix, result, std::move(op));
 			else
 				ParallelCustomUnaryOP(matrix, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -40,7 +40,7 @@ namespace tml
 				SerialAbs(matrix, result);
 			else
 				ParallelAbs(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -52,7 +52,7 @@ namespace tml
 				SerialAbs(matrix, result);
 			else
 				ParallelAbs(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -64,7 +64,7 @@ namespace tml
 				SerialCos(matrix, result);
 			else
 				ParallelCos(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -76,7 +76,7 @@ namespace tml
 				SerialCos(matrix, result);
 			else
 				ParallelCos(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -88,7 +88,7 @@ namespace tml
 				SerialCosh(matrix, result);
 			else
 				ParallelCosh(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -100,7 +100,7 @@ namespace tml
 				SerialCosh(matrix, result);
 			else
 				ParallelCosh(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -112,7 +112,7 @@ namespace tml
 				SerialCot(matrix, result);
 			else
 				ParallelCot(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -124,7 +124,7 @@ namespace tml
 				SerialCot(matrix, result);
 			else
 				ParallelCot(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -136,7 +136,7 @@ namespace tml
 				SerialExp(matrix, result);
 			else
 				ParallelExp(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -148,7 +148,7 @@ namespace tml
 				SerialExp(matrix, result);
 			else
 				ParallelExp(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -160,7 +160,7 @@ namespace tml
 				SerialLog(matrix, result);
 			else
 				ParallelLog(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -172,7 +172,7 @@ namespace tml
 				SerialLog(matrix, result);
 			else
 				ParallelLog(matrix, result);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -184,7 +184,7 @@ namespace tml
 				SerialNeg(matrix, result);
 			else
 				ParallelNeg(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -196,7 +196,7 @@ namespace tml
 				SerialNeg(matrix, result);
 			else
 				ParallelNeg(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -208,7 +208,7 @@ namespace tml
 				SerialSin(matrix, result);
 			else
 				ParallelSin(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -220,7 +220,7 @@ namespace tml
 				SerialSin(matrix, result);
 			else
 				ParallelSin(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -232,7 +232,7 @@ namespace tml
 				SerialSinh(matrix, result);
 			else
 				ParallelSinh(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -244,7 +244,7 @@ namespace tml
 				SerialSinh(matrix, result);
 			else
 				ParallelSinh(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -256,7 +256,7 @@ namespace tml
 				SerialSqrt(matrix, result);
 			else
 				ParallelSqrt(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -268,7 +268,7 @@ namespace tml
 				SerialSqrt(matrix, result);
 			else
 				ParallelSqrt(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -280,7 +280,7 @@ namespace tml
 				SerialSquare(matrix, result);
 			else
 				ParallelSquare(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -292,7 +292,7 @@ namespace tml
 				SerialSquare(matrix, result);
 			else
 				ParallelSquare(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -304,7 +304,7 @@ namespace tml
 				SerialTan(matrix, result);
 			else
 				ParallelTan(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -316,7 +316,7 @@ namespace tml
 				SerialTan(matrix, result);
 			else
 				ParallelTan(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 
@@ -328,7 +328,7 @@ namespace tml
 				SerialTanh(matrix, result);
 			else
 				ParallelTanh(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -340,7 +340,7 @@ namespace tml
 				SerialTanh(matrix, result);
 			else
 				ParallelTanh(matrix, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 	}
 }

@@ -12,7 +12,7 @@ namespace tml
 		{
 			tml::Matrix<Scalar> result = matrix;
 			result.SetShape(newShape);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -20,7 +20,7 @@ namespace tml
 		{
 			tml::Matrix<Scalar> result = expr;
 			result.SetShape(newShape);
-			return std::move(result);
+			return result;
 		}
 	}
 }

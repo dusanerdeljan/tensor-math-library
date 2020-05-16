@@ -203,5 +203,11 @@
     <ClInclude Include="include\ops\eager\binary\CustomBinaryOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\serial\SerialTranspose.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\EagerTranspose.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

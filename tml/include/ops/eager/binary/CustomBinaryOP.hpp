@@ -17,7 +17,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T, typename OP>
@@ -29,7 +29,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T, typename OP>
@@ -41,7 +41,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename Left, typename Right, typename OP>
@@ -54,7 +54,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename OP>
@@ -65,7 +65,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename OP>
@@ -76,7 +76,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T, typename OP>
@@ -88,7 +88,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T, typename OP>
@@ -100,7 +100,7 @@ namespace tml
 				SerialCustomBinaryOP(left, right, result, std::move(op));
 			else
 				ParallelCustomBinaryOP(left, right, result, std::move(op), parallelism);
-			return std::move(result);
+			return result;
 		}
 	}
 }

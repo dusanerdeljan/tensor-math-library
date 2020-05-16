@@ -17,7 +17,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -29,7 +29,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -41,7 +41,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename Left, typename Right>
@@ -54,7 +54,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar>
@@ -65,7 +65,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar>
@@ -76,7 +76,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -88,7 +88,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 
 		template<typename Scalar, typename T>
@@ -100,7 +100,7 @@ namespace tml
 				SerialMul(left, right, result);
 			else
 				ParallelMul(left, right, result, parallelism);
-			return std::move(result);
+			return result;
 		}
 	}
 }
