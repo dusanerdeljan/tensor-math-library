@@ -138,6 +138,7 @@
     <ClInclude Include="include\ops\eager\EagerMatrixMultiplication.hpp" />
     <ClInclude Include="include\ops\eager\EagerMax.hpp" />
     <ClInclude Include="include\ops\eager\EagerMean.hpp" />
+    <ClInclude Include="include\ops\eager\EagerMin.hpp" />
     <ClInclude Include="include\ops\eager\EagerSum.hpp" />
     <ClInclude Include="include\ops\eager\EagerTranspose.hpp" />
     <ClInclude Include="include\ops\eager\EagerUnaryOPs.hpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="include\ops\eager\parallel\ParallelMatrixMultiplication.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelMax.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelMean.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\ParallelMin.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelSum.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelTranspose.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelUnaryOP.hpp" />
@@ -154,6 +156,7 @@
     <ClInclude Include="include\ops\eager\serial\SerialMatrixMultiplication.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialMax.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialMean.hpp" />
+    <ClInclude Include="include\ops\eager\serial\SerialMin.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialSum.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialTranspose.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialUnaryOP.hpp" />

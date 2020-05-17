@@ -8,3 +8,4 @@
 #include "EagerSum.hpp"
 #include "EagerMean.hpp"
 #include "EagerMax.hpp"
+#include "EagerMin.hpp"
