@@ -39,3 +39,4 @@
 #include "reduction\Sum.hpp"
 #include "reduction\Mean.hpp"
 #include "reduction\Min.hpp"
+#include "reduction\Max.hpp"

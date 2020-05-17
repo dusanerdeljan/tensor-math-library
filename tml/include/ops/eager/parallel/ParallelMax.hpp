@@ -20,8 +20,8 @@ namespace tml
 					std::numeric_limits<Scalar>::lowest(),
 					[&](const tbb::blocked_range<iter>& range, Scalar currentMax) -> Scalar
 				{
-					return max(currentMax, *std::max_element(range.begin(), range.end()));
-				}, [](Scalar left, Scalar right) { return max(left, right); });
+					return std::max(currentMax, *std::max_element(range.begin(), range.end()));
+				}, [](Scalar left, Scalar right) { return std::max(left, right); });
 			}
 
 			template<typename Scalar>

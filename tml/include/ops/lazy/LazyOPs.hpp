@@ -233,5 +233,35 @@ namespace tml
 				return minValue;
 			}
 		};
+
+		template<typename Scalar, typename Expr>
+		struct MaxRowsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t row)
+			{
+				Scalar maxValue = (std::numeric_limits<Scalar>::min)();
+				for (size_t i = 0; i < expr.Columns(); ++i)
+				{
+					Scalar current = expr[i + row*expr.Columns()];
+					if (current > maxValue) maxValue = current;
+				}
+				return maxValue;
+			}
+		};
+
+		template<typename Scalar, typename Expr>
+		struct MaxColsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t column)
+			{
+				Scalar maxValue = (std::numeric_limits<Scalar>::min)();
+				for (size_t i = 0; i < expr.Rows(); ++i)
+				{
+					Scalar current = expr[column + i*expr.Columns()];
+					if (current > maxValue) maxValue = current;
+				}
+				return maxValue;
+			}
+		};
 	}
 }
