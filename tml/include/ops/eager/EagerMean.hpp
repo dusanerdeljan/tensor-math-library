@@ -23,7 +23,7 @@ namespace tml
 		template<typename Scalar, typename T>
 		Scalar Mean(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
 		{
-			const tml::Matrix<Scalar>& matrix = expr;
+			const tml::Matrix<Scalar> matrix = expr;
 			Scalar result;
 			if (execPolicy == tml::SERIAL)
 				details::SerialMeanAll(matrix, result);

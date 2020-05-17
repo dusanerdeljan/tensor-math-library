@@ -184,5 +184,23 @@ namespace tml
 				return sum;
 			}
 		};
+
+		template<typename Scalar, typename Expr>
+		struct MeanRowsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t row)
+			{
+				return SumRowsOP<Scalar, Expr>::op(expr, row) / expr.Columns();
+			}
+		};
+
+		template<typename Scalar, typename Expr>
+		struct MeanColsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t column)
+			{
+				return SumColsOP<Scalar, Expr>::op(expr, column) / expr.Rows();
+			}
+		};
 	}
 }

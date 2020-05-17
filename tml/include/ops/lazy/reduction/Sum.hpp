@@ -4,7 +4,6 @@
 #include "..\ReductionExpr.hpp"
 #include "..\LazyOPs.hpp"
 #include "..\..\eager\EagerSum.hpp"
-#include "..\..\eager\ExecutionPolicy.hpp"
 #include "..\..\..\matrix\Matrix.hpp"
 
 namespace tml

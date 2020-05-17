@@ -23,7 +23,7 @@ int main()
 	tml::Matrix<double> m1(7, 10);
 	tml::Matrix<double> m2(10, 9);
 	std::cout << m1 << std::endl;
-	tml::Matrix<double> res = tml::lazy::SumColumns(m1*2.0)+10.0;
+	auto res = tml::lazy::Mean(m1+10.0);
 	std::cout << res << std::endl;
 	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;

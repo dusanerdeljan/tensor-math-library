@@ -37,3 +37,4 @@
 #include "unary\Tanh.hpp"
 
 #include "reduction\Sum.hpp"
+#include "reduction\Mean.hpp"
