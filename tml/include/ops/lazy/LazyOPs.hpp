@@ -1,5 +1,6 @@
 #pragma once
 #include <algorithm>
+#include <limits>
 
 namespace tml
 {
@@ -200,6 +201,36 @@ namespace tml
 			static inline Scalar op(const Expr& expr, size_t column)
 			{
 				return SumColsOP<Scalar, Expr>::op(expr, column) / expr.Rows();
+			}
+		};
+
+		template<typename Scalar, typename Expr>
+		struct MinRowsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t row)
+			{
+				Scalar minValue = (std::numeric_limits<Scalar>::max)();
+				for (size_t i = 0; i < expr.Columns(); ++i)
+				{
+					Scalar current = expr[i + row*expr.Columns()];
+					if (current < minValue) minValue = current;
+				}
+				return minValue;
+			}
+		};
+
+		template<typename Scalar, typename Expr>
+		struct MinColsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t column)
+			{
+				Scalar minValue = (std::numeric_limits<Scalar>::max)();
+				for (size_t i = 0; i < expr.Rows(); ++i)
+				{
+					Scalar current = expr[column + i*expr.Columns()];
+					if (current < minValue) minValue = current;
+				}
+				return minValue;
 			}
 		};
 	}
