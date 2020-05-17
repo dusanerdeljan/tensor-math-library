@@ -23,7 +23,7 @@ int main()
 	tml::Matrix<double> m1(7, 10);
 	tml::Matrix<double> m2(10, 9);
 	std::cout << m1 << std::endl;
-	auto sum = tml::eager::MeanColumns(m1);
+	auto sum = tml::eager::Mean(m1, tml::PARALLEL);
 	std::cout << sum << std::endl;
 	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;

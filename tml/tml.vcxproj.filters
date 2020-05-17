@@ -242,5 +242,8 @@
     <ClInclude Include="include\ops\eager\EagerMean.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\ParallelMean.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

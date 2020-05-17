@@ -2,6 +2,7 @@
 
 #include "..\lazy\Expr.hpp"
 #include "serial\SerialMean.hpp"
+#include "parallel\ParallelMean.hpp"
 
 namespace tml
 {
@@ -13,6 +14,8 @@ namespace tml
 			Scalar result;
 			if (execPolicy == tml::SERIAL)
 				details::SerialMeanAll(matrix, result);
+			else
+				details::ParallelMeanAll(matrix, result);
 			return result;
 		}
 
@@ -23,6 +26,8 @@ namespace tml
 			Scalar result;
 			if (execPolicy == tml::SERIAL)
 				details::SerialMeanAll(matrix, result);
+			else
+				details::ParallelMeanAll(matrix, result);
 			return result;
 		}
 
@@ -32,6 +37,8 @@ namespace tml
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Rows() });
 			if (execPolicy == tml::SERIAL)
 				details::SerialMeanRows(matrix, result);
+			else
+				details::ParallelMeanRows(matrix, result);
 			return result;
 		}
 
@@ -42,6 +49,8 @@ namespace tml
 			const tml::Matrix<Scalar> matrix = expr;
 			if (execPolicy == tml::SERIAL)
 				details::SerialMeanRows(matrix, result);
+			else
+				details::ParallelMeanRows(matrix, result);
 			return result;
 		}
 
@@ -51,6 +60,8 @@ namespace tml
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Columns() });
 			if (execPolicy == tml::SERIAL)
 				details::SerialMeanColumns(matrix, result);
+			else
+				details::ParallelMeanColumns(matrix, result);
 			return result;
 		}
 
@@ -61,6 +72,8 @@ namespace tml
 			const tml::Matrix<Scalar> matrix = expr;
 			if (execPolicy == tml::SERIAL)
 				details::SerialMeanColumns(matrix, result);
+			else
+				details::ParallelMeanColumns(matrix, result);
 			return result;
 		}
 	}

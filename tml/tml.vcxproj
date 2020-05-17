@@ -144,6 +144,7 @@
     <ClInclude Include="include\ops\eager\EagerBinaryOPs.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelBinaryOP.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelMatrixMultiplication.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\ParallelMean.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelSum.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelTranspose.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelUnaryOP.hpp" />
