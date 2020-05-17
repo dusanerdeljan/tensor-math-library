@@ -6,3 +6,4 @@
 #include "EagerTranspose.hpp"
 #include "EagerMatrixMultiplication.hpp"
 #include "EagerSum.hpp"
+#include "EagerMean.hpp"
