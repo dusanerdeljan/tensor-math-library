@@ -35,3 +35,5 @@
 #include "unary\Sinh.hpp"
 #include "unary\Cosh.hpp"
 #include "unary\Tanh.hpp"
+
+#include "reduction\Sum.hpp"

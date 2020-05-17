@@ -16,4 +16,6 @@ struct ExprOP
 		tml::Matrix<Scalar> res = *this;
 		return res;
 	}
+	inline size_t Rows() const { return shape.Rows; }
+	inline size_t Columns() const { return shape.Columns; }
 };

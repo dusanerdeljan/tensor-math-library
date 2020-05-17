@@ -160,5 +160,29 @@ namespace tml
 		{
 			static inline Scalar op(Scalar value) { return std::abs(value); }
 		};
+
+		template<typename Scalar, typename Expr>
+		struct SumRowsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t row)
+			{
+				Scalar sum = static_cast<Scalar>(0);
+				for (size_t i = 0; i < expr.Columns(); ++i)
+					sum += expr[i + row*expr.Columns()];
+				return sum;
+			}
+		};
+
+		template<typename Scalar, typename Expr>
+		struct SumColsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t column)
+			{
+				Scalar sum = static_cast<Scalar>(0);
+				for (size_t i = 0; i < expr.Rows(); ++i)
+					sum += expr[column + i*expr.Columns()];
+				return sum;
+			}
+		};
 	}
 }

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "..\lazy\Expr.hpp"
+#include "ExecutionPolicy.hpp"
 #include "serial\SerialMax.hpp"
 #include "parallel\ParallelMax.hpp"
 

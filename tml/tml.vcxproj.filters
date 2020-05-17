@@ -263,5 +263,11 @@
     <ClInclude Include="include\ops\eager\parallel\ParallelMin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\reduction\Sum.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\ReductionExpr.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

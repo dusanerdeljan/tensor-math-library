@@ -1,6 +1,7 @@
 #pragma once
 
 #include "..\lazy\Expr.hpp"
+#include "ExecutionPolicy.hpp"
 #include "serial\SerialSum.hpp"
 #include "parallel\ParallelSum.hpp"
 
