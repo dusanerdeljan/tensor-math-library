@@ -2,6 +2,7 @@
 
 #include "CustomLazyOP.hpp"
 #include "LazyTranspose.hpp"
+#include "LazyMatrixMultiplication.hpp"
 
 #include "binary\Add.hpp"
 #include "binary\Sub.hpp"

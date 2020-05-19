@@ -278,5 +278,11 @@
     <ClInclude Include="include\ops\lazy\reduction\Max.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\LazyMatrixMultiplication.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\lazy\MatmulExpr.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

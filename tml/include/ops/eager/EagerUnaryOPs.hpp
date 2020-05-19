@@ -171,7 +171,7 @@ namespace tml
 			if (execPolicy == tml::SERIAL)
 				details::SerialLog(matrix, result);
 			else
-				details::ParallelLog(matrix, result);
+				details::ParallelLog(matrix, result, parallelism);
 			return result;
 		}
 

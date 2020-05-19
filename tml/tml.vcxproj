@@ -171,7 +171,9 @@
     <ClInclude Include="include\ops\lazy\binary\Pow.hpp" />
     <ClInclude Include="include\ops\lazy\binary\Reshape.hpp" />
     <ClInclude Include="include\ops\lazy\CustomLazyOP.hpp" />
+    <ClInclude Include="include\ops\lazy\LazyMatrixMultiplication.hpp" />
     <ClInclude Include="include\ops\lazy\LazyTranspose.hpp" />
+    <ClInclude Include="include\ops\lazy\MatmulExpr.hpp" />
     <ClInclude Include="include\ops\lazy\ReductionExpr.hpp" />
     <ClInclude Include="include\ops\lazy\reduction\Max.hpp" />
     <ClInclude Include="include\ops\lazy\reduction\Mean.hpp" />
