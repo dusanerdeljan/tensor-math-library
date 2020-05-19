@@ -9,3 +9,4 @@
 #include "EagerMean.hpp"
 #include "EagerMax.hpp"
 #include "EagerMin.hpp"
+#include "EagerArgmin.hpp"
