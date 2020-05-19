@@ -20,7 +20,7 @@ namespace tml
 			{
 				size_t rows = matrix.Rows(), cols = matrix.Columns();
 				for (size_t i = 0; i < rows; ++i)
-					result[i] = std::min_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols) - (matrix.cbegin() + i*cols);
+					result[i] = static_cast<Scalar>(std::min_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols) - (matrix.cbegin() + i*cols));
 			}
 
 			template<typename Scalar>
@@ -29,7 +29,7 @@ namespace tml
 				size_t rows = matrix.Rows(), cols = matrix.Columns();
 				const tml::Matrix<Scalar> transposed = tml::eager::Transpose(matrix, tml::SERIAL);
 				for (size_t i = 0; i < cols; ++i)
-					result[i] = std::min_element(transposed.cbegin() + i*rows, transposed.cbegin() + (i + 1)*rows) - (transposed.cbegin() + i*rows);
+					result[i] = static_cast<Scalar>(std::min_element(transposed.cbegin() + i*rows, transposed.cbegin() + (i + 1)*rows) - (transposed.cbegin() + i*rows));
 			}
 		}
 	}

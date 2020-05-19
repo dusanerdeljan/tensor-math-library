@@ -10,3 +10,4 @@
 #include "EagerMax.hpp"
 #include "EagerMin.hpp"
 #include "EagerArgmin.hpp"
+#include "EagerArgmax.hpp"
