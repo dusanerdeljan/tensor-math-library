@@ -51,33 +51,7 @@ namespace tml
 			};
 
 			template<typename Scalar>
-			class SingleRowTask : public tbb::task
-			{
-			private:
-				tml::Matrix<Scalar>& m_Result;
-				const tml::Matrix<Scalar>& m_Left;
-				const tml::Matrix<Scalar>& m_Right;
-				size_t m_Row;
-				size_t m_R1;
-				size_t m_C1;
-				size_t m_R2;
-				size_t m_C2;
-			public:
-				SingleRowTask(tml::Matrix<Scalar>& result, const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, size_t row)
-					: m_Result(result), m_Left(left), m_Right(right), m_Row(row),
-					m_R1(left.Rows()), m_C1(left.Columns()), m_R2(right.Columns()), m_C2(right.Rows())
-				{
-				}
-				tbb::task* execute()
-				{
-					for (size_t j = 0; j < m_C2; ++j)
-						m_Result[m_Row*m_C2 + j] = MultiplyRowColumn(m_Left, m_Right, m_Row, j, m_R1, m_C1, m_R2, m_C2);
-					return NULL;
-				}
-			};
-
-			template<typename Scalar>
-			void ParallelMatmulOneOverCores(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
+			void ParallelMatmul(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
 			{
 				size_t rows = result.Rows(), cols = result.Columns();
 				size_t size = result.Size();
@@ -134,25 +108,6 @@ namespace tml
 						tbb::task::spawn_root_and_wait(tasks);
 					}
 				}
-			}
-
-			template<typename Scalar>
-			void ParallelMatmulSingleRow(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
-			{
-				tbb::task_list tasks;
-				for (size_t i = 0; i < left.Rows(); ++i)
-					tasks.push_back(*(new(tbb::task::allocate_root()) SingleRowTask<Scalar>(result, left, right, i)));
-				tbb::task::spawn_root_and_wait(tasks);
-			}
-
-			template<typename Scalar>
-			void ParallelMatmul(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result, tml::ParallelismPolicy parallelism)
-			{
-				const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::PARALLEL);
-				if (parallelism == tml::ONE_OVER_CORES)
-					ParallelMatmulOneOverCores(left, newRight, result);
-				else
-					ParallelMatmulSingleRow(left, newRight, result);
 			}
 		}
 	}

@@ -8,12 +8,12 @@ void TestProfile()
 	tbb::tick_count begin = tbb::tick_count::now();
 	auto result = tml::eager::MaxRows(m1, tml::SERIAL);
 	tbb::tick_count end = tbb::tick_count::now();
-	std::cout << "Elapsed tme: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
+	std::cout << "Elapsed time: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
 	std::cout << result.GetShape() << std::endl;
 	begin = tbb::tick_count::now();
 	auto r2 = tml::eager::MaxRows(m1, tml::PARALLEL);
 	end = tbb::tick_count::now();
-	std::cout << "Elapsed tme: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
+	std::cout << "Elapsed time: " << (end - begin).seconds() * 1000 << "ms." << std::endl;
 	std::cout << r2.GetShape() << std::endl;
 	//std::cout << result << std::endl;
 }
