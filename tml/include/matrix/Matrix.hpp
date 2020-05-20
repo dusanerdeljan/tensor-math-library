@@ -156,6 +156,11 @@ namespace tml
 			return std::move(matrix);
 		}
 
+		static Matrix<Scalar> Arange(size_t rows, size_t cols)
+		{
+			return Matrix(rows, cols);
+		}
+
 		Shape GetShape() const { return m_Shape; }
 
 		void SetShape(const Shape& shape) { m_Shape = shape; }
