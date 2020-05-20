@@ -9,8 +9,15 @@
 
 #include "Shape.hpp"
 
-// TODO: Implement expr assignment policy configuration
 #define TML_USE_PARALLEL_ASSIGNMENT
+
+#define TML_DEBUG_CTOR_PRINTS 0
+
+#if TML_DEBUG_CTOR_PRINTS
+#define LOG(x) std::cout << x << std::endl
+#else
+#define LOG(x)
+#endif
 
 namespace tml
 {
@@ -48,26 +55,26 @@ namespace tml
 
 		Matrix(Shape shape) : m_Data(new Scalar[shape.Size]), m_Shape(shape)
 		{
-			std::cout << "shape constructor" << std::endl;
+			LOG("shape constructor");
 		}
 
 		template<typename Expr>
 		Matrix(Expr expr) : m_Data(new Scalar[expr.shape.Size]), m_Shape(expr.shape)
 		{
-			std::cout << "expr constructor" << std::endl;
+			LOG("expr constructor");
 			AssignExpr(expr);
 		}
 
 		Matrix(const Matrix<Scalar>& matrix) : m_Data(new Scalar[matrix.m_Shape.Size]), m_Shape(matrix.m_Shape)
 		{
-			std::cout << "copy constructor" << std::endl;
+			LOG("copy constructor");
 			memcpy(m_Data, matrix.m_Data, sizeof(Scalar)*m_Shape.Size);
 		}
 
 		template<typename DType>
 		Matrix(const Matrix<DType>& matrix) : m_Data(new Scalar[matrix.Size()]), m_Shape(matrix.GetShape())
 		{
-			std::cout << "copy new type constructor" << std::endl;
+			LOG("copy new type constructor");
 #pragma message("[TML WARNING] You are copying a matrix of different type. Possible loss of data.")
 			iterator writer = begin();
 			for (auto it = matrix.cbegin(); it != matrix.cend(); ++it, ++writer)
@@ -76,7 +83,7 @@ namespace tml
 
 		Matrix(Matrix<Scalar>&& matrix) : m_Data(matrix.m_Data), m_Shape(matrix.m_Shape)
 		{
-			std::cout << "move constructor" << std::endl;
+			LOG("move constructor");
 			matrix.m_Data = nullptr;
 		}
 
@@ -85,14 +92,14 @@ namespace tml
 		template<typename Expr>
 		Matrix<Scalar>& operator=(const Expr& expr)
 		{
-			std::cout << "expr assignment" << std::endl;
+			LOG("expr assignment");
 			AssignExpr(expr);
 			return *this;
 		}
 
 		Matrix<Scalar>& operator=(const Matrix<Scalar>& matrix)
 		{
-			std::cout << "copy assignment" << std::endl;
+			LOG("copy assignment");
 			Scalar* data = new Scalar[matrix.m_Shape.Size];
 			memcpy(data, matrix.m_Data, sizeof(Scalar)*matrix.m_Shape.Size);
 			delete[] m_Data;
@@ -104,7 +111,7 @@ namespace tml
 		template<typename DType>
 		Matrix<Scalar>& operator=(const Matrix<DType>& matrix)
 		{
-			std::cout << "copy new type assignment" << std::endl;
+			LOG("copy new type assignment");
 #pragma message("[TML WARNING] You are copying a matrix of different type. Possible loss of data.")
 			Scalar* data = new Scalar[matrix.Size()];
 			iterator writer = data;
@@ -118,7 +125,7 @@ namespace tml
 
 		Matrix<Scalar>& operator=(Matrix<Scalar>&& matrix)
 		{
-			std::cout << "move assignment" << std::endl;
+			LOG("move assignment");
 			delete[] m_Data;
 			m_Data = matrix.m_Data;
 			m_Shape = matrix.m_Shape;
