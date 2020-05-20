@@ -303,5 +303,45 @@ namespace tml
 				return static_cast<Scalar>(minIndex);
 			}
 		};
+
+		template<typename Scalar, typename Expr>
+		struct ArgmaxRowsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t row)
+			{
+				size_t maxIndex = 0;
+				Scalar maxValue = expr[maxIndex + row*expr.Columns()];
+				for (size_t i = 1; i < expr.Columns(); ++i)
+				{
+					Scalar current = expr[i + row*expr.Columns()];
+					if (current >= maxValue)
+					{
+						maxValue = current;
+						maxIndex = i;
+					}
+				}
+				return static_cast<Scalar>(maxIndex);
+			}
+		};
+
+		template<typename Scalar, typename Expr>
+		struct ArgmaxColsOP
+		{
+			static inline Scalar op(const Expr& expr, size_t column)
+			{
+				size_t maxIndex = 0;
+				Scalar maxValue = expr[column + maxIndex*expr.Columns()];
+				for (size_t i = 1; i < expr.Rows(); ++i)
+				{
+					Scalar current = expr[column + i*expr.Columns()];
+					if (current >= maxValue)
+					{
+						maxValue = current;
+						maxIndex = i;
+					}
+				}
+				return static_cast<Scalar>(maxIndex);
+			}
+		};
 	}
 }

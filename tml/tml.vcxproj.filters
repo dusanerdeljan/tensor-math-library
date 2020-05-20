@@ -305,5 +305,8 @@
     <ClInclude Include="include\ops\lazy\reduction\Argmin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\lazy\reduction\Argmax.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

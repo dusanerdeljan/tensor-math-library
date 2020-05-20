@@ -22,7 +22,7 @@ int main()
 {
 	tml::Matrix<double> m1(7, 10);
 	tml::Matrix<double> m2(10, 9);
-	tml::Matrix<double> result = tml::lazy::ArgminRows(m1);
+	tml::Matrix<double> result = tml::lazy::ArgmaxColumns(m1);
 	std::cout << result << std::endl;
 	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;

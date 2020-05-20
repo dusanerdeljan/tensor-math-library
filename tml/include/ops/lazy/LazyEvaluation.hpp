@@ -42,3 +42,4 @@
 #include "reduction\Min.hpp"
 #include "reduction\Max.hpp"
 #include "reduction\Argmin.hpp"
+#include "reduction\Argmax.hpp"
