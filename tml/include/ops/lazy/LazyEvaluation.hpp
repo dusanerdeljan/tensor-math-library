@@ -41,3 +41,4 @@
 #include "reduction\Mean.hpp"
 #include "reduction\Min.hpp"
 #include "reduction\Max.hpp"
+#include "reduction\Argmin.hpp"

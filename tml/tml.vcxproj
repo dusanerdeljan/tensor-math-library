@@ -181,6 +181,7 @@
     <ClInclude Include="include\ops\lazy\LazyTranspose.hpp" />
     <ClInclude Include="include\ops\lazy\MatmulExpr.hpp" />
     <ClInclude Include="include\ops\lazy\ReductionExpr.hpp" />
+    <ClInclude Include="include\ops\lazy\reduction\Argmin.hpp" />
     <ClInclude Include="include\ops\lazy\reduction\Max.hpp" />
     <ClInclude Include="include\ops\lazy\reduction\Mean.hpp" />
     <ClInclude Include="include\ops\lazy\reduction\Min.hpp" />
