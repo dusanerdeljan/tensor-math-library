@@ -20,10 +20,8 @@ void TestProfile()
 
 int main()
 {
-	tml::Matrix<double> m1 = tml::Matrix<double>::Arange(7, 10);
-	tml::Matrix<double> m2(10, 9);
-	tml::Matrix<double> result = tml::lazy::ArgmaxColumns(m1);
-	std::cout << result << std::endl;
+	tml::Matrix<int> mat({ 1, 2, 3, 4, 5, 6 }, { 2, 3 });
+	std::cout << mat << std::endl;
 	//TestProfile();
 	std::cout << tml::HardawreConcurrency << std::endl;
 	std::cin.get();

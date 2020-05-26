@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <initializer_list>
 
 #include <tbb\tbb.h>
 #include <tbb\parallel_for.h>
@@ -11,7 +12,7 @@
 
 #define TML_USE_PARALLEL_ASSIGNMENT
 
-#define TML_DEBUG_CTOR_PRINTS 0
+#define TML_DEBUG_CTOR_PRINTS 1
 
 #if TML_DEBUG_CTOR_PRINTS
 #define LOG(x) std::cout << x << std::endl
@@ -69,6 +70,18 @@ namespace tml
 		{
 			LOG("copy constructor");
 			memcpy(m_Data, matrix.m_Data, sizeof(Scalar)*m_Shape.Size);
+		}
+
+		Matrix(std::initializer_list<Scalar> init) : m_Data(new Scalar[init.size()]), m_Shape({ 1, init.size() })
+		{
+			LOG("initializer list constructor");
+			std::move(init.begin(), init.end(), m_Data);
+		}
+
+		Matrix(std::initializer_list<Scalar> init, const Shape& shape) : m_Data(new Scalar[shape.Size]), m_Shape(shape)
+		{
+			LOG("initializer initializer list constructor");
+			std::move(init.begin(), init.end(), m_Data);
 		}
 
 		template<typename DType>
