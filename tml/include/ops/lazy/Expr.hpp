@@ -18,4 +18,5 @@ struct ExprOP
 	}
 	size_t Rows() const { return shape.Rows; }
 	size_t Columns() const { return shape.Columns; }
+	tml::Shape GetShape() const { return shape; }
 };

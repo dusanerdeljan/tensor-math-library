@@ -1,5 +1,6 @@
 #pragma once
 
+#include "..\..\Assert.hpp"
 #include "..\ExecutionPolicy.hpp"
 #include "..\..\lazy\Expr.hpp"
 #include "..\serial\SerialBinaryOP.hpp"
@@ -12,6 +13,7 @@ namespace tml
 		template<typename Scalar>
 		tml::Matrix<Scalar> Minimum(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
 		{
+			TML_ASSERT_SHAPE(left, right);
 			tml::Matrix<Scalar> result(left.GetShape());
 			if (execPolicy == tml::SERIAL)
 				details::SerialMinimum(left, right, result);
@@ -23,6 +25,7 @@ namespace tml
 		template<typename Scalar, typename T>
 		tml::Matrix<Scalar> Minimum(const tml::Matrix<Scalar>& left, const ExprOP<Scalar, T>& rightExpr, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
 		{
+			TML_ASSERT_SHAPE(left, rightExpr);
 			tml::Matrix<Scalar> result(rightExpr.shape);
 			tml::Matrix<Scalar> right = rightExpr;
 			if (execPolicy == tml::SERIAL)
@@ -35,6 +38,7 @@ namespace tml
 		template<typename Scalar, typename T>
 		tml::Matrix<Scalar> Minimum(const ExprOP<Scalar, T>& leftExpr, const tml::Matrix<Scalar>& right, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
 		{
+			TML_ASSERT_SHAPE(leftExpr, right);
 			tml::Matrix<Scalar> result(leftExpr.shape);
 			tml::Matrix<Scalar> left = leftExpr;
 			if (execPolicy == tml::SERIAL)
@@ -47,6 +51,7 @@ namespace tml
 		template<typename Scalar, typename Left, typename Right>
 		tml::Matrix<Scalar> Minimum(const ExprOP<Scalar, Left>& leftExpr, const ExprOP<Scalar, Right>& rightExpr, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
 		{
+			TML_ASSERT_SHAPE(leftExpr, rightExpr);
 			tml::Matrix<Scalar> left = leftExpr;
 			tml::Matrix<Scalar> right = rightExpr;
 			tml::Matrix<Scalar> result(leftExpr.shape);
