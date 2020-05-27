@@ -3,7 +3,7 @@ Header only lazy evaluation matrix library with parallel eager execution support
 
 ## Lazy evaluation
 
-Lazy evaluation means that an expression is evaluated as late as possible, meaning an expression will be evaluated when assigned to Matrix object. All the lazy evaluation function live in ```tml::lazy``` namespace and all the overloaded operators are also lazily evaluated.
+Lazy evaluation means that an expression is evaluated as late as possible, meaning an expression will be evaluated when assigned to Matrix object. All the lazy evaluation functions live in ```tml::lazy``` namespace and all the overloaded operators are also lazily evaluated.
 
 ```cpp
 #include "include\tml.hpp"
@@ -47,12 +47,12 @@ The problem with above function is that variable `temp` is destroyed at the end 
 
 ## Parallel eager execution
 
-TML also offers the ability to evaluate expressions eagerly. All the eagerly evaluted functions live in ```tml::eager``` namespace.
-When using functions from ```tml::eager``` namespace, user can specify how the execution policy (serial or parallel execution), where serial execution is the default option. 
+TML also offers the ability to evaluate expressions eagerly. All the eager evaluation functions live in ```tml::eager``` namespace.
+When using functions from ```tml::eager``` namespace, user can specify the execution policy (serial or parallel execution), where serial execution is the default option. 
 
-Parallel operations are built on top of TBB library, so you will need Intel C++ compiler to use this library.
+Parallel operations are built on top of TBB library, so you will need Intel C++ compiler or link against TBB in order to use this library.
 
-It is important to mention that any lazy expression object that is passed to the eager function will be evaluated in the body of the function.
+It is important to mention that any lazy expression object that is passed to the eager function will be evaluated in the body of the function, and thus a temporary variable will be created.
 
 ### Example usage of eager functions
 
@@ -60,9 +60,9 @@ It is important to mention that any lazy expression object that is passed to the
 auto res = tml::eager::Matmul(m1, m2, tml::PARALLEL); // now res is of type tml::Matrix<double>
 ```
 
-### Combinartion of lazy and eager functions
+### Combination of lazy and eager functions
 
 ```cpp
 auto res = tml::eager::Matmul(m1, m2 + 1.0 + tml::lazy::Square(m2), tml::PARALLEL);
 ```
-In the above example expression `m2 + 1.0 + tml::lazy::Square(m2)` is evaluted lazily and the matrix product is then eagerly executed in parallel.
+In the above example expression `m2 + 1.0 + tml::lazy::Square(m2)` is evaluated lazily and the matrix product is then eagerly executed in parallel.
