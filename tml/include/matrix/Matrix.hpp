@@ -100,7 +100,7 @@ namespace tml
 			matrix.m_Data = nullptr;
 		}
 
-		~Matrix() { if (!m_View) { delete[] m_Data; } }
+		~Matrix() { if (!m_View) { LOG("destructor"); delete[] m_Data; } }
 
 		template<typename Expr>
 		Matrix<Scalar>& operator=(const Expr& expr)
@@ -190,7 +190,7 @@ namespace tml
 
 		inline iterator begin() { return m_Data; }
 
-		inline const_iterator cbegin() const { return m_Data; }
+		inline const_iterator cbegin() const noexcept { return m_Data; }
 
 		inline iterator end() { return m_Data + m_Shape.Size; }
 

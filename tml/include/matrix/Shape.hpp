@@ -16,6 +16,10 @@ namespace tml
 			return{ Columns, Rows };
 		}
 
+		bool operator==(const Shape& rhs) { return ((Rows == rhs.Rows) && (Columns == rhs.Columns)); }
+
+		bool operator != (const Shape& rhs) { return !(*this == rhs); }
+
 		friend std::ostream& operator << (std::ostream& out, const tml::Shape& shape)
 		{
 			return out << "( " << shape.Rows << ", " << shape.Columns << " )";

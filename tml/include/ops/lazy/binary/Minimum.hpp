@@ -1,5 +1,6 @@
 #pragma once
 
+#include "..\..\Assert.hpp"
 #include "..\LazyOPs.hpp"
 #include "..\Expr.hpp"
 #include "..\BinaryOP.hpp"
@@ -20,6 +21,7 @@ namespace tml
 		ExprOP<Scalar, BinaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::const_iterator, tml::lazy::MinimumOP<Scalar>>>
 			Minimum(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right)
 		{
+			TML_ASSERT_SHAPE(left, right);
 			typedef BinaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::const_iterator, tml::lazy::MinimumOP<Scalar>> ExprType;
 			return ExprOP<Scalar, ExprType>(ExprType(left.cbegin(), right.cbegin()), left.GetShape());
 		}
@@ -28,6 +30,7 @@ namespace tml
 		ExprOP<Scalar, BinaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, ExprOP<Scalar, T>, tml::lazy::MinimumOP<Scalar>>>
 			Minimum(const tml::Matrix<Scalar>& left, const ExprOP<Scalar, T>& right)
 		{
+			TML_ASSERT_SHAPE(left, right);
 			typedef BinaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, ExprOP<Scalar, T>, tml::lazy::MinimumOP<Scalar>> ExprType;
 			return ExprOP<Scalar, ExprType>(ExprType(left.cbegin(), right), right.shape);
 		}
@@ -36,6 +39,7 @@ namespace tml
 		ExprOP<Scalar, BinaryOP<Scalar, ExprOP<Scalar, T>, typename tml::Matrix<Scalar>::const_iterator, tml::lazy::MinimumOP<Scalar>>>
 			Minimum(const ExprOP<Scalar, T>& left, const tml::Matrix<Scalar>& right)
 		{
+			TML_ASSERT_SHAPE(left, right);
 			typedef BinaryOP<Scalar, ExprOP<Scalar, T>, typename tml::Matrix<Scalar>::const_iterator, tml::lazy::MinimumOP<Scalar>> ExprType;
 			return ExprOP<Scalar, ExprType>(ExprType(left, right.cbegin()), left.shape);
 		}
@@ -44,6 +48,7 @@ namespace tml
 		ExprOP<Scalar, BinaryOP<Scalar, ExprOP<Scalar, Left>, ExprOP<Scalar, Right>, tml::lazy::MinimumOP<Scalar>>>
 			Minimum(const ExprOP<Scalar, Left>& left, const ExprOP<Scalar, Right>& right)
 		{
+			TML_ASSERT_SHAPE(left, right);
 			typedef BinaryOP<Scalar, ExprOP<Scalar, Left>, ExprOP<Scalar, Right>, tml::lazy::MinimumOP<Scalar>> ExprType;
 			return ExprOP<Scalar, ExprType>(ExprType(left, right), left.shape);
 		}
