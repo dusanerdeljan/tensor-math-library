@@ -23,7 +23,7 @@ Now the expression is computed:
 tml::Matrix<double> res = m1 + m2 + tml::lazy::Log(2.0 + m1) * tml::lazy::Sin(m2);
 ```
 
-To illustrate how to above expression is being evaluated, you can imagine it as a single for loop which is being exucted in parallel.
+To illustrate how the above expression is being evaluated, you can imagine it as a single for loop which is being exucted in parallel.
 ```cpp
 typedef tml::Matrix<double>::const_iterator iter;
 auto resIt = res.begin();
