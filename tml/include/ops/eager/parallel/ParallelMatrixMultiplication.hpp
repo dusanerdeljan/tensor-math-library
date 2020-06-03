@@ -13,10 +13,7 @@ namespace tml
 			template<typename Scalar>
 			inline Scalar MultiplyRowColumn(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, size_t row, size_t column, size_t r1, size_t c1, size_t r2, size_t c2)
 			{
-				Scalar sum = static_cast<Scalar>(0);
-				for (size_t i = 0; i < c1; ++i)
-					sum += left[row*c1 + i] * right[i + r2*column];
-				return sum;
+				return std::inner_product(left.cbegin() + row*c1, left.cbegin() + (row + 1)*c1, right.cbegin() + r2*column, static_cast<Scalar>(0));
 			}
 
 			template<typename Scalar>
@@ -43,9 +40,11 @@ namespace tml
 				}
 				tbb::task* execute()
 				{
-					for (size_t i = m_RowBegin; i < m_RowEnd; ++i)
-						for (size_t j = m_ColumnBegin; j < m_ColumnEnd; ++j)
-							m_Result[i*m_C2 + j] = MultiplyRowColumn(m_Left, m_Right, i, j, m_R1, m_C1, m_R2, m_C2);
+					for (size_t i = m_RowBegin; i < m_RowEnd; i += 32)
+						for (size_t j = m_ColumnBegin; j < m_ColumnEnd; j += 32)
+							for (size_t br = 0; br < 32 && i + br < m_RowEnd; ++br)
+								for (size_t bc = 0; bc < 32 && j + bc < m_ColumnEnd; ++bc)
+							m_Result[(i + br)*m_C2 + j + bc] = MultiplyRowColumn(m_Left, m_Right, i + br, j + bc, m_R1, m_C1, m_R2, m_C2);
 					return NULL;
 				}
 			};
@@ -54,11 +53,12 @@ namespace tml
 			void ParallelMatmul(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
 			{
 				size_t rows = result.Rows(), cols = result.Columns();
+				const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::PARALLEL);
 				size_t size = result.Size();
 				size_t numCores = tml::HardawreConcurrency;
 				if (size <= numCores)
 				{
-					tbb::task::spawn_root_and_wait(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, right, 0, 0, rows, cols)));
+					tbb::task::spawn_root_and_wait(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, newRight, 0, 0, rows, cols)));
 				}
 				else
 				{
@@ -69,7 +69,7 @@ namespace tml
 						{
 							size_t stepSize = rows / numCores;
 							for (size_t i = 0; i < rows; i += stepSize)
-								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, right, i, 0, i + stepSize, cols)));
+								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, newRight, i, 0, i + stepSize, cols)));
 						}
 						else
 						{
@@ -79,7 +79,7 @@ namespace tml
 							for (size_t i = 0; i < numCores; ++i)
 							{
 								size_t segmentLength = value + (i >= treshold);
-								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, right, beginIndex, 0, beginIndex + segmentLength, cols)));
+								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, newRight, beginIndex, 0, beginIndex + segmentLength, cols)));
 								beginIndex += segmentLength;
 							}
 						}
@@ -91,7 +91,7 @@ namespace tml
 						{
 							size_t stepSize = cols / numCores;
 							for (size_t i = 0; i < cols; i += stepSize)
-								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, right, 0, i, rows, i + stepSize)));
+								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, newRight, 0, i, rows, i + stepSize)));
 						}
 						else
 						{
@@ -101,7 +101,7 @@ namespace tml
 							for (size_t i = 0; i < numCores; ++i)
 							{
 								size_t segmentLength = value + (i >= treshold);
-								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, right, 0, beginIndex, rows, beginIndex + segmentLength)));
+								tasks.push_back(*(new(tbb::task::allocate_root()) MatmulTask<Scalar>(result, left, newRight, 0, beginIndex, rows, beginIndex + segmentLength)));
 								beginIndex += segmentLength;
 							}
 						}
