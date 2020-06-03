@@ -50,7 +50,7 @@ The problem with above function is that variable `temp` is destroyed at the end 
 TML also offers the ability to evaluate expressions eagerly. All the eager evaluation functions live in ```tml::eager``` namespace.
 When using functions from ```tml::eager``` namespace, user can specify the execution policy (serial or parallel execution), where serial execution is the default option. 
 
-Parallel operations are built on top of TBB library, so you will need Intel C++ compiler or link against TBB in order to use this library.
+Parallel operations are built on top of TBB library, so you will need Intel C++ compiler or link against TBB in order to use this library. For the best performance you should use Intel C++ compiler and configure it to use the lateset vector extension instruction set your processor supports. Also, you should enable auto-parallelisation and C++ 11 standard support.
 
 It is important to mention that any lazy expression object that is passed to the eager function will be evaluated in the body of the function, and thus a temporary variable will be created.
 
