@@ -22,7 +22,7 @@ int main()
 {
 	tml::Matrix<double> m1 = tml::Matrix<double>::Arange(10, 10);
 	tml::Matrix<double> m2 = tml::Matrix<double>::Arange(10, 10);
-	tml::Matrix<double> res = tml::eager::Add(m1, m2 + 2.0);
+	tml::Matrix<double> res = tml::eager::Matmul(m1, m2);
 	std::cout << res << std::endl;
 	std::cin.get();
 	return 0;
