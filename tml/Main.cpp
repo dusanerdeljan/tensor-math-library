@@ -3,8 +3,8 @@
 
 void TestProfile()
 {
-	tml::Matrix<double> m1(10000, 10000);
-	tml::Matrix<double> m2(10000, 10000);
+	tml::Matrix<int> m1(10000, 10000);
+	//tml::Matrix<int> m2(10000, 10000);
 	tbb::tick_count begin = tbb::tick_count::now();
 	auto result = tml::eager::Log(m1, tml::SERIAL);
 	tbb::tick_count end = tbb::tick_count::now();
@@ -20,10 +20,7 @@ void TestProfile()
 
 int main()
 {
-	tml::Matrix<double> m1 = tml::Matrix<double>::Arange(10, 10);
-	tml::Matrix<double> m2 = tml::Matrix<double>::Arange(10, 10);
-	tml::Matrix<double> res = tml::eager::Matmul(m1, m2, tml::PARALLEL);
-	std::cout << res << std::endl;
+	TestProfile();
 	std::cin.get();
 	return 0;
 }
