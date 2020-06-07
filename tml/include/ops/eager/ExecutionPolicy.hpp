@@ -8,4 +8,6 @@ namespace tml
 	enum ExecutionPolicy { SERIAL, PARALLEL };
 
 	enum ParallelismPolicy { SINGLE_ROW, SINGLE_COLUMN, ONE_OVER_CORES, PARALLEL_FOR };
+
+	enum Backend { TBB, OMP, OPENCL, CUDA, STL };
 }
