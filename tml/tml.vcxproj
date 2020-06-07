@@ -188,6 +188,7 @@
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\BinaryOP.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\TBBBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\UnaryOP.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\backends\UnaryOPBase.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelArgmax.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelArgmin.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelBinaryOP.hpp" />

@@ -338,5 +338,8 @@
     <ClInclude Include="include\ops\eager\parallel\backends\omp\BinaryOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\backends\UnaryOPBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

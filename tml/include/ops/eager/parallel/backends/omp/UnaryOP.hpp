@@ -1,8 +1,7 @@
 #pragma once
 
 #include <omp.h>
-#include "..\..\..\ExecutionPolicy.hpp"
-#include "..\..\..\..\..\matrix\Matrix.hpp"
+#include "..\UnaryOPBase.hpp"
 
 namespace tml
 {
@@ -10,17 +9,22 @@ namespace tml
 	{
 		namespace details
 		{
-			namespace ompbackend
+			namespace backend
 			{
-				template<typename Scalar, typename OP>
-				void ParallelCustomUnaryOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
+				template<typename Scalar>
+				struct UnaryOPBackend<Scalar, OMP>
 				{
-					omp_set_num_threads(tml::HardawreConcurrency);
-					#pragma omp parallel for
-					for (int64_t i = 0; i < (int64_t)matrix.Size(); i += 32)
-						for (int64_t br = 0; br < 32 && i + br < (int64_t)matrix.Size(); ++br)
-							result[i+br] = op(matrix[i+br]);
-				}
+					template<typename OP>
+					TML_STRONG_INLINE void ParallelCustomUnaryOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
+					{
+						std::cout << "running omp backend" << std::endl;
+						omp_set_num_threads(tml::HardawreConcurrency);
+						#pragma omp parallel for
+						for (int64_t i = 0; i < (int64_t)matrix.Size(); i += 32)
+							for (int64_t br = 0; br < 32 && i + br < (int64_t)matrix.Size(); ++br)
+								result[i + br] = op(matrix[i + br]);
+					}
+				};
 			}
 		}
 	}

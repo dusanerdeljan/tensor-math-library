@@ -9,5 +9,24 @@ namespace tml
 
 	enum ParallelismPolicy { SINGLE_ROW, SINGLE_COLUMN, ONE_OVER_CORES, PARALLEL_FOR };
 
-	enum Backend { TBB, OMP, OPENCL, CUDA, STL };
+	namespace eager
+	{
+		namespace details
+		{
+			struct TBB {};
+			struct OMP {};
+			struct OPENCL {};
+			struct CUDA {};
+			struct STL {};
+		}
+	}
+
+	namespace execution
+	{
+		static eager::details::TBB tbb;
+		static eager::details::OMP omp;
+		static eager::details::OPENCL opencl;
+		static eager::details::CUDA cuda;
+		static eager::details::STL stl;
+	}
 }
