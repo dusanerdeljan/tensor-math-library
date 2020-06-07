@@ -1,6 +1,17 @@
 #include <iostream>
 #include "include\tml.hpp"
 
+/*!
+* TODOS:
+*
+* 1. Multi-backend for matrix multiplication, transpose and reduction ops
+* 2. Partial template specialization for binary eager ops
+* 3. Partial template specialization for SERIAL/PARALLEL algorithm selection
+* 4. Remove unnecessary if/switch statements via partial template specialization
+* 5. Maybe add option to specify TBB parallel execution policy
+*
+*/
+
 void TestProfile()
 {
 	tml::Matrix<int> m1(10000, 10000);
