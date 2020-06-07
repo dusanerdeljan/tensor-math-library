@@ -17,8 +17,8 @@ namespace tml
 				{
 					omp_set_num_threads(tml::HardawreConcurrency);
 					#pragma omp parallel for
-					for (long long i = 0; i < (long long)matrix.Size(); i += 32)
-						for (long long br = 0; br < 32 && i + br < (long long)matrix.Size(); ++br)
+					for (int64_t i = 0; i < (int64_t)matrix.Size(); i += 32)
+						for (int64_t br = 0; br < 32 && i + br < (int64_t)matrix.Size(); ++br)
 							result[i+br] = op(matrix[i+br]);
 				}
 			}
