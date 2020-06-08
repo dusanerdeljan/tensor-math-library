@@ -1,9 +1,6 @@
 #pragma once
 
-#include "..\ExecutionPolicy.hpp"
-#include "..\..\..\matrix\Matrix.hpp"
-
-#define TML_STRONG_INLINE static inline
+#include "Base.hpp"
 
 namespace tml
 {
