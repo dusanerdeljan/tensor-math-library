@@ -341,5 +341,8 @@
     <ClInclude Include="include\ops\eager\base\Base.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\base\BinaryOPBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

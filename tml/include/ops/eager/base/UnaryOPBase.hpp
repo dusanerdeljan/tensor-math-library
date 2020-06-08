@@ -16,7 +16,7 @@ namespace tml
 					template<typename OP>
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
 					{
-						throw std::exception("Selected parallel back-end is not supported.");
+						throw std::exception("Selected backend is not supported.");
 					}
 				};
 			}

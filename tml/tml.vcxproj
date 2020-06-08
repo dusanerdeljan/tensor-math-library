@@ -153,6 +153,7 @@
     <ClInclude Include="include\matrix\Shape.hpp" />
     <ClInclude Include="include\ops\Assert.hpp" />
     <ClInclude Include="include\ops\eager\base\Base.hpp" />
+    <ClInclude Include="include\ops\eager\base\BinaryOPBase.hpp" />
     <ClInclude Include="include\ops\eager\binary\Add.hpp" />
     <ClInclude Include="include\ops\eager\binary\CustomBinaryOP.hpp" />
     <ClInclude Include="include\ops\eager\binary\Div.hpp" />
