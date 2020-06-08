@@ -1,8 +1,7 @@
 #pragma once
 
 #include "serial\SerialUnaryOP.hpp"
-#include "parallel\backends\tbb\UnaryOP.hpp"
-#include "parallel\backends\omp\UnaryOP.hpp"
+#include "parallel\ParallelUnaryOP.hpp"
 #include "..\lazy\Expr.hpp"
 
 namespace tml

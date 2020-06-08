@@ -10,101 +10,77 @@ namespace tml
 {
 	namespace eager
 	{
-		template<typename Scalar>
-		tml::Matrix<Scalar> Mul(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_SHAPE(left, right);
 			tml::Matrix<Scalar> result(left.GetShape());
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> Mul(const tml::Matrix<Scalar>& left, const ExprOP<Scalar, T>& rightExpr, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(const tml::Matrix<Scalar>& left, const ExprOP<Scalar, T>& rightExpr, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_SHAPE(left, rightExpr);
 			tml::Matrix<Scalar> result(rightExpr.shape);
 			tml::Matrix<Scalar> right = rightExpr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> Mul(const ExprOP<Scalar, T>& leftExpr, const tml::Matrix<Scalar>& right, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(const ExprOP<Scalar, T>& leftExpr, const tml::Matrix<Scalar>& right, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_SHAPE(leftExpr, right);
 			tml::Matrix<Scalar> result(leftExpr.shape);
 			tml::Matrix<Scalar> left = leftExpr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 
-		template<typename Scalar, typename Left, typename Right>
-		tml::Matrix<Scalar> Mul(const ExprOP<Scalar, Left>& leftExpr, const ExprOP<Scalar, Right>& rightExpr, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename Left, typename Right, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(const ExprOP<Scalar, Left>& leftExpr, const ExprOP<Scalar, Right>& rightExpr, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_SHAPE(leftExpr, rightExpr);
 			tml::Matrix<Scalar> left = leftExpr;
 			tml::Matrix<Scalar> right = rightExpr;
 			tml::Matrix<Scalar> result(leftExpr.shape);
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> Mul(const tml::Matrix<Scalar>& left, Scalar right, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(const tml::Matrix<Scalar>& left, Scalar right, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(left.GetShape());
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> Mul(Scalar left, const tml::Matrix<Scalar>& right, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(Scalar left, const tml::Matrix<Scalar>& right, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(right.GetShape());
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> Mul(const ExprOP<Scalar, T>& leftExpr, Scalar right, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(const ExprOP<Scalar, T>& leftExpr, Scalar right, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> left = leftExpr;
 			tml::Matrix<Scalar> result(leftExpr.shape);
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> Mul(Scalar left, const ExprOP<Scalar, T>& rightExpr, tml::ExecutionPolicy execPolicy = tml::SERIAL, tml::ParallelismPolicy parallelism = tml::ONE_OVER_CORES)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> Mul(Scalar left, const ExprOP<Scalar, T>& rightExpr, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> right = rightExpr;
 			tml::Matrix<Scalar> result(rightExpr.shape);
-			if (execPolicy == tml::SERIAL)
-				details::SerialMul(left, right, result);
-			else
-				details::ParallelMul(left, right, result, parallelism);
+			details::backend::BinaryOPBackend<Scalar, Backend>::DoOP(left, right, result, [](Scalar x, Scalar y) { return x * y; });
 			return result;
 		}
 	}

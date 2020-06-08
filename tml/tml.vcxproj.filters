@@ -137,9 +137,6 @@
     <ClInclude Include="include\ops\eager\ExecutionPolicy.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\eager\parallel\ParallelBinaryOP.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ops\eager\serial\SerialUnaryOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -342,6 +339,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\eager\base\BinaryOPBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\ParallelBinaryOP.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\ParallelUnaryOP.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
