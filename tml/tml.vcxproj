@@ -154,6 +154,7 @@
     <ClInclude Include="include\ops\Assert.hpp" />
     <ClInclude Include="include\ops\eager\base\Base.hpp" />
     <ClInclude Include="include\ops\eager\base\BinaryOPBase.hpp" />
+    <ClInclude Include="include\ops\eager\base\MatmulBase.hpp" />
     <ClInclude Include="include\ops\eager\base\TransposeBase.hpp" />
     <ClInclude Include="include\ops\eager\binary\Add.hpp" />
     <ClInclude Include="include\ops\eager\binary\CustomBinaryOP.hpp" />
@@ -184,12 +185,14 @@
     <ClInclude Include="include\ops\eager\EagerBinaryOPs.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\cuda\CudaBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\BinaryOP.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\backends\omp\Matmul.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\OMPBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Transpose.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\UnaryOP.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\opencl\OpenCLBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\STLBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\BinaryOP.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\backends\tbb\Matmul.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\TBBBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Transpose.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\UnaryOP.hpp" />
