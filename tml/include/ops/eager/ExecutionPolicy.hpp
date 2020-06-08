@@ -18,6 +18,7 @@ namespace tml
 			struct OPENCL {};
 			struct CUDA {};
 			struct STL {};
+			struct SEQ {};
 		}
 	}
 
@@ -28,5 +29,6 @@ namespace tml
 		static eager::details::OPENCL opencl;
 		static eager::details::CUDA cuda;
 		static eager::details::STL stl;
+		static eager::details::SEQ seq;
 	}
 }

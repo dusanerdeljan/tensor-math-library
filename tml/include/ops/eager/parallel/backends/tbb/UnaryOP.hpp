@@ -3,7 +3,7 @@
 #include <tbb\task.h>
 #include <tbb\parallel_for.h>
 #include <tbb\blocked_range.h>
-#include "..\UnaryOPBase.hpp"
+#include "..\..\..\base\UnaryOPBase.hpp"
 
 namespace tml
 {
@@ -103,7 +103,7 @@ namespace tml
 					}
 
 					template<typename OP>
-					TML_STRONG_INLINE void ParallelCustomUnaryOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
+					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
 					{
 						std::cout << "running tbb backend" << std::endl;
 						ParallelCustomUnaryOPOneOverCores(matrix, result, std::move(op));

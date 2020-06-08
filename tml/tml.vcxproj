@@ -188,7 +188,7 @@
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\BinaryOP.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\TBBBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\UnaryOP.hpp" />
-    <ClInclude Include="include\ops\eager\parallel\backends\UnaryOPBase.hpp" />
+    <ClInclude Include="include\ops\eager\base\UnaryOPBase.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelArgmax.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelArgmin.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelBinaryOP.hpp" />
@@ -198,7 +198,6 @@
     <ClInclude Include="include\ops\eager\parallel\ParallelMin.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelSum.hpp" />
     <ClInclude Include="include\ops\eager\parallel\ParallelTranspose.hpp" />
-    <ClInclude Include="include\ops\eager\parallel\ParallelUnaryOP.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialArgmax.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialArgmin.hpp" />
     <ClInclude Include="include\ops\eager\serial\SerialBinaryOP.hpp" />

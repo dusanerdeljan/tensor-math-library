@@ -1,7 +1,7 @@
 #pragma once
 
 #include <omp.h>
-#include "..\UnaryOPBase.hpp"
+#include "..\..\..\base\UnaryOPBase.hpp"
 
 namespace tml
 {
@@ -15,7 +15,7 @@ namespace tml
 				struct UnaryOPBackend<Scalar, OMP>
 				{
 					template<typename OP>
-					TML_STRONG_INLINE void ParallelCustomUnaryOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
+					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
 					{
 						std::cout << "running omp backend" << std::endl;
 						omp_set_num_threads(tml::HardawreConcurrency);
