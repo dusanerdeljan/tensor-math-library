@@ -95,7 +95,7 @@ namespace tml
 				*writer = static_cast<Scalar>(*it);
 		}
 
-		Matrix(Matrix<Scalar>&& matrix) : m_Data(matrix.m_Data), m_Shape(matrix.m_Shape)
+		Matrix(Matrix<Scalar>&& matrix) noexcept : m_Data(matrix.m_Data), m_Shape(matrix.m_Shape)
 		{
 			LOG("move constructor");
 			matrix.m_Data = nullptr;

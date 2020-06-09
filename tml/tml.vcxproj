@@ -194,6 +194,7 @@
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Transpose.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\UnaryOP.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\opencl\OpenCLBackend.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\backends\stl\BinaryOP.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\STLBackend.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\UnaryOP.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\BinaryOP.hpp" />
