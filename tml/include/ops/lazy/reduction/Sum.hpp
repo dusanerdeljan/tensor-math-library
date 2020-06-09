@@ -1,10 +1,10 @@
 #pragma once
 
-#include "..\Expr.hpp"
-#include "..\ReductionExpr.hpp"
-#include "..\LazyOPs.hpp"
-#include "..\..\eager\EagerSum.hpp"
-#include "..\..\..\matrix\Matrix.hpp"
+#include "../Expr.hpp"
+#include "../ReductionExpr.hpp"
+#include "../LazyOPs.hpp"
+#include "../../eager/EagerSum.hpp"
+#include "../../../matrix/Matrix.hpp"
 
 namespace tml
 {

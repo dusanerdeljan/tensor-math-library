@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Base.hpp"
+#include "TransposeBase.hpp"
 #include <numeric>
 
 namespace tml
@@ -16,7 +17,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
 					{
-						throw std::exception("Selected backend is not supported.");
+						TML_UNSUPPORTED_BACKEND(Backend);
 					}
 				};
 			}

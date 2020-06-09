@@ -1,8 +1,8 @@
 #pragma once
 
 #include "ExecutionPolicy.hpp"
-#include "serial\SerialTranspose.hpp"
-#include "parallel\ParallelTranspose.hpp"
+#include "serial/SerialTranspose.hpp"
+#include "parallel/ParallelTranspose.hpp"
 
 namespace tml
 {

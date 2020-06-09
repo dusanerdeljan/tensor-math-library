@@ -1,11 +1,11 @@
 #pragma once
 
-#include "..\..\Assert.hpp"
-#include "..\LazyOPs.hpp"
-#include "..\Expr.hpp"
-#include "..\BinaryOP.hpp"
-#include "..\ScalarExpr.hpp"
-#include "..\..\..\matrix\Matrix.hpp"
+#include "../../Assert.hpp"
+#include "../LazyOPs.hpp"
+#include "../Expr.hpp"
+#include "../BinaryOP.hpp"
+#include "../ScalarExpr.hpp"
+#include "../../../matrix/Matrix.hpp"
 
 template<typename Scalar>
 ExprOP<Scalar, BinaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::const_iterator, tml::lazy::MulOP<Scalar>>>

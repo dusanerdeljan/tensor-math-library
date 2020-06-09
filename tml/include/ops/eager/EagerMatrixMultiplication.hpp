@@ -1,10 +1,10 @@
 #pragma once
 
-#include "..\Assert.hpp"
-#include "..\lazy\Expr.hpp"
+#include "../Assert.hpp"
+#include "../lazy/Expr.hpp"
 #include "ExecutionPolicy.hpp"
-#include "serial\SerialMatrixMultiplication.hpp"
-#include "parallel\ParallelMatrixMultiplication.hpp"
+#include "serial/SerialMatrixMultiplication.hpp"
+#include "parallel/ParallelMatrixMultiplication.hpp"
 
 namespace tml
 {

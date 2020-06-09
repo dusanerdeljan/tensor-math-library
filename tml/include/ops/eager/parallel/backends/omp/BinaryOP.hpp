@@ -1,8 +1,8 @@
 #pragma once
-
+#if TML_HAS_OMP
 #include <omp.h>
 #include "UnaryOP.hpp"
-#include "..\..\..\base\BinaryOPBase.hpp"
+#include "../../../base/BinaryOPBase.hpp"
 
 
 namespace tml
@@ -43,3 +43,4 @@ namespace tml
 		}
 	}
 }
+#endif

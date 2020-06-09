@@ -1,6 +1,12 @@
 #pragma once
 #include <thread>
 
+#define TML_HAS_OMP 1
+#define TML_HAS_TBB 1
+#define TML_HAS_CUDA 1
+#define TML_HAS_OPENCL 1
+#define TML_HAS_CPP17_STL 1
+
 namespace tml
 {
 	static const unsigned int HardawreConcurrency = std::thread::hardware_concurrency();

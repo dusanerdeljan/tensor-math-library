@@ -4,13 +4,15 @@
 #include <iomanip>
 #include <initializer_list>
 
-#include <tbb\tbb.h>
-#include <tbb\parallel_for.h>
-#include <tbb\blocked_range.h>
+#define TML_USE_PARALLEL_ASSIGNMENT 0
+
+#if TML_USE_PARALLEL_ASSIGNMENT
+#include <tbb/tbb.h>
+#include <tbb/parallel_for.h>
+#include <tbb/blocked_range.h>
+#endif
 
 #include "Shape.hpp"
-
-#define TML_USE_PARALLEL_ASSIGNMENT
 
 #define TML_DEBUG_CTOR_PRINTS 1
 
@@ -88,7 +90,6 @@ namespace tml
 		Matrix(const Matrix<DType>& matrix) : m_Data(new Scalar[matrix.Size()]), m_Shape(matrix.GetShape())
 		{
 			LOG("copy new type constructor");
-#pragma message("[TML WARNING] You are copying a matrix of different type. Possible loss of data.")
 			iterator writer = begin();
 			for (auto it = matrix.cbegin(); it != matrix.cend(); ++it, ++writer)
 				*writer = static_cast<Scalar>(*it);
@@ -125,7 +126,6 @@ namespace tml
 		Matrix<Scalar>& operator=(const Matrix<DType>& matrix)
 		{
 			LOG("copy new type assignment");
-#pragma message("[TML WARNING] You are copying a matrix of different type. Possible loss of data.")
 			Scalar* data = new Scalar[matrix.Size()];
 			iterator writer = data;
 			for (auto it = matrix.cbegin(); it != matrix.cend(); ++it, ++writer)
@@ -209,7 +209,7 @@ namespace tml
 		template<typename Expr>
 		void AssignExpr(Expr expr)
 		{
-#ifdef TML_USE_PARALLEL_ASSIGNMENT
+#if TML_USE_PARALLEL_ASSIGNMENT
 			size_t grainSize =  m_Shape.Size / tml::HardawreConcurrency;
 			tbb::parallel_for(tbb::blocked_range<size_t>(0, m_Shape.Size, grainSize), [&](tbb::blocked_range<size_t> range)
 			{

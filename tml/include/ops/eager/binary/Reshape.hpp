@@ -1,8 +1,8 @@
 #pragma once
 
-#include "..\..\Assert.hpp"
-#include "..\..\lazy\Expr.hpp"
-#include "..\..\..\matrix\Matrix.hpp"
+#include "../../Assert.hpp"
+#include "../../lazy/Expr.hpp"
+#include "../../../matrix/Matrix.hpp"
 
 namespace tml
 {

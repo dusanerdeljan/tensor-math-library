@@ -1,9 +1,9 @@
 #pragma once
 
-#include "..\lazy\Expr.hpp"
+#include "../lazy/Expr.hpp"
 #include "ExecutionPolicy.hpp"
-#include "serial\SerialMax.hpp"
-#include "parallel\ParallelMax.hpp"
+#include "serial/SerialMax.hpp"
+#include "parallel/ParallelMax.hpp"
 
 namespace tml
 {

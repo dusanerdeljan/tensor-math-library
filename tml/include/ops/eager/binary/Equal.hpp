@@ -1,10 +1,10 @@
 #pragma once
 
-#include "..\..\Assert.hpp"
-#include "..\ExecutionPolicy.hpp"
-#include "..\..\lazy\Expr.hpp"
-#include "..\serial\SerialBinaryOP.hpp"
-#include "..\parallel\ParallelBinaryOP.hpp"
+#include "../../Assert.hpp"
+#include "../ExecutionPolicy.hpp"
+#include "../../lazy/Expr.hpp"
+#include "../serial/SerialBinaryOP.hpp"
+#include "../parallel/ParallelBinaryOP.hpp"
 
 namespace tml
 {

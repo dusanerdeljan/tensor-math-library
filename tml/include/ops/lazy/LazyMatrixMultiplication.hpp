@@ -1,9 +1,9 @@
 #pragma once
 
-#include "..\Assert.hpp"
+#include "../Assert.hpp"
 #include "Expr.hpp"
 #include "MatmulExpr.hpp"
-#include "..\..\matrix\Matrix.hpp"
+#include "../../matrix/Matrix.hpp"
 
 namespace tml
 {

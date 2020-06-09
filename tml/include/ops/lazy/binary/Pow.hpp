@@ -1,11 +1,11 @@
 #pragma once
 
-#include "..\..\Assert.hpp"
-#include "..\LazyOPs.hpp"
-#include "..\Expr.hpp"
-#include "..\BinaryOP.hpp"
-#include "..\ScalarExpr.hpp"
-#include "..\..\..\matrix\Matrix.hpp"
+#include "../../Assert.hpp"
+#include "../LazyOPs.hpp"
+#include "../Expr.hpp"
+#include "../BinaryOP.hpp"
+#include "../ScalarExpr.hpp"
+#include "../../../matrix/Matrix.hpp"
 
 namespace tml
 {

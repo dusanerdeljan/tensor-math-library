@@ -1,8 +1,8 @@
 #pragma once
 
 #include "Expr.hpp"
-#include "..\Assert.hpp"
-#include "..\..\matrix\Matrix.hpp"
+#include "../Assert.hpp"
+#include "../../matrix/Matrix.hpp"
 
 template<typename Scalar, typename Operand, typename OP>
 struct CustomUnaryLazyExprOP

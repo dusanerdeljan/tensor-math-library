@@ -14,7 +14,7 @@ throw std::runtime_error("YOU MIXED MATRICES OF DIFFERENT SHAPE.");\
 
 #define TML_ASSERT_RESHAPE(matrix, shape)\
 {\
-if (matrix.GetShape().Size != shape.Size)\
+if (matrix.GetShape().Size != shape.Size)/
 {\
 throw std::runtime_error("RESHAPE ERROR: INCOMPATIBLE SHAPE.");\
 }\

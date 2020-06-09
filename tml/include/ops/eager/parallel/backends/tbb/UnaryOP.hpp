@@ -1,9 +1,10 @@
 #pragma once
 
-#include <tbb\task.h>
-#include <tbb\parallel_for.h>
-#include <tbb\blocked_range.h>
-#include "..\..\..\base\UnaryOPBase.hpp"
+#if TML_HAS_TBB
+#include <tbb/task.h>
+#include <tbb/parallel_for.h>
+#include <tbb/blocked_range.h>
+#include "../../../base/UnaryOPBase.hpp"
 
 namespace tml
 {
@@ -72,3 +73,4 @@ namespace tml
 		}
 	}
 }
+#endif

@@ -1,6 +1,7 @@
 #pragma once
 
-#include "..\..\..\base\MatmulBase.hpp"
+#if TML_HAS_OMP
+#include "../../../base/MatmulBase.hpp"
 
 namespace tml
 {
@@ -34,3 +35,4 @@ namespace tml
 		}
 	}
 }
+#endif

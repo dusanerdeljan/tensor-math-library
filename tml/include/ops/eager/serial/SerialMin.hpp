@@ -1,7 +1,7 @@
 #pragma once
 
 #include <algorithm>
-#include "..\..\..\matrix\Matrix.hpp"
+#include "../../../matrix/Matrix.hpp"
 
 namespace tml
 {
@@ -27,7 +27,7 @@ namespace tml
 			void SerialMinColumns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 			{
 				size_t rows = matrix.Rows(), cols = matrix.Columns();
-				const tml::Matrix<Scalar> transposed = tml::eager::Transpose(matrix, tml::SERIAL);
+				const tml::Matrix<Scalar> transposed = matrix;
 				for (size_t i = 0; i < cols; ++i)
 					result[i] = *std::min_element(transposed.cbegin() + i*rows, transposed.cbegin() + (i + 1)*rows);
 			}

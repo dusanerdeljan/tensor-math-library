@@ -1,7 +1,8 @@
 #pragma once
 
-#include <tbb\parallel_for.h>
-#include "..\..\..\base\UnaryOPBase.hpp"
+#if TML_HAS_TBB
+#include <tbb/parallel_for.h>
+#include "../../../base/UnaryOPBase.hpp"
 
 namespace tml
 {
@@ -32,3 +33,4 @@ namespace tml
 		}
 	}
 }
+#endif

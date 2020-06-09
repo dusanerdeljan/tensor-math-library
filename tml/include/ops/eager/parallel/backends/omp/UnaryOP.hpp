@@ -1,7 +1,8 @@
 #pragma once
 
+#if TML_HAS_OMP
 #include <omp.h>
-#include "..\..\..\base\UnaryOPBase.hpp"
+#include "../../../base/UnaryOPBase.hpp"
 
 namespace tml
 {
@@ -29,3 +30,4 @@ namespace tml
 		}
 	}
 }
+#endif

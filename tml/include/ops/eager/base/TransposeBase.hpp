@@ -15,7 +15,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						throw std::exception("Selected backend is not supported.");
+						TML_UNSUPPORTED_BACKEND(Backend);
 					}
 				};
 			}
