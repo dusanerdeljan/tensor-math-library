@@ -365,5 +365,8 @@
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Matmul.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\backends\stl\UnaryOP.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
