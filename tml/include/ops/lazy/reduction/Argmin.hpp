@@ -3,7 +3,7 @@
 #include "../Expr.hpp"
 #include "../ReductionExpr.hpp"
 #include "../LazyOPs.hpp"
-#include "../../eager/EagerArgmin.hpp"
+#include "../../eager/reduction/EagerArgmin.hpp"
 #include "../../../matrix/Matrix.hpp"
 
 namespace tml

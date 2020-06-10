@@ -224,16 +224,10 @@
     <ClInclude Include="include\ops\eager\serial\SerialSum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\eager\EagerSum.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ops\eager\parallel\ParallelSum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\eager\serial\SerialMean.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ops\eager\EagerMean.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\eager\parallel\ParallelMean.hpp">
@@ -242,16 +236,10 @@
     <ClInclude Include="include\ops\eager\serial\SerialMax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\eager\EagerMax.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ops\eager\parallel\ParallelMax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\eager\serial\SerialMin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ops\eager\EagerMin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\eager\parallel\ParallelMin.hpp">
@@ -284,16 +272,10 @@
     <ClInclude Include="include\ops\eager\parallel\ParallelArgmin.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\ops\eager\EagerArgmin.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ops\eager\serial\SerialArgmax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\eager\parallel\ParallelArgmax.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\ops\eager\EagerArgmax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\lazy\reduction\Argmin.hpp">
@@ -375,6 +357,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="include\ops\eager\parallel\backends\stl\Matmul.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\reduction\EagerArgmax.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\reduction\EagerArgmin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\reduction\EagerMax.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\reduction\EagerMean.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\reduction\EagerMin.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\ops\eager\reduction\EagerSum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
