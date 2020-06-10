@@ -159,6 +159,7 @@
     <ClInclude Include="include\ops\eager\base\Base.hpp" />
     <ClInclude Include="include\ops\eager\base\BinaryOPBase.hpp" />
     <ClInclude Include="include\ops\eager\base\MatmulBase.hpp" />
+    <ClInclude Include="include\ops\eager\base\SumBase.hpp" />
     <ClInclude Include="include\ops\eager\base\TransposeBase.hpp" />
     <ClInclude Include="include\ops\eager\binary\Add.hpp" />
     <ClInclude Include="include\ops\eager\binary\CustomBinaryOP.hpp" />

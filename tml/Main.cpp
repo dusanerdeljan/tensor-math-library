@@ -29,13 +29,14 @@ void TestProfile()
 
 int main()
 {
-	TestProfile();
+	//TestProfile();
 	tml::Matrix<int> m1 = tml::Matrix<int>::Arange(4, 4);
 	tml::Matrix<int> m2 = tml::Matrix<int>::Arange(4, 4);
 	tml::Matrix<int> m3 = tml::Matrix<int>::Arange(4, 4);
-	std::cout << tml::eager::Matmul(m1, m2, tml::execution::seq) << std::endl;
-	std::cout << tml::eager::Matmul(m1, m2, tml::execution::tbb) << std::endl;
-	std::cout << tml::eager::Matmul(m1, m2, tml::execution::omp) << std::endl;
+	std::cout << m1 << std::endl;
+	std::cout << tml::eager::Sum(m1, tml::execution::seq) << std::endl;
+	//std::cout << tml::eager::Matmul(m1, m2, tml::execution::tbb) << std::endl;
+	//std::cout << tml::eager::Matmul(m1, m2, tml::execution::omp) << std::endl;
 	std::cin.get();
 	return 0;
 }
