@@ -383,5 +383,8 @@
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Sum.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\backends\tbb\Sum.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
