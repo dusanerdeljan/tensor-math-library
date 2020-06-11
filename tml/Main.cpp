@@ -5,8 +5,7 @@
 /*!
 * TODOS:
 *
-* 1. Multi-backend for matrix multiplication and reduction ops
-* 2. Remove unnecessary if/switch statements via partial template specialization
+* 1. Multi-backend for and reduction ops
 *
 */
 
@@ -36,7 +35,7 @@ int main()
 	std::cout << m1 << std::endl;
 	std::cout << tml::eager::SumColumns(m1, tml::execution::tbb) << std::endl;
 	std::cout << tml::eager::SumColumns(m1, tml::execution::omp) << std::endl;
-	//std::cout << tml::eager::Matmul(m1, m2, tml::execution::omp) << std::endl;
+	std::cout << tml::eager::SumColumns(m1, tml::execution::seq) << std::endl;
 	std::cin.get();
 	return 0;
 }
