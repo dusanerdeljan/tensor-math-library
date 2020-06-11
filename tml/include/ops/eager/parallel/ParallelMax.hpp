@@ -46,7 +46,7 @@ namespace tml
 			{
 #if TML_HAS_TBB
 				size_t rows = matrix.Rows(), cols = matrix.Columns();
-				const tml::Matrix<Scalar> transposed = tml::eager::Transpose(matrix, tml::PARALLEL);
+				const tml::Matrix<Scalar> transposed = matrix;
 				tbb::parallel_for(tbb::blocked_range<size_t>(0, cols, 200), [&](const tbb::blocked_range<size_t>& range)
 				{
 					for (size_t i = range.begin(); i != range.end(); ++i)
