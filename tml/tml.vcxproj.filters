@@ -404,5 +404,8 @@
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Max.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\backends\tbb\Min.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
