@@ -1,5 +1,5 @@
 # tbb-matrix-library
-Header only lazy evaluation matrix library with parallel eager execution support.
+Header only lazy evaluation matrix library with multi-backend parallel eager execution support.
 
 ## Lazy evaluation
 
