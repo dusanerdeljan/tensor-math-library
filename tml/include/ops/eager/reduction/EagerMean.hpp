@@ -9,72 +9,54 @@ namespace tml
 {
 	namespace eager
 	{
-		template<typename Scalar>
-		Scalar Mean(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE Scalar Mean(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			Scalar result;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMeanAll(matrix, result);
-			else
-				details::ParallelMeanAll(matrix, result);
+			details::backend::MeanBackend<Scalar, Backend>::Mean(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		Scalar Mean(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE Scalar Mean(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			const tml::Matrix<Scalar> matrix = expr;
 			Scalar result;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMeanAll(matrix, result);
-			else
-				details::ParallelMeanAll(matrix, result);
+			details::backend::MeanBackend<Scalar, Backend>::Mean(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> MeanRows(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MeanRows(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Rows() });
-			if (execPolicy == tml::SERIAL)
-				details::SerialMeanRows(matrix, result);
-			else
-				details::ParallelMeanRows(matrix, result);
+			details::backend::MeanBackend<Scalar, Backend>::Rows(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> MeanRows(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MeanRows(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Rows });
 			const tml::Matrix<Scalar> matrix = expr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMeanRows(matrix, result);
-			else
-				details::ParallelMeanRows(matrix, result);
+			details::backend::MeanBackend<Scalar, Backend>::Rows(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> MeanColumns(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MeanColumns(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Columns() });
-			if (execPolicy == tml::SERIAL)
-				details::SerialMeanColumns(matrix, result);
-			else
-				details::ParallelMeanColumns(matrix, result);
+			details::backend::MeanBackend<Scalar, Backend>::Columns(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> MeanColumns(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MeanColumns(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Columns });
 			const tml::Matrix<Scalar> matrix = expr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMeanColumns(matrix, result);
-			else
-				details::ParallelMeanColumns(matrix, result);
+			details::backend::MeanBackend<Scalar, Backend>::Columns(matrix, result);
 			return result;
 		}
 	}
