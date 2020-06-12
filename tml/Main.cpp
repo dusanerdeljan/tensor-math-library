@@ -33,9 +33,9 @@ int main()
 	tml::Matrix<int> m2 = tml::Matrix<int>::Arange(4, 4);
 	tml::Matrix<int> m3 = tml::Matrix<int>::Arange(4, 4);
 	std::cout << m1 << std::endl;
-	std::cout << tml::eager::Mean(m1, tml::execution::tbb) << std::endl;
-	std::cout << tml::eager::MeanRows(m1, tml::execution::tbb) << std::endl;
-	std::cout << tml::eager::MeanColumns(m1, tml::execution::tbb) << std::endl;
+	std::cout << tml::eager::Argmax(m1, tml::execution::tbb) << std::endl;
+	std::cout << tml::eager::ArgmaxRows(m1, tml::execution::tbb) << std::endl;
+	std::cout << tml::eager::ArgmaxColumns(m1, tml::execution::tbb) << std::endl;
 	std::cin.get();
 	return 0;
 }
