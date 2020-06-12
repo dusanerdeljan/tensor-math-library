@@ -38,7 +38,6 @@ namespace tml
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
 					{
 						std::cout << "running tbb backend" << std::endl;
-						ParallelCustomUnaryOPOneOverCores(matrix, result, std::move(op));
 						size_t size = matrix.Size();
 						typedef UnaryTask<typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::iterator, OP> TaskType;
 						if (size <= tml::HardawreConcurrency)

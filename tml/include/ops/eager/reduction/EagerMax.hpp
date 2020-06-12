@@ -9,72 +9,54 @@ namespace tml
 {
 	namespace eager
 	{
-		template<typename Scalar>
-		Scalar Max(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE Scalar Max(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			Scalar result;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMaxAll(matrix, result);
-			else
-				details::ParallelMaxAll(matrix, result);
+			details::backend::MaxBackend<Scalar, Backend>::Max(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		Scalar Max(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE Scalar Max(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			const tml::Matrix<Scalar> matrix = expr;
 			Scalar result;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMaxAll(matrix, result);
-			else
-				details::ParallelMaxAll(matrix, result);
+			details::backend::MaxBackend<Scalar, Backend>::Max(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> MaxRows(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MaxRows(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Rows() });
-			if (execPolicy == tml::SERIAL)
-				details::SerialMaxRows(matrix, result);
-			else
-				details::ParallelMaxRows(matrix, result);
+			details::backend::MaxBackend<Scalar, Backend>::Rows(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> MaxRows(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MaxRows(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Rows });
 			const tml::Matrix<Scalar> matrix = expr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMaxRows(matrix, result);
-			else
-				details::ParallelMaxRows(matrix, result);
+			details::backend::MaxBackend<Scalar, Backend>::Rows(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> MaxColumns(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MaxColumns(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Columns() });
-			if (execPolicy == tml::SERIAL)
-				details::SerialMaxColumns(matrix, result);
-			else
-				details::ParallelMaxColumns(matrix, result);
+			details::backend::MaxBackend<Scalar, Backend>::Columns(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> MaxColumns(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MaxColumns(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Columns });
 			const tml::Matrix<Scalar> matrix = expr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMaxColumns(matrix, result);
-			else
-				details::ParallelMaxColumns(matrix, result);
+			details::backend::MaxBackend<Scalar, Backend>::Columns(matrix, result);
 			return result;
 		}
 	}
