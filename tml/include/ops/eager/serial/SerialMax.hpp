@@ -34,9 +34,9 @@ namespace tml
 						for (size_t j = 0; j < cols; ++j)
 						{
 							Scalar colMax = std::numeric_limits<Scalar>::lowest();
-								for (size_t i = 0; i < rows; ++i)
-									if (matrix[j + i*cols] > colMax)
-										colMax = matrix[j + i*cols];
+							for (size_t i = 0; i < rows; ++i)
+								if (matrix[j + i*cols] > colMax)
+									colMax = matrix[j + i*cols];
 							result[j] = colMax;
 						}
 					}

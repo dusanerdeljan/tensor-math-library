@@ -33,9 +33,9 @@ int main()
 	tml::Matrix<int> m2 = tml::Matrix<int>::Arange(4, 4);
 	tml::Matrix<int> m3 = tml::Matrix<int>::Arange(4, 4);
 	std::cout << m1 << std::endl;
-	std::cout << tml::eager::Max(m1, tml::execution::seq) << std::endl;
-	std::cout << tml::eager::MaxRows(m1, tml::execution::seq) << std::endl;
-	std::cout << tml::eager::MaxColumns(m1, tml::execution::seq) << std::endl;
+	std::cout << tml::eager::Min(m1, tml::execution::seq) << std::endl;
+	std::cout << tml::eager::MinRows(m1, tml::execution::seq) << std::endl;
+	std::cout << tml::eager::MinColumns(m1, tml::execution::seq) << std::endl;
 	std::cin.get();
 	return 0;
 }

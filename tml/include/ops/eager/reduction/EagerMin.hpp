@@ -9,72 +9,54 @@ namespace tml
 {
 	namespace eager
 	{
-		template<typename Scalar>
-		Scalar Min(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE Scalar Min(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			Scalar result;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMinAll(matrix, result);
-			else
-				details::ParallelMinAll(matrix, result);
+			details::backend::MinBackend<Scalar, Backend>::Min(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		Scalar Min(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE Scalar Min(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			const tml::Matrix<Scalar> matrix = expr;
 			Scalar result;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMinAll(matrix, result);
-			else
-				details::ParallelMinAll(matrix, result);
+			details::backend::MinBackend<Scalar, Backend>::Min(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> MinRows(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MinRows(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Rows() });
-			if (execPolicy == tml::SERIAL)
-				details::SerialMinRows(matrix, result);
-			else
-				details::ParallelMinRows(matrix, result);
+			details::backend::MinBackend<Scalar, Backend>::Rows(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> MinRows(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MinRows(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Rows });
 			const tml::Matrix<Scalar> matrix = expr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMinRows(matrix, result);
-			else
-				details::ParallelMinRows(matrix, result);
+			details::backend::MinBackend<Scalar, Backend>::Rows(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar>
-		tml::Matrix<Scalar> MinColumns(const tml::Matrix<Scalar>& matrix, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MinColumns(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, matrix.Columns() });
-			if (execPolicy == tml::SERIAL)
-				details::SerialMinColumns(matrix, result);
-			else
-				details::ParallelMinColumns(matrix, result);
+			details::backend::MinBackend<Scalar, Backend>::Columns(matrix, result);
 			return result;
 		}
 
-		template<typename Scalar, typename T>
-		tml::Matrix<Scalar> MinColumns(const ExprOP<Scalar, T>& expr, tml::ExecutionPolicy execPolicy = tml::SERIAL)
+		template<typename Scalar, typename T, typename Backend = details::SEQ>
+		TML_INLINE tml::Matrix<Scalar> MinColumns(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
 			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Columns });
 			const tml::Matrix<Scalar> matrix = expr;
-			if (execPolicy == tml::SERIAL)
-				details::SerialMinColumns(matrix, result);
-			else
-				details::ParallelMinColumns(matrix, result);
+			details::backend::MinBackend<Scalar, Backend>::Columns(matrix, result);
 			return result;
 		}
 	}
