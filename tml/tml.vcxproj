@@ -181,6 +181,7 @@
     <ClInclude Include="include\ops\eager\binary\Pow.hpp" />
     <ClInclude Include="include\ops\eager\binary\Reshape.hpp" />
     <ClInclude Include="include\ops\eager\binary\Sub.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\backends\omp\Max.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Min.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Sum.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Argmax.hpp" />
