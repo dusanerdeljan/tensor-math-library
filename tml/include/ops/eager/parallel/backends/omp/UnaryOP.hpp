@@ -18,7 +18,7 @@ namespace tml
 					template<typename OP>
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
 					{
-						std::cout << "running omp backend" << std::endl;
+						TML_LOG_BACKEND("omp");
 						omp_set_num_threads(tml::HardawreConcurrency);
 						#pragma omp parallel for
 						for (int64_t i = 0; i < (int64_t)matrix.Size(); i += 32)

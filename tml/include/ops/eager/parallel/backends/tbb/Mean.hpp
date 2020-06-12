@@ -19,7 +19,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void Mean(const tml::Matrix<Scalar>& matrix, Scalar& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						typedef typename tml::Matrix<Scalar>::const_iterator iter;
 						result = static_cast<Scalar>(tbb::parallel_reduce(tbb::blocked_range<iter>(matrix.cbegin(), matrix.cend(), 200),
 							static_cast<Scalar>(0),
@@ -31,7 +31,7 @@ namespace tml
 
 					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						size_t cols = matrix.Columns();
 						tbb::parallel_for(tbb::blocked_range<size_t>(0, matrix.Rows(), 100), [&](const tbb::blocked_range<size_t>& range)
 						{
@@ -42,7 +42,7 @@ namespace tml
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						tbb::parallel_for(tbb::blocked_range<size_t>(0, cols, 100), [&](const tbb::blocked_range<size_t>& range)
 						{

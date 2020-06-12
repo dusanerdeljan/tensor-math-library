@@ -19,7 +19,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void Argmin(const tml::Matrix<Scalar>& matrix, Scalar& result)
 					{
-						std::cout << "running omp backend" << std::endl;
+						TML_LOG_BACKEND("omp");
 						omp_set_num_threads(tml::HardawreConcurrency);
 						int64_t minVal = omp_get_thread_num();
 						#pragma omp parallel
@@ -42,7 +42,7 @@ namespace tml
 
 					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running omp backend" << std::endl;
+						TML_LOG_BACKEND("omp");
 						omp_set_num_threads(tml::HardawreConcurrency);
 						int64_t rows = (int64_t)matrix.Rows(), cols = (int64_t)matrix.Columns();
 						#pragma omp parallel for
@@ -52,7 +52,7 @@ namespace tml
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running omp backend" << std::endl;
+						TML_LOG_BACKEND("omp");
 						omp_set_num_threads(tml::HardawreConcurrency);
 						int64_t rows = (int64_t)matrix.Rows(), cols = (int64_t)matrix.Columns();
 						#pragma omp parallel for

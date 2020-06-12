@@ -18,7 +18,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running stl backend" << std::endl;
+						TML_LOG_BACKEND("stl");
 						const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::execution::stl);
 						size_t r1 = left.Rows(), c1 = left.Columns(), r2 = right.Rows(), c2 = right.Columns();
 						for (size_t i = 0; i < r1; i += 32)

@@ -17,7 +17,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running omp backend" << std::endl;
+						TML_LOG_BACKEND("omp");
 						omp_set_num_threads(tml::HardawreConcurrency);
 						const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::execution::omp);
 						int64_t r1 = left.Rows(), c1 = left.Columns(), r2 = right.Rows(), c2 = right.Columns();

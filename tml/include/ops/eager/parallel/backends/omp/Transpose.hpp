@@ -17,7 +17,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running omp backend" << std::endl;
+						TML_LOG_BACKEND("omp");
 						omp_set_num_threads(tml::HardawreConcurrency);
 						int64_t blockSize = 32;
 						int64_t rows = matrix.Rows(), cols = matrix.Columns();

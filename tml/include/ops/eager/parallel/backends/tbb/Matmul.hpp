@@ -56,7 +56,7 @@ namespace tml
 
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						size_t rows = result.Rows(), cols = result.Columns();
 						const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::execution::tbb);
 						size_t size = result.Size();

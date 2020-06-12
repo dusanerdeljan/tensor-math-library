@@ -17,7 +17,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						int blockSize = 32;
 						int rows = static_cast<int>(matrix.Rows()), cols = static_cast<int>(matrix.Columns());
 						tbb::parallel_for(0, rows, blockSize, [&](int i)

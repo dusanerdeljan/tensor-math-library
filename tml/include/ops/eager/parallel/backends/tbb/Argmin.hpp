@@ -18,7 +18,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void Argmin(const tml::Matrix<Scalar>& matrix, Scalar& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						typedef typename tml::Matrix<Scalar>::const_iterator iter;
 						auto res = tbb::parallel_reduce(tbb::blocked_range<iter>(matrix.cbegin(), matrix.cend(), 200),
 							matrix.cbegin(),
@@ -32,7 +32,7 @@ namespace tml
 
 					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						tbb::parallel_for(tbb::blocked_range<size_t>(0, rows, 200), [&](const tbb::blocked_range<size_t>& range)
 						{
@@ -43,7 +43,7 @@ namespace tml
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running tbb backend" << std::endl;
+						TML_LOG_BACKEND("tbb");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						tbb::parallel_for(tbb::blocked_range<size_t>(0, cols, 200), [&](const tbb::blocked_range<size_t>& range)
 						{
