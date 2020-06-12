@@ -1,7 +1,6 @@
 #pragma once
 
-#include <algorithm>
-#include "../../../matrix/Matrix.hpp"
+#include "../base/ArgminBase.hpp"
 
 namespace tml
 {
@@ -9,27 +8,39 @@ namespace tml
 	{
 		namespace details
 		{
-			template<typename Scalar>
-			void SerialArgminAll(const tml::Matrix<Scalar>& matrix, Scalar& result)
+			namespace backend
 			{
-				result = static_cast<Scalar>(std::min_element(matrix.cbegin(), matrix.cend()) - matrix.cbegin());
-			}
+				template<typename Scalar>
+				struct ArgminBackend<Scalar, SEQ>
+				{
+					TML_STRONG_INLINE void Argmin(const tml::Matrix<Scalar>& matrix, Scalar& result)
+					{
+						std::cout << "running seq backend" << std::endl;
+						result = static_cast<Scalar>(std::min_element(matrix.cbegin(), matrix.cend()) - matrix.cbegin());
+					}
 
-			template<typename Scalar>
-			void SerialArgminRows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
-			{
-				size_t rows = matrix.Rows(), cols = matrix.Columns();
-				for (size_t i = 0; i < rows; ++i)
-					result[i] = static_cast<Scalar>(std::min_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols) - (matrix.cbegin() + i*cols));
-			}
+					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					{
+						std::cout << "running seq backend" << std::endl;
+						size_t rows = matrix.Rows(), cols = matrix.Columns();
+						for (size_t i = 0; i < rows; ++i)
+							result[i] = static_cast<Scalar>(std::min_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols) - (matrix.cbegin() + i*cols));
+					}
 
-			template<typename Scalar>
-			void SerialArgminColumns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
-			{
-				size_t rows = matrix.Rows(), cols = matrix.Columns();
-				const tml::Matrix<Scalar> transposed = matrix;
-				for (size_t i = 0; i < cols; ++i)
-					result[i] = static_cast<Scalar>(std::min_element(transposed.cbegin() + i*rows, transposed.cbegin() + (i + 1)*rows) - (transposed.cbegin() + i*rows));
+					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					{
+						std::cout << "running seq backend" << std::endl;
+						size_t rows = matrix.Rows(), cols = matrix.Columns();
+						for (size_t j = 0; j < cols; ++j)
+						{
+							Scalar colArgmin = static_cast<Scalar>(0);
+							for (size_t i = 0; i < rows; ++i)
+								if (matrix[j + i*cols] < matrix[j + colArgmin*cols])
+									colArgmin = static_cast<Scalar>(i);
+							result[j] = colArgmin;
+						}
+					}
+				};
 			}
 		}
 	}
