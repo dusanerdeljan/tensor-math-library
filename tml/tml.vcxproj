@@ -183,6 +183,7 @@
     <ClInclude Include="include\ops\eager\binary\Sub.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Sum.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Argmax.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\backends\tbb\Argmin.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Max.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Mean.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\tbb\Min.hpp" />
