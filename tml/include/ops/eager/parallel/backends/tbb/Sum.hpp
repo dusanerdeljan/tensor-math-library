@@ -4,7 +4,7 @@
 #include <numeric>
 #include <tbb/parallel_for.h>
 #include <tbb/parallel_reduce.h>
-#include "../../../base/Base.hpp"
+#include "../../../base/SumBase.hpp"
 
 namespace tml
 {

@@ -33,9 +33,8 @@ int main()
 	tml::Matrix<int> m2 = tml::Matrix<int>::Arange(4, 4);
 	tml::Matrix<int> m3 = tml::Matrix<int>::Arange(4, 4);
 	std::cout << m1 << std::endl;
-	std::cout << tml::eager::SumColumns(m1, tml::execution::tbb) << std::endl;
-	std::cout << tml::eager::SumColumns(m1, tml::execution::omp) << std::endl;
-	std::cout << tml::eager::SumColumns(m1, tml::execution::seq) << std::endl;
+	tml::Matrix<int> res = tml::lazy::Square(m1);
+	std::cout << res << std::endl;
 	std::cin.get();
 	return 0;
 }
