@@ -11,7 +11,7 @@ struct ExprOP
 	Scalar operator*() const { return *iter; }
 	Scalar operator[] (size_t index) const { return iter[index]; }
 	void operator++() { ++iter; }
-	operator tml::Matrix<Scalar>() const
+	explicit operator tml::Matrix<Scalar>() const
 	{
 		tml::Matrix<Scalar> res = *this;
 		return res;

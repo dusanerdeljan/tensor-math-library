@@ -4,17 +4,17 @@
 #include <iomanip>
 #include <initializer_list>
 
-#define TML_USE_PARALLEL_ASSIGNMENT 0
-
-#if TML_USE_PARALLEL_ASSIGNMENT
-#include <tbb/tbb.h>
-#include <tbb/parallel_for.h>
-#include <tbb/blocked_range.h>
-#endif
-
 #include "Shape.hpp"
+#include "../ops/eager/ExecutionPolicy.hpp"
 
 #define TML_DEBUG_CTOR_PRINTS 1
+
+#if TML_HAS_TBB
+#include <tbb/parallel_for.h>
+#include <tbb/blocked_range.h>
+#elif TML_HAS_OMP
+#include <omp.h>
+#endif
 
 #if TML_DEBUG_CTOR_PRINTS
 #define LOG(x) std::cout << x << std::endl
@@ -209,13 +209,18 @@ namespace tml
 		template<typename Expr>
 		void AssignExpr(Expr expr)
 		{
-#if TML_USE_PARALLEL_ASSIGNMENT
+#if TML_HAS_TBB
 			size_t grainSize =  m_Shape.Size / tml::HardawreConcurrency;
 			tbb::parallel_for(tbb::blocked_range<size_t>(0, m_Shape.Size, grainSize), [&](tbb::blocked_range<size_t> range)
 			{
 				for (size_t i = range.begin(); i != range.end(); ++i)
 					m_Data[i] = expr[i];
 			});
+#elif TML_HAS_OMP
+			omp_set_num_threads(tml::HardawreConcurrency)
+			#pragma omp parallel for
+			for (int64_t i = 0; i < m_Shape.Size; ++i)
+				m_Data[i] = expr[i];
 #else
 			iterator beginIter = begin();
 			iterator endIter = end();

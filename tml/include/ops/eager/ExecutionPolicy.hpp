@@ -1,11 +1,11 @@
 #pragma once
 #include <thread>
 
-#define TML_HAS_OMP 1
-#define TML_HAS_TBB 1
-#define TML_HAS_CUDA 1
-#define TML_HAS_OPENCL 1
-#define TML_HAS_CPP17_STL 0
+//#define TML_HAS_OMP 1
+//#define TML_HAS_TBB 1
+//#define TML_HAS_CUDA 1
+//#define TML_HAS_OPENCL 1
+//#define TML_HAS_CPP17_STL 0
 
 namespace tml
 {
