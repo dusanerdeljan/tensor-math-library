@@ -5,3 +5,4 @@
 #include "Sum.hpp"
 #include "Max.hpp"
 #include "Mean.hpp"
+#include "Argmin.hpp"
