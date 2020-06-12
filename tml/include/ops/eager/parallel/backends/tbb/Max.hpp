@@ -1,10 +1,9 @@
 #pragma once
 
 #if TML_HAS_TBB
-#include <numeric>
 #include <tbb/parallel_for.h>
 #include <tbb/parallel_reduce.h>
-#include "../../../base/SumBase.hpp"
+#include "../../../base/MaxBase.hpp"
 
 namespace tml
 {
@@ -15,28 +14,28 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct SumBackend<Scalar, TBB>
+				struct MaxBackend<Scalar, TBB>
 				{
-					TML_STRONG_INLINE void Sum(const tml::Matrix<Scalar>& matrix, Scalar& result)
+					TML_STRONG_INLINE void Max(const tml::Matrix<Scalar>& matrix, Scalar& result)
 					{
 						std::cout << "running tbb backend" << std::endl;
 						typedef typename tml::Matrix<Scalar>::const_iterator iter;
 						result = tbb::parallel_reduce(tbb::blocked_range<iter>(matrix.cbegin(), matrix.cend(), 200),
-							static_cast<Scalar>(0),
-							[&](const tbb::blocked_range<iter>& range, Scalar sum) -> Scalar
+							std::numeric_limits<Scalar>::lowest(),
+							[&](const tbb::blocked_range<iter>& range, Scalar currentMax) -> Scalar
 						{
-							return std::accumulate(range.begin(), range.end(), sum);
-						}, std::plus<Scalar>());
+							return std::max(currentMax, *std::max_element(range.begin(), range.end()));
+						}, [](Scalar left, Scalar right) { return std::max(left, right); });
 					}
 
 					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
 						std::cout << "running tbb backend" << std::endl;
-						size_t cols = matrix.Columns();
-						tbb::parallel_for(tbb::blocked_range<size_t>(0, matrix.Rows(), 100), [&](const tbb::blocked_range<size_t>& range)
+						size_t rows = matrix.Rows(), cols = matrix.Columns();
+						tbb::parallel_for(tbb::blocked_range<size_t>(0, rows, 200), [&](const tbb::blocked_range<size_t>& range)
 						{
 							for (size_t i = range.begin(); i != range.end(); ++i)
-								result[i] = std::accumulate(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols, static_cast<Scalar>(0));
+								result[i] = *std::max_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols);
 						});
 					}
 
@@ -44,14 +43,15 @@ namespace tml
 					{
 						std::cout << "running tbb backend" << std::endl;
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
-						tbb::parallel_for(tbb::blocked_range<size_t>(0, cols, 100), [&](const tbb::blocked_range<size_t>& range)
+						tbb::parallel_for(tbb::blocked_range<size_t>(0, cols, 200), [&](const tbb::blocked_range<size_t>& range)
 						{
 							for (size_t j = range.begin(); j != range.end(); ++j)
 							{
-								Scalar colSum = static_cast<Scalar>(0);
+								Scalar colMax = std::numeric_limits<Scalar>::lowest();
 								for (size_t i = 0; i < rows; ++i)
-									colSum += matrix[j + i*cols];
-								result[j] = colSum;
+									if (matrix[j + i*cols] > colMax)
+										colMax = matrix[j + i*cols];
+								result[j] = colMax;
 							}
 						});
 					}
