@@ -395,5 +395,8 @@
     <ClInclude Include="include\ops\eager\base\MeanBase.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\base\ArgmaxBase.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -156,6 +156,7 @@
     <ClInclude Include="include\matrix\Matrix.hpp" />
     <ClInclude Include="include\matrix\Shape.hpp" />
     <ClInclude Include="include\ops\Assert.hpp" />
+    <ClInclude Include="include\ops\eager\base\ArgmaxBase.hpp" />
     <ClInclude Include="include\ops\eager\base\Base.hpp" />
     <ClInclude Include="include\ops\eager\base\BinaryOPBase.hpp" />
     <ClInclude Include="include\ops\eager\base\MatmulBase.hpp" />
