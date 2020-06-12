@@ -13,13 +13,13 @@ namespace tml
 		template<typename Scalar>
 		Scalar Argmin(const tml::Matrix<Scalar>& matrix)
 		{
-			return tml::eager::Argmin(matrix, tml::PARALLEL);
+			return tml::eager::Argmin(matrix);
 		}
 
 		template<typename Scalar, typename T>
 		Scalar Argmin(const ExprOP<Scalar, T>& expr)
 		{
-			return tml::eager::Argmin(expr, tml::PARALLEL);
+			return tml::eager::Argmin(expr);
 		}
 
 		template<typename Scalar>

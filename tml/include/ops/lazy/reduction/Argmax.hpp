@@ -13,13 +13,13 @@ namespace tml
 		template<typename Scalar>
 		Scalar Argmax(const tml::Matrix<Scalar>& matrix)
 		{
-			return tml::eager::Argmax(matrix, tml::PARALLEL);
+			return tml::eager::Argmax(matrix);
 		}
 
 		template<typename Scalar, typename T>
 		Scalar Argmax(const ExprOP<Scalar, T>& expr)
 		{
-			return tml::eager::Argmax(expr, tml::PARALLEL);
+			return tml::eager::Argmax(expr);
 		}
 
 		template<typename Scalar>

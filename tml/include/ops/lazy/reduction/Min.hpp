@@ -13,13 +13,13 @@ namespace tml
 		template<typename Scalar>
 		Scalar Min(const tml::Matrix<Scalar>& matrix)
 		{
-			return tml::eager::Min(matrix, tml::PARALLEL);
+			return tml::eager::Min(matrix);
 		}
 
 		template<typename Scalar, typename T>
 		Scalar Min(const ExprOP<Scalar, T>& expr)
 		{
-			return tml::eager::Min(expr, tml::PARALLEL);
+			return tml::eager::Min(expr);
 		}
 
 		template<typename Scalar>

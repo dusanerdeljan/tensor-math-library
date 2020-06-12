@@ -13,13 +13,13 @@ namespace tml
 		template<typename Scalar>
 		Scalar Mean(const tml::Matrix<Scalar>& matrix)
 		{
-			return tml::eager::Mean(matrix, tml::PARALLEL);
+			return tml::eager::Mean(matrix);
 		}
 
 		template<typename Scalar, typename T>
 		Scalar Mean(const ExprOP<Scalar, T>& expr)
 		{
-			return tml::eager::Mean(expr, tml::PARALLEL);
+			return tml::eager::Mean(expr);
 		}
 
 		template<typename Scalar>

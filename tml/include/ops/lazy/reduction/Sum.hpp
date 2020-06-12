@@ -13,13 +13,13 @@ namespace tml
 		template<typename Scalar>
 		Scalar Sum(const tml::Matrix<Scalar>& matrix)
 		{
-			return tml::eager::Sum(matrix, tml::PARALLEL);
+			return tml::eager::Sum(matrix);
 		}
 
 		template<typename Scalar, typename T>
 		Scalar Sum(const ExprOP<Scalar, T>& expr)
 		{
-			return tml::eager::Sum(expr, tml::PARALLEL);
+			return tml::eager::Sum(expr);
 		}
 
 		template<typename Scalar>
