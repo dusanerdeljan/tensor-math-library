@@ -26,7 +26,7 @@ namespace tml
 						{
 							iter rangeMin = std::min_element(range.begin(), range.end());
 							return *currentMin <= *rangeMin ? currentMin : rangeMin;
-						}, [](const iter& left, const iter& right) { return std::min<iter>(left, right, [](const iter& l, const iter& r) { return *l <= *r; }); }) - matrix.cbegin();
+						}, [](const iter& left, const iter& right) { return *left <= *right ? left : right; }) - matrix.cbegin();
 						result = static_cast<Scalar>(res);
 					}
 

@@ -23,11 +23,11 @@ namespace tml
 						typedef typename tml::Matrix<Scalar>::const_iterator iter;
 						auto res = tbb::parallel_reduce(tbb::blocked_range<iter>(matrix.cbegin(), matrix.cend(), 200),
 							matrix.cbegin(),
-							[](const tbb::blocked_range<iter>& range, const iter& currentMin) -> iter
+							[](const tbb::blocked_range<iter>& range, const iter& currentMax) -> iter
 						{
-							iter rangeMin = std::max_element(range.begin(), range.end());
-							return *currentMin >= *rangeMin ? currentMin : rangeMin;
-						}, [](const iter& left, const iter& right) { return std::max<iter>(left, right, [](const iter& l, const iter& r) { return *l >= *r; }); }) - matrix.cbegin();
+							iter rangeMax = std::max_element(range.begin(), range.end());
+							return *currentMax >= *rangeMax ? currentMax : rangeMax;
+						}, [](const iter& left, const iter& right) { return *left >= *right ? left : right; }) - matrix.cbegin();
 						result = static_cast<Scalar>(res);
 					}
 

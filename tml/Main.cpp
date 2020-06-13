@@ -7,12 +7,12 @@ void TestProfile()
 	tml::Matrix<int> m1(10000, 10000);
 	tml::Matrix<int> m2(10000, 10000);
 	auto t1 = std::chrono::high_resolution_clock::now();
-	int result = tml::eager::Argmax(m1, tml::execution::tbb);
+	int result = tml::eager::Max(m1, tml::execution::tbb);
 	auto t2 = std::chrono::high_resolution_clock::now();
 	std::cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << "ms." << std::endl;
 	std::cout << result << std::endl;
 	t1 = std::chrono::high_resolution_clock::now();
-	result = tml::eager::Argmax(m2, tml::execution::omp);
+	result = tml::eager::Max(m2, tml::execution::omp);
 	t2 = std::chrono::high_resolution_clock::now();
 	std::cout << "Elapsed time: " << std::chrono::duration_cast<std::chrono::milliseconds>(t2 - t1).count() << "ms." << std::endl;
 	std::cout << result << std::endl;
