@@ -8,3 +8,4 @@
 #include "Min.hpp"
 #include "Max.hpp"
 #include "Mean.hpp"
+#include "Argmin.hpp"
