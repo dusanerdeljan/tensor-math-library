@@ -19,7 +19,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE Scalar MultiplyRowColumn(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, size_t row, size_t column, size_t r1, size_t c1, size_t r2, size_t c2)
 					{
-						return std::inner_product(left.cbegin() + row*c1, left.cbegin() + (row + 1)*c1, right.cbegin() + r2*column, static_cast<Scalar>(0));
+						return TML_TRANSFORM_REDUCE(left.cbegin() + row*c1, left.cbegin() + (row + 1)*c1, right.cbegin() + r2*column, static_cast<Scalar>(0));
 					}
 
 					class MatmulTask : public tbb::task

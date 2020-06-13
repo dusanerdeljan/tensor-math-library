@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cmath>
+#include <numeric>
 #include "../ExecutionPolicy.hpp"
 #include "../../../matrix/Matrix.hpp"
 
@@ -9,6 +10,14 @@
 #define TML_STRONG_INLINE static inline
 
 #define TML_INLINE inline
+
+#if TML_HAS_CPP17_STL
+#define TML_ACCUMULATE std::reduce
+#define TML_TRANSFORM_REDUCE std::transform_reduce
+#else
+#define TML_ACCUMULATE std::accumulate
+#define TML_TRANSFORM_REDUCE std::inner_product
+#endif
 
 namespace tml
 {

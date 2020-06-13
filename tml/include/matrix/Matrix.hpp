@@ -1,5 +1,6 @@
 #pragma once
 
+#include <stdlib.h>
 #include <iostream>
 #include <iomanip>
 #include <initializer_list>
@@ -142,7 +143,7 @@ namespace tml
 			return *this;
 		}
 
-		Matrix<Scalar>& operator=(Matrix<Scalar>&& matrix)
+		Matrix<Scalar>& operator=(Matrix<Scalar>&& matrix) noexcept
 		{
 			LOG("move assignment");
 			delete[] m_Data;
