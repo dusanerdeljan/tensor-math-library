@@ -6,3 +6,4 @@
 #include "Matmul.hpp"
 #include "Sum.hpp"
 #include "Min.hpp"
+#include "Max.hpp"
