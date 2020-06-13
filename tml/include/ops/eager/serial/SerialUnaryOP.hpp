@@ -17,7 +17,7 @@ namespace tml
 					template<typename OP>
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
 					{
-						std::cout << "running seq backend" << std::endl;
+						TML_LOG_BACKEND("seq");
 						std::transform(matrix.cbegin(), matrix.cend(), result.begin(), op);
 					}
 				};

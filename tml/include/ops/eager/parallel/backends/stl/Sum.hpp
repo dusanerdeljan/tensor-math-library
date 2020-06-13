@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../base/MaxBase.hpp"
+#if TML_HAS_CPP17_STL
+#include <execution>
+#include "../../../base/SumBase.hpp"
 
 namespace tml
 {
@@ -11,33 +13,32 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct MaxBackend<Scalar, SEQ>
+				struct SumBackend<Scalar, STL>
 				{
-					TML_STRONG_INLINE void Max(const tml::Matrix<Scalar>& matrix, Scalar& result)
+					TML_STRONG_INLINE void Sum(const tml::Matrix<Scalar>& matrix, Scalar& result)
 					{
-						TML_LOG_BACKEND("seq");
-						result = *std::max_element(matrix.cbegin(), matrix.cend());
+						TML_LOG_BACKEND("stl");
+						result = std::reduce(std::execution::par, matrix.cbegin(), matrix.cend(), static_cast<Scalar>(0));
 					}
 
 					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						TML_LOG_BACKEND("seq");
+						TML_LOG_BACKEND("stl");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						for (size_t i = 0; i < rows; ++i)
-							result[i] = *std::max_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols);
+							result[i] = std::reduce(matrix.cbegin() + i * cols, matrix.cbegin() + (i + 1) * cols, static_cast<Scalar>(0));
 					}
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						TML_LOG_BACKEND("seq");
+						TML_LOG_BACKEND("stl");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						for (size_t j = 0; j < cols; ++j)
 						{
-							Scalar colMax = std::numeric_limits<Scalar>::lowest();
+							Scalar colSum = static_cast<Scalar>(0);
 							for (size_t i = 0; i < rows; ++i)
-								if (matrix[j + i*cols] > colMax)
-									colMax = matrix[j + i*cols];
-							result[j] = colMax;
+								colSum += matrix[j + i * cols];
+							result[j] = colSum;
 						}
 					}
 				};
@@ -45,3 +46,4 @@ namespace tml
 		}
 	}
 }
+#endif

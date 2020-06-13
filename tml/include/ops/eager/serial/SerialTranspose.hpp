@@ -15,7 +15,7 @@ namespace tml
 				{
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running seq backend" << std::endl;
+						TML_LOG_BACKEND("seq");
 						size_t blockSize = 32;
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						for (size_t i = 0; i < rows; i += blockSize)

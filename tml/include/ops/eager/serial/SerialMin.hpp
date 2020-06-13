@@ -15,13 +15,13 @@ namespace tml
 				{
 					TML_STRONG_INLINE void Min(const tml::Matrix<Scalar>& matrix, Scalar& result)
 					{
-						std::cout << "running seq backend" << std::endl;
+						TML_LOG_BACKEND("seq");
 						result = *std::min_element(matrix.cbegin(), matrix.cend());
 					}
 
 					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running seq backend" << std::endl;
+						TML_LOG_BACKEND("seq");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						for (size_t i = 0; i < rows; ++i)
 							result[i] = *std::min_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols);
@@ -29,7 +29,7 @@ namespace tml
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running seq backend" << std::endl;
+						TML_LOG_BACKEND("seq");
 #undef max
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						for (size_t j = 0; j < cols; ++j)

@@ -4,3 +4,4 @@
 #include "BinaryOP.hpp"
 #include "Transpose.hpp"
 #include "Matmul.hpp"
+#include "Sum.hpp"

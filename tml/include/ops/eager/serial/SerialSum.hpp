@@ -15,21 +15,21 @@ namespace tml
 				{
 					TML_STRONG_INLINE void Sum(const tml::Matrix<Scalar>& matrix, Scalar& result)
 					{
-						std::cout << "running seq backend" << std::endl;
-						result = std::accumulate(matrix.cbegin(), matrix.cend(), static_cast<Scalar>(0));
+						TML_LOG_BACKEND("seq");
+						result = TML_ACCUMULATE(matrix.cbegin(), matrix.cend(), static_cast<Scalar>(0));
 					}
 
 					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running seq backend" << std::endl;
+						TML_LOG_BACKEND("seq");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						for (size_t i = 0; i < rows; ++i)
-							result[i] = std::accumulate(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols, static_cast<Scalar>(0));
+							result[i] = TML_ACCUMULATE(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols, static_cast<Scalar>(0));
 					}
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
-						std::cout << "running seq backend" << std::endl;
+						TML_LOG_BACKEND("seq");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
 						for (size_t j = 0; j < cols; ++j)
 						{

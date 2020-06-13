@@ -431,5 +431,8 @@
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Argmax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\backends\stl\Sum.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
