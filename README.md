@@ -1,12 +1,12 @@
-# tbb-matrix-library
-Header only lazy evaluation matrix library with multi-backend parallel eager execution support (TBB, OpenMP, Parallel STL and in the future CUDA and OpenCL).
+# tensor-math-library
+Header only lazy evaluation tensor math library with multi-backend parallel eager execution support (TBB, OpenMP, Parallel STL and in the future CUDA and OpenCL). For now, TML only supports matrix math.
 
 ## Future improvements
 
  * CUDA and OpenCL parallel backends
  * Temp-free eager execution
- * TML Tensor extension with autograd
- * Support for fixed-sized stack allocated matrices
+ * Tensor extension with autograd
+ * Support for fixed-sized stack allocated matrices and tensors
 
 ## Lazy evaluation
 
