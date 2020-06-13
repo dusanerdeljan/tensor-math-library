@@ -9,3 +9,4 @@
 #include "Max.hpp"
 #include "Mean.hpp"
 #include "Argmin.hpp"
+#include "Argmax.hpp"
