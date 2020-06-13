@@ -5,3 +5,4 @@
 #include "Transpose.hpp"
 #include "Matmul.hpp"
 #include "Sum.hpp"
+#include "Min.hpp"
