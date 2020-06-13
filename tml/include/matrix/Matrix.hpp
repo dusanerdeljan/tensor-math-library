@@ -7,6 +7,8 @@
 #include "Shape.hpp"
 #include "../ops/eager/ExecutionPolicy.hpp"
 
+template<typename Scalar, typename T> struct ExprOP;
+
 #define TML_DEBUG_CTOR_PRINTS 1
 
 #if TML_HAS_TBB
@@ -61,8 +63,8 @@ namespace tml
 			LOG("shape constructor");
 		}
 
-		template<typename Expr>
-		Matrix(Expr expr) : m_Data(new Scalar[expr.shape.Size]), m_Shape(expr.shape)
+		template<typename T>
+		Matrix(const ExprOP<Scalar, T>& expr) : m_Data(new Scalar[expr.shape.Size]), m_Shape(expr.shape)
 		{
 			LOG("expr constructor");
 			AssignExpr(expr);
@@ -103,10 +105,14 @@ namespace tml
 
 		~Matrix() { if (!m_View) { LOG("destructor"); delete[] m_Data; } }
 
-		template<typename Expr>
-		Matrix<Scalar>& operator=(const Expr& expr)
+		template<typename T>
+		Matrix<Scalar>& operator=(const ExprOP<Scalar, T>& expr)
 		{
 			LOG("expr assignment");
+			if (m_Shape.Size != expr.shape.Size)
+			{
+				m_Data = (Scalar*)realloc(m_Data, sizeof(Scalar)*expr.shape.Size);
+			}
 			AssignExpr(expr);
 			return *this;
 		}
@@ -206,8 +212,8 @@ namespace tml
 
 		const Scalar& operator[] (size_t index) const { return m_Data[index]; }
 	private:
-		template<typename Expr>
-		void AssignExpr(Expr expr)
+		template<typename T>
+		void AssignExpr(const ExprOP<Scalar, T>& expr)
 		{
 #if TML_HAS_TBB
 			size_t grainSize =  m_Shape.Size / tml::HardawreConcurrency;
