@@ -25,7 +25,7 @@ namespace tml
 							static_cast<Scalar>(0),
 							[&](const tbb::blocked_range<iter>& range, Scalar sum) -> Scalar
 						{
-							return std::accumulate(range.begin(), range.end(), sum);
+							return TML_ACCUMULATE(range.begin(), range.end(), sum);
 						}, std::plus<Scalar>()) / matrix.Size());
 					}
 
@@ -36,7 +36,7 @@ namespace tml
 						tbb::parallel_for(tbb::blocked_range<size_t>(0, matrix.Rows(), 100), [&](const tbb::blocked_range<size_t>& range)
 						{
 							for (size_t i = range.begin(); i != range.end(); ++i)
-								result[i] = static_cast<Scalar>(std::accumulate(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols, static_cast<Scalar>(0)) / cols);
+								result[i] = static_cast<Scalar>(TML_ACCUMULATE(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols, static_cast<Scalar>(0)) / cols);
 						});
 					}
 

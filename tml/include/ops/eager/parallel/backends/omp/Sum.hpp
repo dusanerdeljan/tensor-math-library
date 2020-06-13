@@ -34,7 +34,7 @@ namespace tml
 						int64_t rows = (int64_t)matrix.Rows(), cols = (int64_t)matrix.Columns();
 						#pragma omp parallel for
 						for (int64_t i = 0; i < rows; ++i)
-							result[i] = std::accumulate(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols, static_cast<Scalar>(0));
+							result[i] = TML_ACCUMULATE(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols, static_cast<Scalar>(0));
 					}
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
