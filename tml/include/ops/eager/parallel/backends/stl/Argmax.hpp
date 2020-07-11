@@ -3,6 +3,7 @@
 #if TML_HAS_CPP17_STL
 #include <execution>
 #include "../../../base/ArgmaxBase.hpp"
+#include "CountingIterator.hpp"
 
 namespace tml
 {

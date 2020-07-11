@@ -3,6 +3,7 @@
 #if TML_HAS_CPP17_STL
 #include <execution>
 #include "../../../base/MaxBase.hpp"
+#include "CountingIterator.hpp"
 
 namespace tml
 {
@@ -25,8 +26,10 @@ namespace tml
 					{
 						TML_LOG_BACKEND("stl");
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
-						for (size_t i = 0; i < rows; ++i)
+						Counter cnt(0, rows);
+						std::for_each(std::execution::par, cnt.begin(), cnt.end(), [&](int i) {
 							result[i] = *std::max_element(matrix.cbegin() + i * cols, matrix.cbegin() + (i + 1) * cols);
+						});
 					}
 
 					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
