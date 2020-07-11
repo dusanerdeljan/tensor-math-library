@@ -17,13 +17,19 @@ namespace tml
 					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("stl");
-						size_t blockSize = 32;
+						const size_t blockSize = 32;
 						size_t rows = matrix.Rows(), cols = matrix.Columns();
-						for (size_t i = 0; i < rows; i += blockSize)
-							for (size_t j = 0; j < cols; j += blockSize)
-								for (size_t br = 0; br < blockSize && i + br < rows; ++br)
-									for (size_t bc = 0; bc < blockSize && j + bc < cols; ++bc)
-										result[i + br + (j + bc) * rows] = matrix[j + bc + (i + br) * cols];
+						const int rowTiles = 1 + ((rows-1)/blockSize);
+						const int colTiles = 1 + ((cols-1)/blockSize);
+						const Counter rowCounter(0, rowTiles);
+						const Counter columnCounter(0, colTiles);
+						std::for_each(std::execution::par, rowCounter.begin(), rowCounter.end(), [&](int i) {
+							std::for_each(std::execution::par, columnCounter.begin(), columnCounter.end(), [&](int j) {
+								for (size_t br = 0; br < blockSize && i*blockSize + br < rows; ++br)
+									for (size_t bc = 0; bc < blockSize && j*blockSize + bc < cols; ++bc)
+										result[i*blockSize + br + (j*blockSize + bc) * rows] = matrix[j*blockSize + bc + (i*blockSize + br) * cols];
+							});
+						});
 					}
 				};
 			}
