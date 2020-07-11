@@ -11,6 +11,7 @@
 				"-std=c++17",
 				"-ltbb",
 				"-fopenmp",
+				"-march=haswell",
 				"-DTML_HAS_TBB",
 				"-DTML_HAS_OMP",
 				"-DTML_HAS_CPP17_STL"
