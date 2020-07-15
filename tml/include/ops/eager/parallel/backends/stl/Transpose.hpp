@@ -12,13 +12,13 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct TransposeBackend<Scalar, STL>
+				struct transpose_backend<Scalar, STL>
 				{
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("stl");
 						const size_t blockSize = 32;
-						size_t rows = matrix.Rows(), cols = matrix.Columns();
+						size_t rows = matrix.rows(), cols = matrix.columns();
 						const int rowTiles = 1 + ((rows-1)/blockSize);
 						const int colTiles = 1 + ((cols-1)/blockSize);
 						const Counter rowCounter(0, rowTiles);

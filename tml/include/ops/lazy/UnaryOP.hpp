@@ -1,10 +1,10 @@
 #pragma once
 
 template<typename Scalar, typename Operand, typename OP>
-struct UnaryOP
+struct unary_op
 {
 	Operand operand;
-	UnaryOP(const Operand& operand) : operand(operand) {}
+	unary_op(const Operand& operand) : operand(operand) {}
 	void operator++() { ++operand; }
 	Scalar operator[] (size_t index) const { return OP::op(operand[index]); }
 	Scalar operator*() const

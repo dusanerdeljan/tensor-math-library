@@ -13,9 +13,9 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar, typename Backend>
-				struct MatmulBackend
+				struct matmul_backend
 				{
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, tml::matrix<Scalar>& result)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}

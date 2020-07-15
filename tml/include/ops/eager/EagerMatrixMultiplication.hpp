@@ -11,42 +11,42 @@ namespace tml
 	namespace eager
 	{
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> Matmul(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> matmul(const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_MATMUL(left, right);
-			tml::Matrix<Scalar> result = tml::Matrix<Scalar>::Zeros({ left.Rows(), right.Columns() });
-			details::backend::MatmulBackend<Scalar, Backend>::DoOP(left, right, result);
+			tml::matrix<Scalar> result = tml::matrix<Scalar>::zeros({ left.rows(), right.columns() });
+			details::backend::matmul_backend<Scalar, Backend>::do_op(left, right, result);
 			return result;
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> Matmul(const tml::Matrix<Scalar>& left, const ExprOP<Scalar, T>& rightExpr, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> matmul(const tml::matrix<Scalar>& left, const expr_op<Scalar, T>& rightExpr, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_MATMUL(left, rightExpr);
-			tml::Matrix<Scalar> result = tml::Matrix<Scalar>::Zeros({ left.Rows(), rightExpr.shape.Columns });
-			const tml::Matrix<Scalar> right = rightExpr;
-			details::backend::MatmulBackend<Scalar, Backend>::DoOP(left, right, result);
+			tml::matrix<Scalar> result = tml::matrix<Scalar>::zeros({ left.rows(), rightExpr.shape.columns });
+			const tml::matrix<Scalar> right = rightExpr;
+			details::backend::matmul_backend<Scalar, Backend>::do_op(left, right, result);
 			return result;
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> Matmul(const ExprOP<Scalar, T>& leftExpr, const tml::Matrix<Scalar>& right, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> matmul(const expr_op<Scalar, T>& leftExpr, const tml::matrix<Scalar>& right, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_MATMUL(leftExpr, right);
-			tml::Matrix<Scalar> result = tml::Matrix<Scalar>::Zeros({ leftExpr.shape.Rows, right.Columns() });
-			const tml::Matrix<Scalar> left = leftExpr;
-			details::backend::MatmulBackend<Scalar, Backend>::DoOP(left, right, result);
+			tml::matrix<Scalar> result = tml::matrix<Scalar>::zeros({ leftExpr.shape.rows, right.columns() });
+			const tml::matrix<Scalar> left = leftExpr;
+			details::backend::matmul_backend<Scalar, Backend>::do_op(left, right, result);
 			return result;
 		}
 
 		template<typename Scalar, typename Left, typename Right, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> Matmul(const ExprOP<Scalar, Left>& leftExpr, const ExprOP<Scalar, Right>& rightExpr, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> matmul(const expr_op<Scalar, Left>& leftExpr, const expr_op<Scalar, Right>& rightExpr, Backend backend = tml::execution::seq)
 		{
 			TML_ASSERT_MATMUL(leftExpr, rightExpr);
-			tml::Matrix<Scalar> result = tml::Matrix<Scalar>::Zeros({ leftExpr.shape.Rows, rightExpr.shape.Columns });
-			const tml::Matrix<Scalar> left = leftExpr;
-			const tml::Matrix<Scalar> right = rightExpr;
-			details::backend::MatmulBackend<Scalar, Backend>::DoOP(left, right, result);
+			tml::matrix<Scalar> result = tml::matrix<Scalar>::zeros({ leftExpr.shape.rows, rightExpr.shape.columns });
+			const tml::matrix<Scalar> left = leftExpr;
+			const tml::matrix<Scalar> right = rightExpr;
+			details::backend::matmul_backend<Scalar, Backend>::do_op(left, right, result);
 			return result;
 		}
 	}

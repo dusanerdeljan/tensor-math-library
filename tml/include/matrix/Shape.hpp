@@ -3,26 +3,26 @@
 
 namespace tml
 {
-	struct Shape
+	struct shape
 	{
-		size_t Rows;
-		size_t Columns;
-		size_t Size;
+		size_t rows;
+		size_t columns;
+		size_t size;
 
-		Shape(size_t rows, size_t cols) : Rows(rows), Columns(cols), Size(rows*cols) {}
+		shape(size_t rows, size_t cols) : rows(rows), columns(cols), size(rows*cols) {}
 
-		Shape Transpose() const
+		shape transpose() const
 		{
-			return{ Columns, Rows };
+			return{ columns, rows };
 		}
 
-		bool operator==(const Shape& rhs) { return ((Rows == rhs.Rows) && (Columns == rhs.Columns)); }
+		bool operator==(const shape& rhs) { return ((rows == rhs.rows) && (columns == rhs.columns)); }
 
-		bool operator != (const Shape& rhs) { return !(*this == rhs); }
+		bool operator != (const shape& rhs) { return !(*this == rhs); }
 
-		friend std::ostream& operator << (std::ostream& out, const tml::Shape& shape)
+		friend std::ostream& operator << (std::ostream& out, const tml::shape& shape)
 		{
-			return out << "( " << shape.Rows << ", " << shape.Columns << " )";
+			return out << "( " << shape.rows << ", " << shape.columns << " )";
 		}
 	};
 }

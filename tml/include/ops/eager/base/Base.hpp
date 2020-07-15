@@ -26,12 +26,12 @@ namespace tml
 		namespace details
 		{
 			template<typename T>
-			struct InvalidBackendType : std::false_type {};
+			struct invalid_backend_type : std::false_type {};
 		}
 	}
 }
 
-#define TML_UNSUPPORTED_BACKEND(Backend) static_assert(tml::eager::details::InvalidBackendType<Backend>::value, "Selected backend is not supported.")
+#define TML_UNSUPPORTED_BACKEND(Backend) static_assert(tml::eager::details::invalid_backend_type<Backend>::value, "Selected backend is not supported.")
 
 #if TML_PRINT_BACKEND_NAME
 #define TML_LOG_BACKEND(backend) std::cout << "running " << backend << " backend." << std::endl

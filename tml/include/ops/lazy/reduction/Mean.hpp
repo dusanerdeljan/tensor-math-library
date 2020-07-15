@@ -11,47 +11,47 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar>
-		Scalar Mean(const tml::Matrix<Scalar>& matrix)
+		Scalar mean(const tml::matrix<Scalar>& matrix)
 		{
-			return tml::eager::Mean(matrix);
+			return tml::eager::mean(matrix);
 		}
 
 		template<typename Scalar, typename T>
-		Scalar Mean(const ExprOP<Scalar, T>& expr)
+		Scalar mean(const expr_op<Scalar, T>& expr)
 		{
-			return tml::eager::Mean(expr);
+			return tml::eager::mean(expr);
 		}
 
 		template<typename Scalar>
-		ExprOP<Scalar, ReductionExpr<Scalar, tml::Matrix<Scalar>, MeanRowsOP<Scalar, tml::Matrix<Scalar>>>>
-			MeanRows(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, reduction_expr<Scalar, tml::matrix<Scalar>, mean_rows_op<Scalar, tml::matrix<Scalar>>>>
+			mean_rows(const tml::matrix<Scalar>& matrix)
 		{
-			typedef ReductionExpr<Scalar, tml::Matrix<Scalar>, MeanRowsOP<Scalar, tml::Matrix<Scalar>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix), { 1, matrix.Rows() });
+			typedef reduction_expr<Scalar, tml::matrix<Scalar>, mean_rows_op<Scalar, tml::matrix<Scalar>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix), { 1, matrix.rows() });
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, ReductionExpr<Scalar, ExprOP<Scalar, T>, MeanRowsOP<Scalar, ExprOP<Scalar, T>>>>
-			MeanRows(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, reduction_expr<Scalar, expr_op<Scalar, T>, mean_rows_op<Scalar, expr_op<Scalar, T>>>>
+			mean_rows(const expr_op<Scalar, T>& expr)
 		{
-			typedef ReductionExpr<Scalar, ExprOP<Scalar, T>, MeanRowsOP<Scalar, ExprOP<Scalar, T>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr), { 1, expr.Rows() });
+			typedef reduction_expr<Scalar, expr_op<Scalar, T>, mean_rows_op<Scalar, expr_op<Scalar, T>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr), { 1, expr.rows() });
 		}
 
 		template<typename Scalar>
-		ExprOP<Scalar, ReductionExpr<Scalar, tml::Matrix<Scalar>, MeanColsOP<Scalar, tml::Matrix<Scalar>>>>
-			MeanColumns(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, reduction_expr<Scalar, tml::matrix<Scalar>, mean_cols_op<Scalar, tml::matrix<Scalar>>>>
+			mean_columns(const tml::matrix<Scalar>& matrix)
 		{
-			typedef ReductionExpr<Scalar, tml::Matrix<Scalar>, MeanColsOP<Scalar, tml::Matrix<Scalar>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix), { 1, matrix.Columns() });
+			typedef reduction_expr<Scalar, tml::matrix<Scalar>, mean_cols_op<Scalar, tml::matrix<Scalar>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix), { 1, matrix.columns() });
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, ReductionExpr<Scalar, ExprOP<Scalar, T>, MeanColsOP<Scalar, ExprOP<Scalar, T>>>>
-			MeanColumns(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, reduction_expr<Scalar, expr_op<Scalar, T>, mean_cols_op<Scalar, expr_op<Scalar, T>>>>
+			mean_columns(const expr_op<Scalar, T>& expr)
 		{
-			typedef ReductionExpr<Scalar, ExprOP<Scalar, T>, MeanColsOP<Scalar, ExprOP<Scalar, T>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr), { 1, expr.Columns() });
+			typedef reduction_expr<Scalar, expr_op<Scalar, T>, mean_cols_op<Scalar, expr_op<Scalar, T>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr), { 1, expr.columns() });
 		}
 	}
 }

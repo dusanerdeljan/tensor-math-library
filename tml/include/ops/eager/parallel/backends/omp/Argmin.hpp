@@ -15,18 +15,18 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct ArgminBackend<Scalar, OMP>
+				struct argmin_backend<Scalar, OMP>
 				{
-					TML_STRONG_INLINE void Argmin(const tml::Matrix<Scalar>& matrix, Scalar& result)
+					TML_STRONG_INLINE void argmin(const tml::matrix<Scalar>& matrix, Scalar& result)
 					{
 						TML_LOG_BACKEND("omp");
-						omp_set_num_threads(tml::HardawreConcurrency);
+						omp_set_num_threads(tml::hardware_concurrency);
 						int64_t minVal = omp_get_thread_num();
 						#pragma omp parallel
 						{
 							int64_t localArgmin = 0;
 							#pragma omp for
-							for (int64_t i = 0; i < (int64_t)matrix.Size(); ++i)
+							for (int64_t i = 0; i < (int64_t)matrix.size(); ++i)
 							{
 								if (matrix[i] < matrix[localArgmin])
 									localArgmin = i;
@@ -40,21 +40,21 @@ namespace tml
 						result = static_cast<Scalar>(minVal);
 					}
 
-					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void rows(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("omp");
-						omp_set_num_threads(tml::HardawreConcurrency);
-						int64_t rows = (int64_t)matrix.Rows(), cols = (int64_t)matrix.Columns();
+						omp_set_num_threads(tml::hardware_concurrency);
+						int64_t rows = (int64_t)matrix.rows(), cols = (int64_t)matrix.columns();
 						#pragma omp parallel for
 						for (int64_t i = 0; i < rows; ++i)
 							result[i] = static_cast<Scalar>(std::min_element(matrix.cbegin() + i*cols, matrix.cbegin() + (i + 1)*cols) - (matrix.cbegin() + i*cols));
 					}
 
-					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void columns(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("omp");
-						omp_set_num_threads(tml::HardawreConcurrency);
-						int64_t rows = (int64_t)matrix.Rows(), cols = (int64_t)matrix.Columns();
+						omp_set_num_threads(tml::hardware_concurrency);
+						int64_t rows = (int64_t)matrix.rows(), cols = (int64_t)matrix.columns();
 						#pragma omp parallel for
 						for (int64_t j = 0; j < cols; ++j)
 						{

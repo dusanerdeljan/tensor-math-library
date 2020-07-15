@@ -12,19 +12,19 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar, typename Backend>
-				struct ArgmaxBackend
+				struct argmax_backend
 				{
-					TML_STRONG_INLINE void Argmax(const tml::Matrix<Scalar>& matrix, Scalar& result)
+					TML_STRONG_INLINE void argmax(const tml::matrix<Scalar>& matrix, Scalar& result)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}
 
-					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void rows(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}
 
-					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void columns(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}

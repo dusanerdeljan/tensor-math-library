@@ -22,6 +22,7 @@ namespace tml
                         using pointer = int*;
                         using reference = int&;
 
+                        iterator() : m_Value(0) {}
                         iterator(value_type val) : m_Value(val) {}
                         iterator(const iterator& iter) : m_Value(iter.m_Value) {}
                         iterator& operator=(const iterator& iter)

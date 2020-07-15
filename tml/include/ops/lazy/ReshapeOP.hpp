@@ -1,10 +1,10 @@
 #pragma once
 
 template<typename Scalar, typename Operand>
-struct ReshapeOP
+struct reshape_op
 {
 	Operand operand;
-	ReshapeOP(const Operand& operand) : operand(operand) {}
+	reshape_op(const Operand& operand) : operand(operand) {}
 	void operator++() { ++operand; }
 	Scalar operator[] (size_t index) const { return operand[index]; }
 	Scalar operator*() const

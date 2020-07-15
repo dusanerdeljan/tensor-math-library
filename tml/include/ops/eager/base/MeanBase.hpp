@@ -12,19 +12,19 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar, typename Backend>
-				struct MeanBackend
+				struct mean_backend
 				{
-					TML_STRONG_INLINE void Mean(const tml::Matrix<Scalar>& matrix, Scalar& result)
+					TML_STRONG_INLINE void mean(const tml::matrix<Scalar>& matrix, Scalar& result)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}
 
-					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void rows(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}
 
-					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void columns(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}

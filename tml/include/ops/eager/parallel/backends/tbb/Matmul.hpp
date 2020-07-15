@@ -15,9 +15,9 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct MatmulBackend<Scalar, TBB>
+				struct matmul_backend<Scalar, TBB>
 				{
-					TML_STRONG_INLINE Scalar MultiplyRowColumn(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, size_t row, size_t column, size_t r1, size_t c1, size_t r2, size_t c2)
+					TML_STRONG_INLINE Scalar MultiplyRowColumn(const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, size_t row, size_t column, size_t r1, size_t c1, size_t r2, size_t c2)
 					{
 						return TML_TRANSFORM_REDUCE(left.cbegin() + row*c1, left.cbegin() + (row + 1)*c1, right.cbegin() + r2*column, static_cast<Scalar>(0));
 					}
@@ -25,9 +25,9 @@ namespace tml
 					class MatmulTask : public tbb::task
 					{
 					private:
-						tml::Matrix<Scalar>& m_Result;
-						const tml::Matrix<Scalar>& m_Left;
-						const tml::Matrix<Scalar>& m_Right;
+						tml::matrix<Scalar>& m_Result;
+						const tml::matrix<Scalar>& m_Left;
+						const tml::matrix<Scalar>& m_Right;
 						size_t m_RowBegin;
 						size_t m_ColumnBegin;
 						size_t m_RowEnd;
@@ -37,10 +37,10 @@ namespace tml
 						size_t m_R2;
 						size_t m_C2;
 					public:
-						MatmulTask(tml::Matrix<Scalar>& result, const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, size_t rowBegin, size_t columnBegin, size_t rowEnd, size_t columnEnd)
+						MatmulTask(tml::matrix<Scalar>& result, const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, size_t rowBegin, size_t columnBegin, size_t rowEnd, size_t columnEnd)
 							: m_Result(result), m_Left(left), m_Right(right),
 							m_RowBegin(rowBegin), m_ColumnBegin(columnBegin), m_RowEnd(rowEnd), m_ColumnEnd(columnEnd),
-							m_R1(left.Rows()), m_C1(left.Columns()), m_R2(right.Columns()), m_C2(right.Rows())
+							m_R1(left.rows()), m_C1(left.columns()), m_R2(right.columns()), m_C2(right.rows())
 						{
 						}
 						tbb::task* execute()
@@ -54,13 +54,13 @@ namespace tml
 						}
 					};
 
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("tbb");
-						size_t rows = result.Rows(), cols = result.Columns();
-						const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::execution::tbb);
-						size_t size = result.Size();
-						size_t numCores = tml::HardawreConcurrency;
+						size_t rows = result.rows(), cols = result.columns();
+						const tml::matrix<Scalar> newRight = tml::eager::transpose(right, tml::execution::tbb);
+						size_t size = result.size();
+						size_t numCores = tml::hardware_concurrency;
 						if (size <= numCores)
 						{
 							tbb::task::spawn_root_and_wait(*(new(tbb::task::allocate_root()) MatmulTask(result, left, newRight, 0, 0, rows, cols)));

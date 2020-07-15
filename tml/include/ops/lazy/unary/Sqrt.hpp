@@ -11,25 +11,25 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar>
-		Scalar Sqrt(Scalar scalar)
+		Scalar sqrt(Scalar scalar)
 		{
-			return SqrtOP<Scalar>::op(scalar);
+			return sqrt_op<Scalar>::op(scalar);
 		}
 
 		template<typename Scalar>
-		ExprOP<Scalar, UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, SqrtOP<Scalar>>>
-			Sqrt(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, sqrt_op<Scalar>>>
+			sqrt(const tml::matrix<Scalar>& matrix)
 		{
-			typedef UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, SqrtOP<Scalar>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.GetShape());
+			typedef unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, sqrt_op<Scalar>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.get_shape());
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, UnaryOP<Scalar, ExprOP<Scalar, T>, SqrtOP<Scalar>>>
-			Sqrt(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, unary_op<Scalar, expr_op<Scalar, T>, sqrt_op<Scalar>>>
+			sqrt(const expr_op<Scalar, T>& expr)
 		{
-			typedef UnaryOP<Scalar, ExprOP<Scalar, T>, SqrtOP<Scalar>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr), expr.shape);
+			typedef unary_op<Scalar, expr_op<Scalar, T>, sqrt_op<Scalar>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr), expr.shape);
 		}
 	}
 }

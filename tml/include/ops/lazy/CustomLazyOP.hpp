@@ -5,11 +5,11 @@
 #include "../../matrix/Matrix.hpp"
 
 template<typename Scalar, typename Operand, typename OP>
-struct CustomUnaryLazyExprOP
+struct custom_unary_lazy_expr_op
 {
 	Operand operand;
 	OP op;
-	CustomUnaryLazyExprOP(const Operand& operand, OP&& op) : operand(operand), op(std::move(op)) {}
+	custom_unary_lazy_expr_op(const Operand& operand, OP&& op) : operand(operand), op(std::move(op)) {}
 	void operator++() { ++operand; }
 	Scalar operator*() const
 	{
@@ -18,12 +18,12 @@ struct CustomUnaryLazyExprOP
 };
 
 template<typename Scalar, typename Left, typename Right, typename OP>
-struct CustomBinaryLazyExprOP
+struct custom_binary_lazy_expr_op
 {
 	Left left;
 	Right right;
 	OP op;
-	CustomBinaryLazyExprOP(const Left& left, const Right& right, OP&& op) : left(left), right(right), op(std::move(op)) {}
+	custom_binary_lazy_expr_op(const Left& left, const Right& right, OP&& op) : left(left), right(right), op(std::move(op)) {}
 	void operator++() { ++left; ++right; }
 	Scalar operator*() const
 	{
@@ -36,61 +36,61 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar, typename OP>
-		Scalar CustomOP(Scalar value, OP&& op)
+		Scalar custom_op(Scalar value, OP&& op)
 		{
 			return op(value);
 		}
 
 		template<typename Scalar, typename OP>
-		ExprOP<Scalar, CustomUnaryLazyExprOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, OP>>
-			CustomOP(const tml::Matrix<Scalar>& matrix, OP&& op)
+		expr_op<Scalar, custom_unary_lazy_expr_op<Scalar, typename tml::matrix<Scalar>::const_iterator, OP>>
+			custom_op(const tml::matrix<Scalar>& matrix, OP&& op)
 		{
-			typedef CustomUnaryLazyExprOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, OP> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix.cbegin(), std::move(op)), matrix.GetShape());
+			typedef custom_unary_lazy_expr_op<Scalar, typename tml::matrix<Scalar>::const_iterator, OP> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix.cbegin(), std::move(op)), matrix.get_shape());
 		}
 
 		template<typename Scalar, typename T, typename OP>
-		ExprOP<Scalar, CustomUnaryLazyExprOP<Scalar, ExprOP<Scalar, T>, OP>>
-			CustomOP(const ExprOP<Scalar, T>& expr, OP&& op)
+		expr_op<Scalar, custom_unary_lazy_expr_op<Scalar, expr_op<Scalar, T>, OP>>
+			custom_op(const expr_op<Scalar, T>& expr, OP&& op)
 		{
-			typedef CustomUnaryLazyExprOP<Scalar, ExprOP<Scalar, T>, OP> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr, std::move(op)), expr.shape);
+			typedef custom_unary_lazy_expr_op<Scalar, expr_op<Scalar, T>, OP> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr, std::move(op)), expr.shape);
 		}
 
 		template<typename Scalar, typename OP>
-		ExprOP<Scalar, CustomBinaryLazyExprOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::const_iterator, OP>>
-			CustomOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, OP&& op)
+		expr_op<Scalar, custom_binary_lazy_expr_op<Scalar, typename tml::matrix<Scalar>::const_iterator, typename tml::matrix<Scalar>::const_iterator, OP>>
+			custom_op(const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, OP&& op)
 		{
 			TML_ASSERT_SHAPE(left, right);
-			typedef CustomBinaryLazyExprOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::const_iterator, OP> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(left.cbegin(), right.cbegin(), std::move(op)), left.GetShape());
+			typedef custom_binary_lazy_expr_op<Scalar, typename tml::matrix<Scalar>::const_iterator, typename tml::matrix<Scalar>::const_iterator, OP> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(left.cbegin(), right.cbegin(), std::move(op)), left.get_shape());
 		}
 
 		template<typename Scalar, typename T, typename OP>
-		ExprOP<Scalar, CustomBinaryLazyExprOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, ExprOP<Scalar, T>, OP>>
-			CustomOP(const tml::Matrix<Scalar>& left, const ExprOP<Scalar, T>& right, OP&& op)
+		expr_op<Scalar, custom_binary_lazy_expr_op<Scalar, typename tml::matrix<Scalar>::const_iterator, expr_op<Scalar, T>, OP>>
+			custom_op(const tml::matrix<Scalar>& left, const expr_op<Scalar, T>& right, OP&& op)
 		{
 			TML_ASSERT_SHAPE(left, right);
-			typedef CustomBinaryLazyExprOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, ExprOP<Scalar, T>, OP> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(left.cbegin(), right, std::move(op)), right.shape);
+			typedef custom_binary_lazy_expr_op<Scalar, typename tml::matrix<Scalar>::const_iterator, expr_op<Scalar, T>, OP> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(left.cbegin(), right, std::move(op)), right.shape);
 		}
 
 		template<typename Scalar, typename T, typename OP>
-		ExprOP<Scalar, CustomBinaryLazyExprOP<Scalar, ExprOP<Scalar, T>, typename tml::Matrix<Scalar>::const_iterator, OP>>
-			CustomOP(const ExprOP<Scalar, T>& left, const tml::Matrix<Scalar>& right, OP&& op)
+		expr_op<Scalar, custom_binary_lazy_expr_op<Scalar, expr_op<Scalar, T>, typename tml::matrix<Scalar>::const_iterator, OP>>
+			custom_op(const expr_op<Scalar, T>& left, const tml::matrix<Scalar>& right, OP&& op)
 		{
 			TML_ASSERT_SHAPE(left, right);
-			typedef CustomBinaryLazyExprOP<Scalar, ExprOP<Scalar, T>, typename tml::Matrix<Scalar>::const_iterator, OP> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(left, right.cbegin(), std::move(op)), left.shape);
+			typedef custom_binary_lazy_expr_op<Scalar, expr_op<Scalar, T>, typename tml::matrix<Scalar>::const_iterator, OP> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(left, right.cbegin(), std::move(op)), left.shape);
 		}
 
 		template<typename Scalar, typename Left, typename Right, typename OP>
-		ExprOP<Scalar, CustomBinaryLazyExprOP<Scalar, ExprOP<Scalar, Left>, ExprOP<Scalar, Right>, OP>>
-			CustomOP(const ExprOP<Scalar, Left>& left, const ExprOP<Scalar, Right>& right, OP&& op)
+		expr_op<Scalar, custom_binary_lazy_expr_op<Scalar, expr_op<Scalar, Left>, expr_op<Scalar, Right>, OP>>
+			custom_op(const expr_op<Scalar, Left>& left, const expr_op<Scalar, Right>& right, OP&& op)
 		{
 			TML_ASSERT_SHAPE(left, right);
-			typedef CustomBinaryLazyExprOP<Scalar, ExprOP<Scalar, Left>, ExprOP<Scalar, Right>, OP> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(left, right, std::move(op)), left.shape);
+			typedef custom_binary_lazy_expr_op<Scalar, expr_op<Scalar, Left>, expr_op<Scalar, Right>, OP> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(left, right, std::move(op)), left.shape);
 		}
 	}
 }

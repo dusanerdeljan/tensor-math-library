@@ -14,13 +14,13 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct MatmulBackend<Scalar, STL>
+				struct matmul_backend<Scalar, STL>
 				{
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("stl");
-						const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::execution::stl);
-						size_t r1 = left.Rows(), c1 = left.Columns(), r2 = right.Rows(), c2 = right.Columns();
+						const tml::matrix<Scalar> newRight = tml::eager::transpose(right, tml::execution::stl);
+						size_t r1 = left.rows(), c1 = left.columns(), r2 = right.rows(), c2 = right.columns();
 						// TODO: Calculate tile size like L1_CACHE_LINE_SIZE_BYTES / sizeof(Scalar)
 						const int rowTiles = 1 + ((r1-1)/32);
 						const int colTiles = 1 + ((c2-1)/32);

@@ -9,11 +9,11 @@
 
 namespace tml
 {
-	static const unsigned int HardawreConcurrency = std::thread::hardware_concurrency();
+	static const unsigned int hardware_concurrency = std::thread::hardware_concurrency();
 
-	enum ExecutionPolicy { SERIAL, PARALLEL };
+	enum execution_policy { SERIAL, PARALLEL };
 
-	enum ParallelismPolicy { SINGLE_ROW, SINGLE_COLUMN, ONE_OVER_CORES, PARALLEL_FOR };
+	enum parallelism_policy { SINGLE_ROW, SINGLE_COLUMN, ONE_OVER_CORES, PARALLEL_FOR };
 
 	namespace eager
 	{

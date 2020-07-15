@@ -11,10 +11,10 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar, typename Backend>
-				struct UnaryOPBackend
+				struct unary_op_backend
 				{
 					template<typename OP>
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result, OP&& op)
 					{
 						TML_UNSUPPORTED_BACKEND(Backend);
 					}

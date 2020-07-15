@@ -1,13 +1,13 @@
 #pragma once
 
 template<typename Scalar, typename Operand>
-struct TransposeExpr
+struct transpose_expr
 {
 	Operand operand;
 	size_t rows;
 	size_t cols;
 	size_t idx = 0;
-	TransposeExpr(const Operand& operand, size_t rows, size_t cols) : operand(operand), rows(rows), cols(cols) {}
+	transpose_expr(const Operand& operand, size_t rows, size_t cols) : operand(operand), rows(rows), cols(cols) {}
 	void operator++() { ++idx; }
 	Scalar operator[] (size_t index) const
 	{

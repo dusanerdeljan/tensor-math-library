@@ -1,11 +1,11 @@
 #pragma once
 
 template<typename Scalar, typename Operand, typename OP>
-struct ReductionExpr
+struct reduction_expr
 {
 	const Operand& operand;
 	size_t row = 0;
-	ReductionExpr(const Operand& operand) : operand(operand) {}
+	reduction_expr(const Operand& operand) : operand(operand) {}
 	void operator++() { ++row; }
 	Scalar operator[] (size_t index) const { return OP::op(operand, index); }
 	Scalar operator*() const

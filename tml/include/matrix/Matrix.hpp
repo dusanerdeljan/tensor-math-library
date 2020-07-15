@@ -8,7 +8,7 @@
 #include "Shape.hpp"
 #include "../ops/eager/ExecutionPolicy.hpp"
 
-template<typename Scalar, typename T> struct ExprOP;
+template<typename Scalar, typename T> struct expr_op;
 
 #define TML_DEBUG_CTOR_PRINTS 1
 
@@ -30,67 +30,67 @@ namespace tml
 	enum OwnershipPolicy {VIEW, COPY};
 
 	template<typename Scalar=double>
-	class Matrix
+	class matrix
 	{
 	private:
-		Scalar* m_Data;
-		Shape m_Shape;
-		bool m_View = false;
+		Scalar* m_data;
+		shape m_shape;
+		bool m_view = false;
 	public:
 		typedef Scalar* iterator;
 		typedef const Scalar* const_iterator;
 
-		Matrix(size_t rows, size_t cols) : m_Data(new Scalar[rows*cols]), m_Shape(rows, cols)
+		matrix(size_t rows, size_t cols) : m_data(new Scalar[rows*cols]), m_shape(rows, cols)
 		{
-			for (size_t i = 0; i < m_Shape.Size; ++i) m_Data[i] = (Scalar)i;
+			for (size_t i = 0; i < m_shape.size; ++i) m_data[i] = (Scalar)i;
 		}
 
-		Matrix(Scalar* data, const Shape& shape, tml::OwnershipPolicy ownership = tml::VIEW) : m_Data(nullptr), m_Shape(shape)
+		matrix(Scalar* data, const shape& shape, tml::OwnershipPolicy ownership = tml::VIEW) : m_data(nullptr), m_shape(shape)
 		{
 			if (ownership == tml::VIEW)
 			{
-				m_Data = data;
-				m_View = true;
+				m_data = data;
+				m_view = true;
 			}
 			else
 			{
-				m_Data = new Scalar[shape.Size];
-				memcpy(m_Data, data, sizeof(Scalar)*shape.Size);
+				m_data = new Scalar[shape.size];
+				memcpy(m_data, data, sizeof(Scalar)*shape.size);
 			}
 		}
 
-		Matrix(Shape shape) : m_Data(new Scalar[shape.Size]), m_Shape(shape)
+		matrix(shape shape) : m_data(new Scalar[shape.size]), m_shape(shape)
 		{
 			LOG("shape constructor");
 		}
 
 		template<typename T>
-		Matrix(const ExprOP<Scalar, T>& expr) : m_Data(new Scalar[expr.shape.Size]), m_Shape(expr.shape)
+		matrix(const expr_op<Scalar, T>& expr) : m_data(new Scalar[expr.shape.size]), m_shape(expr.shape)
 		{
 			LOG("expr constructor");
-			AssignExpr(expr);
+			assign_expr(expr);
 		}
 
-		Matrix(const Matrix<Scalar>& matrix) : m_Data(new Scalar[matrix.m_Shape.Size]), m_Shape(matrix.m_Shape)
+		matrix(const matrix<Scalar>& matrix) : m_data(new Scalar[matrix.m_shape.size]), m_shape(matrix.m_shape)
 		{
 			LOG("copy constructor");
-			memcpy(m_Data, matrix.m_Data, sizeof(Scalar)*m_Shape.Size);
+			memcpy(m_data, matrix.m_data, sizeof(Scalar)*m_shape.size);
 		}
 
-		Matrix(std::initializer_list<Scalar> init) : m_Data(new Scalar[init.size()]), m_Shape({ 1, init.size() })
+		matrix(std::initializer_list<Scalar> init) : m_data(new Scalar[init.size()]), m_shape({ 1, init.size() })
 		{
 			LOG("initializer list constructor");
-			std::move(init.begin(), init.end(), m_Data);
+			std::move(init.begin(), init.end(), m_data);
 		}
 
-		Matrix(std::initializer_list<Scalar> init, const Shape& shape) : m_Data(new Scalar[shape.Size]), m_Shape(shape)
+		matrix(std::initializer_list<Scalar> init, const shape& shape) : m_data(new Scalar[shape.size]), m_shape(shape)
 		{
 			LOG("initializer initializer list constructor");
-			std::move(init.begin(), init.end(), m_Data);
+			std::move(init.begin(), init.end(), m_data);
 		}
 
 		template<typename DType>
-		Matrix(const Matrix<DType>& matrix) : m_Data(new Scalar[matrix.Size()]), m_Shape(matrix.GetShape())
+		matrix(const matrix<DType>& matrix) : m_data(new Scalar[matrix.size()]), m_shape(matrix.get_shape())
 		{
 			LOG("copy new type constructor");
 			iterator writer = begin();
@@ -98,136 +98,136 @@ namespace tml
 				*writer = static_cast<Scalar>(*it);
 		}
 
-		Matrix(Matrix<Scalar>&& matrix) noexcept : m_Data(matrix.m_Data), m_Shape(matrix.m_Shape)
+		matrix(matrix<Scalar>&& matrix) noexcept : m_data(matrix.m_data), m_shape(matrix.m_shape)
 		{
 			LOG("move constructor");
-			matrix.m_Data = nullptr;
+			matrix.m_data = nullptr;
 		}
 
-		~Matrix() { if (!m_View) { LOG("destructor"); delete[] m_Data; } }
+		~matrix() { if (!m_view) { LOG("destructor"); delete[] m_data; } }
 
 		template<typename T>
-		Matrix<Scalar>& operator=(const ExprOP<Scalar, T>& expr)
+		matrix<Scalar>& operator=(const expr_op<Scalar, T>& expr)
 		{
 			LOG("expr assignment");
-			if (m_Shape.Size != expr.shape.Size)
+			if (m_shape.size != expr.shape.size)
 			{
-				m_Data = (Scalar*)realloc(m_Data, sizeof(Scalar)*expr.shape.Size);
+				m_data = (Scalar*)realloc(m_data, sizeof(Scalar)*expr.shape.size);
 			}
-			AssignExpr(expr);
+			assign_expr(expr);
 			return *this;
 		}
 
-		Matrix<Scalar>& operator=(const Matrix<Scalar>& matrix)
+		matrix<Scalar>& operator=(const matrix<Scalar>& matrix)
 		{
 			LOG("copy assignment");
-			Scalar* data = new Scalar[matrix.m_Shape.Size];
-			memcpy(data, matrix.m_Data, sizeof(Scalar)*matrix.m_Shape.Size);
-			delete[] m_Data;
-			m_Data = data;
-			m_Shape = matrix.m_Shape;
+			Scalar* data = new Scalar[matrix.m_shape.size];
+			memcpy(data, matrix.m_data, sizeof(Scalar)*matrix.m_shape.size);
+			delete[] m_data;
+			m_data = data;
+			m_shape = matrix.m_shape;
 			return *this;
 		}
 
 		template<typename DType>
-		Matrix<Scalar>& operator=(const Matrix<DType>& matrix)
+		matrix<Scalar>& operator=(const matrix<DType>& matrix)
 		{
 			LOG("copy new type assignment");
-			Scalar* data = new Scalar[matrix.Size()];
+			Scalar* data = new Scalar[matrix.size()];
 			iterator writer = data;
 			for (auto it = matrix.cbegin(); it != matrix.cend(); ++it, ++writer)
 				*writer = static_cast<Scalar>(*it);
-			delete[] m_Data;
-			m_Data = data;
-			m_Shape = matrix.GetShape();
+			delete[] m_data;
+			m_data = data;
+			m_shape = matrix.get_shape();
 			return *this;
 		}
 
-		Matrix<Scalar>& operator=(Matrix<Scalar>&& matrix) noexcept
+		matrix<Scalar>& operator=(matrix<Scalar>&& matrix) noexcept
 		{
 			LOG("move assignment");
-			delete[] m_Data;
-			m_Data = matrix.m_Data;
-			m_Shape = matrix.m_Shape;
-			matrix.m_Data = nullptr;
+			delete[] m_data;
+			m_data = matrix.m_data;
+			m_shape = matrix.m_shape;
+			matrix.m_data = nullptr;
 			return *this;
 		}
 
-		static Matrix<Scalar> Zeros(Shape shape)
+		static matrix<Scalar> zeros(shape shape)
 		{
-			Matrix<Scalar> matrix(shape);
+			matrix<Scalar> matrix(shape);
 			std::fill(matrix.begin(), matrix.end(), static_cast<Scalar>(0.0));
 			return std::move(matrix);
 		}
 
 		template<typename DType>
-		static Matrix<Scalar> ZerosLike(const Matrix<DType>& matrix)
+		static matrix<Scalar> zeros_like(const matrix<DType>& m)
 		{
-			Matrix<Scalar> result (matrix.GetShape());
+			matrix<Scalar> result (m.get_shape());
 			std::fill(result.begin(), result.end(), static_cast<Scalar>(0.0));
-			return std::move(matrix);
+			return std::move(m);
 		}
 
-		static Matrix<Scalar> Ones(Shape shape)
+		static matrix<Scalar> ones(shape shape)
 		{
-			Matrix<Scalar> matrix(shape);
+			matrix<Scalar> matrix(shape);
 			std::fill(matrix.begin(), matrix.end(), static_cast<Scalar>(1.0));
 			return std::move(matrix);
 		}
 
 		template<typename DType>
-		static Matrix<Scalar> OnesLike(const Matrix<DType>& matrix)
+		static matrix<Scalar> ones_like(const matrix<DType>& m)
 		{
-			Matrix<Scalar> result(matrix.GetShape());
+			matrix<Scalar> result(m.get_shape());
 			std::fill(result.begin(), result.end(), static_cast<Scalar>(1.0));
-			return std::move(matrix);
+			return std::move(m);
 		}
 
-		static Matrix<Scalar> Arange(size_t rows, size_t cols)
+		static matrix<Scalar> arange(size_t rows, size_t cols)
 		{
-			return Matrix(rows, cols);
+			return matrix(rows, cols);
 		}
 
-		Shape GetShape() const { return m_Shape; }
+		shape get_shape() const { return m_shape; }
 
-		void SetShape(const Shape& shape) { m_Shape = shape; }
+		void set_shape(const shape& shape) { m_shape = shape; }
 
-		inline Scalar& operator() (size_t i, size_t j) { return m_Data[j + i*m_Shape.Columns]; }
-		inline const Scalar& operator() (size_t i, size_t j) const { return m_Data[j + i*m_Shape.Columns]; }
+		inline Scalar& operator() (size_t i, size_t j) { return m_data[j + i*m_shape.columns]; }
+		inline const Scalar& operator() (size_t i, size_t j) const { return m_data[j + i*m_shape.columns]; }
 
-		inline iterator begin() { return m_Data; }
+		inline iterator begin() { return m_data; }
 
-		inline const_iterator cbegin() const noexcept { return m_Data; }
+		inline const_iterator cbegin() const noexcept { return m_data; }
 
-		inline iterator end() { return m_Data + m_Shape.Size; }
+		inline iterator end() { return m_data + m_shape.size; }
 
-		inline const_iterator cend() const { return m_Data + m_Shape.Size; }
+		inline const_iterator cend() const { return m_data + m_shape.size; }
 
-		inline size_t Size() const { return m_Shape.Size; }
+		inline size_t size() const { return m_shape.size; }
 
-		inline size_t Rows() const { return m_Shape.Rows; }
+		inline size_t rows() const { return m_shape.rows; }
 
-		inline size_t Columns() const { return m_Shape.Columns; }
+		inline size_t columns() const { return m_shape.columns; }
 
-		Scalar& operator[] (size_t index) { return m_Data[index]; }
+		Scalar& operator[] (size_t index) { return m_data[index]; }
 
-		const Scalar& operator[] (size_t index) const { return m_Data[index]; }
+		const Scalar& operator[] (size_t index) const { return m_data[index]; }
 	private:
 		template<typename T>
-		void AssignExpr(const ExprOP<Scalar, T>& expr)
+		void assign_expr(const expr_op<Scalar, T>& expr)
 		{
 #if TML_HAS_TBB
-			size_t grainSize =  m_Shape.Size / tml::HardawreConcurrency;
-			tbb::parallel_for(tbb::blocked_range<size_t>(0, m_Shape.Size, grainSize), [&](tbb::blocked_range<size_t> range)
+			size_t grainSize =  m_shape.size / tml::hardware_concurrency;
+			tbb::parallel_for(tbb::blocked_range<size_t>(0, m_shape.size, grainSize), [&](tbb::blocked_range<size_t> range)
 			{
 				for (size_t i = range.begin(); i != range.end(); ++i)
-					m_Data[i] = expr[i];
+					m_data[i] = expr[i];
 			});
 #elif TML_HAS_OMP
-			omp_set_num_threads(tml::HardawreConcurrency)
+			omp_set_num_threads(tml::hardware_concurrency);
 			#pragma omp parallel for
-			for (int64_t i = 0; i < m_Shape.Size; ++i)
-				m_Data[i] = expr[i];
+			for (int64_t i = 0; i < m_shape.size; ++i)
+				m_data[i] = expr[i];
 #else
 			iterator beginIter = begin();
 			iterator endIter = end();
@@ -241,12 +241,12 @@ namespace tml
 	};
 
 	template<typename Scalar>
-	std::ostream& operator << (std::ostream& out, const Matrix<Scalar>& matrix)
+	std::ostream& operator << (std::ostream& out, const matrix<Scalar>& m)
 	{
-		for (size_t i = 0; i < matrix.Rows(); ++i)
+		for (size_t i = 0; i < m.rows(); ++i)
 		{
-			for (size_t j = 0; j < matrix.Columns(); ++j)
-				std::cout << std::setw(12) << std::left << matrix(i, j);
+			for (size_t j = 0; j < m.columns(); ++j)
+				std::cout << std::setw(12) << std::left << m(i, j);
 			std::cout << std::endl;
 		}
 		return out;

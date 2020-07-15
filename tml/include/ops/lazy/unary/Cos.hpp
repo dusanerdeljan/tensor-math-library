@@ -11,25 +11,25 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar>
-		Scalar Cos(Scalar scalar)
+		Scalar cos(Scalar scalar)
 		{
-			return CosOP<Scalar>::op(scalar);
+			return cos_op<Scalar>::op(scalar);
 		}
 
 		template<typename Scalar>
-		ExprOP<Scalar, UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, CosOP<Scalar>>>
-			Cos(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, cos_op<Scalar>>>
+			cos(const tml::matrix<Scalar>& matrix)
 		{
-			typedef UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, CosOP<Scalar>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.GetShape());
+			typedef unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, cos_op<Scalar>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.get_shape());
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, UnaryOP<Scalar, ExprOP<Scalar, T>, CosOP<Scalar>>>
-			Cos(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, unary_op<Scalar, expr_op<Scalar, T>, cos_op<Scalar>>>
+			cos(const expr_op<Scalar, T>& expr)
 		{
-			typedef UnaryOP<Scalar, ExprOP<Scalar, T>, CosOP<Scalar>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr), expr.shape);
+			typedef unary_op<Scalar, expr_op<Scalar, T>, cos_op<Scalar>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr), expr.shape);
 		}
 	}
 }

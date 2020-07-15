@@ -9,20 +9,20 @@ namespace tml
 	namespace eager
 	{
 		template<typename Scalar>
-		TML_INLINE tml::Matrix<Scalar> Reshape(const tml::Matrix<Scalar>& matrix, const Shape& newShape)
+		TML_INLINE tml::matrix<Scalar> reshape(const tml::matrix<Scalar>& matrix, const shape& newShape)
 		{
 			TML_ASSERT_RESHAPE(matrix, newShape);
-			tml::Matrix<Scalar> result = matrix;
-			result.SetShape(newShape);
+			tml::matrix<Scalar> result = matrix;
+			result.set_shape(newShape);
 			return result;
 		}
 
 		template<typename Scalar, typename T>
-		TML_INLINE tml::Matrix<Scalar> Reshape(const ExprOP<Scalar, T>& expr, const Shape& newShape)
+		TML_INLINE tml::matrix<Scalar> reshape(const expr_op<Scalar, T>& expr, const shape& newShape)
 		{
 			TML_ASSERT_RESHAPE(expr, newShape);
-			tml::Matrix<Scalar> result = expr;
-			result.SetShape(newShape);
+			tml::matrix<Scalar> result = expr;
+			result.set_shape(newShape);
 			return result;
 		}
 	}

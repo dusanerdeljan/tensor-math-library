@@ -11,25 +11,25 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar>
-		Scalar Tan(Scalar scalar)
+		Scalar tan(Scalar scalar)
 		{
-			return TanOP<Scalar>::op(scalar);
+			return tan_op<Scalar>::op(scalar);
 		}
 
 		template<typename Scalar>
-		ExprOP<Scalar, UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, TanOP<Scalar>>>
-			Tan(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, tan_op<Scalar>>>
+			tan(const tml::matrix<Scalar>& matrix)
 		{
-			typedef UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, TanOP<Scalar>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.GetShape());
+			typedef unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, tan_op<Scalar>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.get_shape());
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, UnaryOP<Scalar, ExprOP<Scalar, T>, TanOP<Scalar>>>
-			Tan(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, unary_op<Scalar, expr_op<Scalar, T>, tan_op<Scalar>>>
+			tan(const expr_op<Scalar, T>& expr)
 		{
-			typedef UnaryOP<Scalar, ExprOP<Scalar, T>, TanOP<Scalar>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr), expr.shape);
+			typedef unary_op<Scalar, expr_op<Scalar, T>, tan_op<Scalar>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr), expr.shape);
 		}
 	}
 }

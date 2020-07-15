@@ -10,53 +10,53 @@ namespace tml
 	namespace eager
 	{
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE Scalar Sum(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
+		TML_INLINE Scalar sum(const tml::matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
 			Scalar result;
-			details::backend::SumBackend<Scalar, Backend>::Sum(matrix, result);
+			details::backend::sum_backend<Scalar, Backend>::sum(matrix, result);
 			return result;
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE Scalar Sum(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
+		TML_INLINE Scalar sum(const expr_op<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
-			const tml::Matrix<Scalar> matrix = expr;
+			const tml::matrix<Scalar> matrix = expr;
 			Scalar result;
-			details::backend::SumBackend<Scalar, Backend>::Sum(matrix, result);
+			details::backend::sum_backend<Scalar, Backend>::sum(matrix, result);
 			return result;
 		}
 
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> SumRows(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> sum_rows(const tml::matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
-			tml::Matrix<Scalar> result(Shape{ 1, matrix.Rows() });
-			details::backend::SumBackend<Scalar, Backend>::Rows(matrix, result);
+			tml::matrix<Scalar> result(shape{ 1, matrix.rows() });
+			details::backend::sum_backend<Scalar, Backend>::rows(matrix, result);
 			return result;
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> SumRows(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> sum_rows(const expr_op<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
-			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Rows});
-			const tml::Matrix<Scalar> matrix = expr;
-			details::backend::SumBackend<Scalar, Backend>::Rows(matrix, result);
+			tml::matrix<Scalar> result(shape{ 1, expr.shape.rows});
+			const tml::matrix<Scalar> matrix = expr;
+			details::backend::sum_backend<Scalar, Backend>::rows(matrix, result);
 			return result;
 		}
 
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> SumColumns(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> sum_columns(const tml::matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
-			tml::Matrix<Scalar> result(Shape{ 1, matrix.Columns() });
-			details::backend::SumBackend<Scalar, Backend>::Columns(matrix, result);
+			tml::matrix<Scalar> result(shape{ 1, matrix.columns() });
+			details::backend::sum_backend<Scalar, Backend>::columns(matrix, result);
 			return result;
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> SumColumns(const ExprOP<Scalar, T>& expr, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> sum_columns(const expr_op<Scalar, T>& expr, Backend backend = tml::execution::seq)
 		{
-			tml::Matrix<Scalar> result(Shape{ 1, expr.shape.Columns });
-			const tml::Matrix<Scalar> matrix = expr;
-			details::backend::SumBackend<Scalar, Backend>::Columns(matrix, result);
+			tml::matrix<Scalar> result(shape{ 1, expr.shape.columns });
+			const tml::matrix<Scalar> matrix = expr;
+			details::backend::sum_backend<Scalar, Backend>::columns(matrix, result);
 			return result;
 		}
 	}

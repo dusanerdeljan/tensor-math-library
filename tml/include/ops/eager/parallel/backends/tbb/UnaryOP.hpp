@@ -15,7 +15,7 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct UnaryOPBackend<Scalar, TBB>
+				struct unary_op_backend<Scalar, TBB>
 				{
 					template<typename ReadIter, typename WriteIter, typename OP>
 					class UnaryTask : public tbb::task
@@ -35,30 +35,30 @@ namespace tml
 					};
 
 					template<typename OP>
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result, OP&& op)
 					{
 						TML_LOG_BACKEND("tbb");
-						size_t size = matrix.Size();
-						typedef UnaryTask<typename tml::Matrix<Scalar>::const_iterator, typename tml::Matrix<Scalar>::iterator, OP> TaskType;
-						if (size <= tml::HardawreConcurrency)
+						size_t size = matrix.size();
+						typedef UnaryTask<typename tml::matrix<Scalar>::const_iterator, typename tml::matrix<Scalar>::iterator, OP> TaskType;
+						if (size <= tml::hardware_concurrency)
 						{
 							tbb::task::spawn_root_and_wait(*(new (tbb::task::allocate_root()) TaskType(matrix.cbegin(), matrix.cend(), result.begin(), std::move(op))));
 						}
-						else if (size % tml::HardawreConcurrency == 0)
+						else if (size % tml::hardware_concurrency == 0)
 						{
 							tbb::task_list tasks;
-							size_t stepSize = size / tml::HardawreConcurrency;
+							size_t stepSize = size / tml::hardware_concurrency;
 							for (size_t i = 0; i < size; i += stepSize)
 								tasks.push_back(*(new(tbb::task::allocate_root()) TaskType(matrix.cbegin() + i, matrix.cbegin() + i + stepSize, result.begin() + i, std::move(op))));
 							tbb::task::spawn_root_and_wait(tasks);
 						}
 						else
 						{
-							size_t treshold = tml::HardawreConcurrency - (size % tml::HardawreConcurrency);
-							size_t value = size / tml::HardawreConcurrency;
+							size_t treshold = tml::hardware_concurrency - (size % tml::hardware_concurrency);
+							size_t value = size / tml::hardware_concurrency;
 							tbb::task_list tasks;
 							size_t beginIndex = 0;
-							for (size_t i = 0; i < tml::HardawreConcurrency; ++i)
+							for (size_t i = 0; i < tml::hardware_concurrency; ++i)
 							{
 								size_t segmentLength = value + (i >= treshold);
 								tasks.push_back(*(new(tbb::task::allocate_root()) TaskType(matrix.cbegin() + beginIndex, matrix.cbegin() + beginIndex + segmentLength, result.begin() + beginIndex, std::move(op))));

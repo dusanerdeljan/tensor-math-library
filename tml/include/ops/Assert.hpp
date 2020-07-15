@@ -6,7 +6,7 @@
 
 #define TML_ASSERT_SHAPE(left, right)\
 {\
-if (left.GetShape() != right.GetShape())\
+if (left.get_shape() != right.get_shape())\
 {\
 throw std::runtime_error("YOU MIXED MATRICES OF DIFFERENT SHAPE.");\
 }\
@@ -14,7 +14,7 @@ throw std::runtime_error("YOU MIXED MATRICES OF DIFFERENT SHAPE.");\
 
 #define TML_ASSERT_RESHAPE(matrix, shape)\
 {\
-if (matrix.GetShape().Size != shape.Size)/
+if (matrix.get_shape().size != shape.size)/
 {\
 throw std::runtime_error("RESHAPE ERROR: INCOMPATIBLE SHAPE.");\
 }\
@@ -22,7 +22,7 @@ throw std::runtime_error("RESHAPE ERROR: INCOMPATIBLE SHAPE.");\
 
 #define TML_ASSERT_MATMUL(left, right)\
 {\
-if (left.GetShape().Columns != right.GetShape().Rows)\
+if (left.get_shape().columns != right.get_shape().rows)\
 {\
 throw std::runtime_error("YOU MIXED MATRICES OF INCOMPATIBLE SHAPES.");\
 }\

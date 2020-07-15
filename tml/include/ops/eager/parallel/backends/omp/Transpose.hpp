@@ -13,14 +13,14 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct TransposeBackend<Scalar, OMP>
+				struct transpose_backend<Scalar, OMP>
 				{
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("omp");
-						omp_set_num_threads(tml::HardawreConcurrency);
+						omp_set_num_threads(tml::hardware_concurrency);
 						int64_t blockSize = 32;
-						int64_t rows = matrix.Rows(), cols = matrix.Columns();
+						int64_t rows = matrix.rows(), cols = matrix.columns();
 						#pragma omp parallel for
 						for (int64_t i = 0; i < rows; i += blockSize)
 							for (int64_t j = 0; j < cols; j += blockSize)

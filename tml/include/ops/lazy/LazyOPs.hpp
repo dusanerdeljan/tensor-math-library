@@ -10,212 +10,212 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar>
-		struct AddOP
+		struct add_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return left + right; }
 		};
 
 		template<typename Scalar>
-		struct SubOP
+		struct sub_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return left - right; }
 		};
 
 		template<typename Scalar>
-		struct MulOP
+		struct mul_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return left*right; }
 		};
 
 		template<typename Scalar>
-		struct DivOP
+		struct div_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return left / right; }
 		};
 
 		template<typename Scalar>
-		struct EqualOP
+		struct equal_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left == right); }
 		};
 
 		template<typename Scalar>
-		struct NotEqualOP
+		struct not_equal_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left != right); }
 		};
 
 		template<typename Scalar>
-		struct GreaterThanOP
+		struct greater_than_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left > right); }
 		};
 
 		template<typename Scalar>
-		struct LessThanOP
+		struct less_than_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left < right); }
 		};
 
 		template<typename Scalar>
-		struct GreaterEqualThanOP
+		struct greater_equal_than_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left >= right); }
 		};
 
 		template<typename Scalar>
-		struct LessEqualThanOP
+		struct less_equal_than_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return static_cast<Scalar>(left <= right); }
 		};
 
 		template<typename Scalar>
-		struct MaximumOP
+		struct maximum_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return std::max(left, right); }
 		};
 
 		template<typename Scalar>
-		struct MinimumOP
+		struct minimum_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return std::min(left, right); }
 		};
 
 		template<typename Scalar>
-		struct PowOP
+		struct pow_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar left, Scalar right) { return std::pow(left, right); }
 		};
 
 		template<typename Scalar>
-		struct NegOP
+		struct neg_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return -value; }
 		};
 
 		template<typename Scalar>
-		struct LogOP
+		struct log_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::log(value)); }
 		};
 
 		template<typename Scalar>
-		struct SqrtOP
+		struct sqrt_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::sqrt(value)); }
 		};
 
 		template<typename Scalar>
-		struct SquareOP
+		struct square_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return value*value; }
 		};
 
 		template<typename Scalar>
-		struct ExpOP
+		struct exp_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::exp(value)); }
 		};
 
 		template<typename Scalar>
-		struct SinOP
+		struct sin_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::sin(value)); }
 		};
 
 		template<typename Scalar>
-		struct CosOP
+		struct cos_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::cos(value)); }
 		};
 
 		template<typename Scalar>
-		struct TanOP
+		struct tan_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::tan(value)); }
 		};
 
 		template<typename Scalar>
-		struct CotOP
+		struct cot_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(1.0 / std::tan(value)); }
 		};
 
 		template<typename Scalar>
-		struct SinhOP
+		struct sinh_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::sinh(value)); }
 		};
 
 		template<typename Scalar>
-		struct CoshOP
+		struct cosh_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::cosh(value)); }
 		};
 
 		template<typename Scalar>
-		struct TanhOP
+		struct tanh_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return static_cast<Scalar>(std::tanh(value)); }
 		};
 
 		template<typename Scalar>
-		struct AbsOP
+		struct abs_op
 		{
 			TML_STRONG_INLINE Scalar op(Scalar value) { return std::abs(value); }
 		};
 
 		template<typename Scalar, typename Expr>
-		struct SumRowsOP
+		struct sum_rows_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t row)
 			{
 				Scalar sum = static_cast<Scalar>(0);
-				for (size_t i = 0; i < expr.Columns(); ++i)
-					sum += expr[i + row*expr.Columns()];
+				for (size_t i = 0; i < expr.columns(); ++i)
+					sum += expr[i + row*expr.columns()];
 				return sum;
 			}
 		};
 
 		template<typename Scalar, typename Expr>
-		struct SumColsOP
+		struct sum_cols_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t column)
 			{
 				Scalar sum = static_cast<Scalar>(0);
-				for (size_t i = 0; i < expr.Rows(); ++i)
-					sum += expr[column + i*expr.Columns()];
+				for (size_t i = 0; i < expr.rows(); ++i)
+					sum += expr[column + i*expr.columns()];
 				return sum;
 			}
 		};
 
 		template<typename Scalar, typename Expr>
-		struct MeanRowsOP
+		struct mean_rows_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t row)
 			{
-				return SumRowsOP<Scalar, Expr>::op(expr, row) / expr.Columns();
+				return sum_rows_op<Scalar, Expr>::op(expr, row) / expr.columns();
 			}
 		};
 
 		template<typename Scalar, typename Expr>
-		struct MeanColsOP
+		struct mean_cols_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t column)
 			{
-				return SumColsOP<Scalar, Expr>::op(expr, column) / expr.Rows();
+				return sum_cols_op<Scalar, Expr>::op(expr, column) / expr.rows();
 			}
 		};
 
 		template<typename Scalar, typename Expr>
-		struct MinRowsOP
+		struct min_rows_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t row)
 			{
 				Scalar minValue = (std::numeric_limits<Scalar>::max)();
-				for (size_t i = 0; i < expr.Columns(); ++i)
+				for (size_t i = 0; i < expr.columns(); ++i)
 				{
-					Scalar current = expr[i + row*expr.Columns()];
+					Scalar current = expr[i + row*expr.columns()];
 					if (current < minValue) minValue = current;
 				}
 				return minValue;
@@ -223,14 +223,14 @@ namespace tml
 		};
 
 		template<typename Scalar, typename Expr>
-		struct MinColsOP
+		struct min_cols_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t column)
 			{
 				Scalar minValue = (std::numeric_limits<Scalar>::max)();
-				for (size_t i = 0; i < expr.Rows(); ++i)
+				for (size_t i = 0; i < expr.rows(); ++i)
 				{
-					Scalar current = expr[column + i*expr.Columns()];
+					Scalar current = expr[column + i*expr.columns()];
 					if (current < minValue) minValue = current;
 				}
 				return minValue;
@@ -238,14 +238,14 @@ namespace tml
 		};
 
 		template<typename Scalar, typename Expr>
-		struct MaxRowsOP
+		struct max_rows_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t row)
 			{
 				Scalar maxValue = (std::numeric_limits<Scalar>::min)();
-				for (size_t i = 0; i < expr.Columns(); ++i)
+				for (size_t i = 0; i < expr.columns(); ++i)
 				{
-					Scalar current = expr[i + row*expr.Columns()];
+					Scalar current = expr[i + row*expr.columns()];
 					if (current > maxValue) maxValue = current;
 				}
 				return maxValue;
@@ -253,14 +253,14 @@ namespace tml
 		};
 
 		template<typename Scalar, typename Expr>
-		struct MaxColsOP
+		struct max_cols_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t column)
 			{
 				Scalar maxValue = (std::numeric_limits<Scalar>::min)();
-				for (size_t i = 0; i < expr.Rows(); ++i)
+				for (size_t i = 0; i < expr.rows(); ++i)
 				{
-					Scalar current = expr[column + i*expr.Columns()];
+					Scalar current = expr[column + i*expr.columns()];
 					if (current > maxValue) maxValue = current;
 				}
 				return maxValue;
@@ -268,15 +268,15 @@ namespace tml
 		};
 
 		template<typename Scalar, typename Expr>
-		struct ArgminRowsOP
+		struct argmin_rows_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t row)
 			{
 				size_t minIndex = 0;
-				Scalar minValue = expr[minIndex + row*expr.Columns()];
-				for (size_t i = 1; i < expr.Columns(); ++i)
+				Scalar minValue = expr[minIndex + row*expr.columns()];
+				for (size_t i = 1; i < expr.columns(); ++i)
 				{
-					Scalar current = expr[i + row*expr.Columns()];
+					Scalar current = expr[i + row*expr.columns()];
 					if (current <= minValue)
 					{
 						minValue = current;
@@ -288,15 +288,15 @@ namespace tml
 		};
 
 		template<typename Scalar, typename Expr>
-		struct ArgminColsOP
+		struct argmin_cols_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t column)
 			{
 				size_t minIndex = 0;
-				Scalar minValue = expr[column + minIndex*expr.Columns()];
-				for (size_t i = 1; i < expr.Rows(); ++i)
+				Scalar minValue = expr[column + minIndex*expr.columns()];
+				for (size_t i = 1; i < expr.rows(); ++i)
 				{
-					Scalar current = expr[column + i*expr.Columns()];
+					Scalar current = expr[column + i*expr.columns()];
 					if (current <= minValue)
 					{
 						minValue = current;
@@ -308,15 +308,15 @@ namespace tml
 		};
 
 		template<typename Scalar, typename Expr>
-		struct ArgmaxRowsOP
+		struct argmax_rows_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t row)
 			{
 				size_t maxIndex = 0;
-				Scalar maxValue = expr[maxIndex + row*expr.Columns()];
-				for (size_t i = 1; i < expr.Columns(); ++i)
+				Scalar maxValue = expr[maxIndex + row*expr.columns()];
+				for (size_t i = 1; i < expr.columns(); ++i)
 				{
-					Scalar current = expr[i + row*expr.Columns()];
+					Scalar current = expr[i + row*expr.columns()];
 					if (current >= maxValue)
 					{
 						maxValue = current;
@@ -328,15 +328,15 @@ namespace tml
 		};
 
 		template<typename Scalar, typename Expr>
-		struct ArgmaxColsOP
+		struct argmax_cols_op
 		{
 			TML_STRONG_INLINE Scalar op(const Expr& expr, size_t column)
 			{
 				size_t maxIndex = 0;
-				Scalar maxValue = expr[column + maxIndex*expr.Columns()];
-				for (size_t i = 1; i < expr.Rows(); ++i)
+				Scalar maxValue = expr[column + maxIndex*expr.columns()];
+				for (size_t i = 1; i < expr.rows(); ++i)
 				{
-					Scalar current = expr[column + i*expr.Columns()];
+					Scalar current = expr[column + i*expr.columns()];
 					if (current >= maxValue)
 					{
 						maxValue = current;

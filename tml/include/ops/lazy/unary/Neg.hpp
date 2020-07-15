@@ -7,17 +7,17 @@
 #include "../../../matrix/Matrix.hpp"
 
 template<typename Scalar>
-ExprOP<Scalar, UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, tml::lazy::NegOP<Scalar>>>
-operator - (const tml::Matrix<Scalar>& matrix)
+expr_op<Scalar, unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, tml::lazy::neg_op<Scalar>>>
+operator - (const tml::matrix<Scalar>& matrix)
 {
-	typedef UnaryOP<Scalar, typename tml::Matrix<Scalar>::const_iterator, tml::lazy::NegOP<Scalar>> ExprType;
-	return ExprOP<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.GetShape());
+	typedef unary_op<Scalar, typename tml::matrix<Scalar>::const_iterator, tml::lazy::neg_op<Scalar>> ExprType;
+	return expr_op<Scalar, ExprType>(ExprType(matrix.cbegin()), matrix.get_shape());
 }
 
 template<typename Scalar, typename T>
-ExprOP<Scalar, UnaryOP<Scalar, ExprOP<Scalar, T>, tml::lazy::NegOP<Scalar>>>
-operator - (const ExprOP<Scalar, T>& expr)
+expr_op<Scalar, unary_op<Scalar, expr_op<Scalar, T>, tml::lazy::neg_op<Scalar>>>
+operator - (const expr_op<Scalar, T>& expr)
 {
-	typedef UnaryOP<Scalar, ExprOP<Scalar, T>, tml::lazy::NegOP<Scalar>> ExprType;
-	return ExprOP<Scalar, ExprType>(ExprType(expr), expr.shape);
+	typedef unary_op<Scalar, expr_op<Scalar, T>, tml::lazy::neg_op<Scalar>> ExprType;
+	return expr_op<Scalar, ExprType>(ExprType(expr), expr.shape);
 }

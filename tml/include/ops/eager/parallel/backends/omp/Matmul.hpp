@@ -13,14 +13,14 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct MatmulBackend<Scalar, OMP>
+				struct matmul_backend<Scalar, OMP>
 				{
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& left, const tml::Matrix<Scalar>& right, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& left, const tml::matrix<Scalar>& right, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("omp");
-						omp_set_num_threads(tml::HardawreConcurrency);
-						const tml::Matrix<Scalar> newRight = tml::eager::Transpose(right, tml::execution::omp);
-						int64_t r1 = left.Rows(), c1 = left.Columns(), r2 = right.Rows(), c2 = right.Columns();
+						omp_set_num_threads(tml::hardware_concurrency);
+						const tml::matrix<Scalar> newRight = tml::eager::transpose(right, tml::execution::omp);
+						int64_t r1 = left.rows(), c1 = left.columns(), r2 = right.rows(), c2 = right.columns();
 						#pragma omp parallel for
 						for (int64_t i = 0; i < r1; i += 32)
 						{

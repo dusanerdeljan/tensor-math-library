@@ -11,13 +11,13 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct TransposeBackend<Scalar, SEQ>
+				struct transpose_backend<Scalar, SEQ>
 				{
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("seq");
 						size_t blockSize = 32;
-						size_t rows = matrix.Rows(), cols = matrix.Columns();
+						size_t rows = matrix.rows(), cols = matrix.columns();
 						for (size_t i = 0; i < rows; i += blockSize)
 							for (size_t j = 0; j < cols; j += blockSize)
 								for (size_t br = 0; br < blockSize && i + br < rows; ++br)

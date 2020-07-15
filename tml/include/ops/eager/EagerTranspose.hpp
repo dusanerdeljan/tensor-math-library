@@ -9,19 +9,19 @@ namespace tml
 	namespace eager
 	{
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> Transpose(const tml::Matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> transpose(const tml::matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
 		{
-			tml::Matrix<Scalar> result(tml::Shape{ matrix.Columns(), matrix.Rows() });
-			details::backend::TransposeBackend<Scalar, Backend>::DoOP(matrix, result);
+			tml::matrix<Scalar> result(tml::shape{ matrix.columns(), matrix.rows() });
+			details::backend::transpose_backend<Scalar, Backend>::do_op(matrix, result);
 			return result;
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE tml::Matrix<Scalar> Transpose(const ExprOP<Scalar, T> expr, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> transpose(const expr_op<Scalar, T> expr, Backend backend = tml::execution::seq)
 		{
-			tml::Matrix<Scalar> matrix = expr;
-			tml::Matrix<Scalar> result(tml::Shape{ matrix.Columns(), matrix.Rows() });
-			details::backend::TransposeBackend<Scalar, Backend>::DoOP(matrix, result);
+			tml::matrix<Scalar> matrix = expr;
+			tml::matrix<Scalar> result(tml::shape{ matrix.columns(), matrix.rows() });
+			details::backend::transpose_backend<Scalar, Backend>::do_op(matrix, result);
 			return result;
 		}
 	}

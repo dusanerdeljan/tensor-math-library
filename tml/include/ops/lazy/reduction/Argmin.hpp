@@ -11,47 +11,47 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar>
-		Scalar Argmin(const tml::Matrix<Scalar>& matrix)
+		Scalar argmin(const tml::matrix<Scalar>& matrix)
 		{
-			return tml::eager::Argmin(matrix);
+			return tml::eager::argmin(matrix);
 		}
 
 		template<typename Scalar, typename T>
-		Scalar Argmin(const ExprOP<Scalar, T>& expr)
+		Scalar argmin(const expr_op<Scalar, T>& expr)
 		{
-			return tml::eager::Argmin(expr);
+			return tml::eager::argmin(expr);
 		}
 
 		template<typename Scalar>
-		ExprOP<Scalar, ReductionExpr<Scalar, tml::Matrix<Scalar>, ArgminRowsOP<Scalar, tml::Matrix<Scalar>>>>
-			ArgminRows(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, reduction_expr<Scalar, tml::matrix<Scalar>, argmin_rows_op<Scalar, tml::matrix<Scalar>>>>
+			argmin_rows(const tml::matrix<Scalar>& matrix)
 		{
-			typedef ReductionExpr<Scalar, tml::Matrix<Scalar>, ArgminRowsOP<Scalar, tml::Matrix<Scalar>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix), { 1, matrix.Rows() });
+			typedef reduction_expr<Scalar, tml::matrix<Scalar>, argmin_rows_op<Scalar, tml::matrix<Scalar>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix), { 1, matrix.rows() });
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, ReductionExpr<Scalar, ExprOP<Scalar, T>, ArgminRowsOP<Scalar, ExprOP<Scalar, T>>>>
-			ArgminRows(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, reduction_expr<Scalar, expr_op<Scalar, T>, argmin_rows_op<Scalar, expr_op<Scalar, T>>>>
+			argmin_rows(const expr_op<Scalar, T>& expr)
 		{
-			typedef ReductionExpr<Scalar, ExprOP<Scalar, T>, ArgminRowsOP<Scalar, ExprOP<Scalar, T>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr), { 1, expr.Rows() });
+			typedef reduction_expr<Scalar, expr_op<Scalar, T>, argmin_rows_op<Scalar, expr_op<Scalar, T>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr), { 1, expr.rows() });
 		}
 
 		template<typename Scalar>
-		ExprOP<Scalar, ReductionExpr<Scalar, tml::Matrix<Scalar>, ArgminColsOP<Scalar, tml::Matrix<Scalar>>>>
-			ArgminColumns(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, reduction_expr<Scalar, tml::matrix<Scalar>, argmin_cols_op<Scalar, tml::matrix<Scalar>>>>
+			argmin_columns(const tml::matrix<Scalar>& matrix)
 		{
-			typedef ReductionExpr<Scalar, tml::Matrix<Scalar>, ArgminColsOP<Scalar, tml::Matrix<Scalar>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix), { 1, matrix.Columns() });
+			typedef reduction_expr<Scalar, tml::matrix<Scalar>, argmin_cols_op<Scalar, tml::matrix<Scalar>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix), { 1, matrix.columns() });
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, ReductionExpr<Scalar, ExprOP<Scalar, T>, ArgminColsOP<Scalar, ExprOP<Scalar, T>>>>
-			ArgminColumns(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, reduction_expr<Scalar, expr_op<Scalar, T>, argmin_cols_op<Scalar, expr_op<Scalar, T>>>>
+			argmin_columns(const expr_op<Scalar, T>& expr)
 		{
-			typedef ReductionExpr<Scalar, ExprOP<Scalar, T>, ArgminColsOP<Scalar, ExprOP<Scalar, T>>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr), { 1, expr.Columns() });
+			typedef reduction_expr<Scalar, expr_op<Scalar, T>, argmin_cols_op<Scalar, expr_op<Scalar, T>>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr), { 1, expr.columns() });
 		}
 	}
 }

@@ -14,12 +14,12 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct ArgminBackend<Scalar, TBB>
+				struct argmin_backend<Scalar, TBB>
 				{
-					TML_STRONG_INLINE void Argmin(const tml::Matrix<Scalar>& matrix, Scalar& result)
+					TML_STRONG_INLINE void argmin(const tml::matrix<Scalar>& matrix, Scalar& result)
 					{
 						TML_LOG_BACKEND("tbb");
-						typedef typename tml::Matrix<Scalar>::const_iterator iter;
+						typedef typename tml::matrix<Scalar>::const_iterator iter;
 						auto res = tbb::parallel_reduce(tbb::blocked_range<iter>(matrix.cbegin(), matrix.cend(), 200),
 							matrix.cbegin(),
 							[](const tbb::blocked_range<iter>& range, const iter& currentMin) -> iter
@@ -30,10 +30,10 @@ namespace tml
 						result = static_cast<Scalar>(res);
 					}
 
-					TML_STRONG_INLINE void Rows(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void rows(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("tbb");
-						size_t rows = matrix.Rows(), cols = matrix.Columns();
+						size_t rows = matrix.rows(), cols = matrix.columns();
 						tbb::parallel_for(tbb::blocked_range<size_t>(0, rows, 200), [&](const tbb::blocked_range<size_t>& range)
 						{
 							for (size_t i = range.begin(); i != range.end(); ++i)
@@ -41,10 +41,10 @@ namespace tml
 						});
 					}
 
-					TML_STRONG_INLINE void Columns(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result)
+					TML_STRONG_INLINE void columns(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result)
 					{
 						TML_LOG_BACKEND("tbb");
-						size_t rows = matrix.Rows(), cols = matrix.Columns();
+						size_t rows = matrix.rows(), cols = matrix.columns();
 						tbb::parallel_for(tbb::blocked_range<size_t>(0, cols, 200), [&](const tbb::blocked_range<size_t>& range)
 						{
 							for (size_t j = range.begin(); j != range.end(); ++j)

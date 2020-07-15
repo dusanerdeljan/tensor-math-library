@@ -9,19 +9,19 @@ namespace tml
 	namespace lazy
 	{
 		template<typename Scalar>
-		ExprOP<Scalar, TransposeExpr<Scalar, typename tml::Matrix<Scalar>::const_iterator>>
-			Transpose(const tml::Matrix<Scalar>& matrix)
+		expr_op<Scalar, transpose_expr<Scalar, typename tml::matrix<Scalar>::const_iterator>>
+			transpose(const tml::matrix<Scalar>& matrix)
 		{
-			typedef TransposeExpr<Scalar, typename tml::Matrix<Scalar>::const_iterator> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(matrix.cbegin(), matrix.Rows(), matrix.Columns()), matrix.GetShape().Transpose());
+			typedef transpose_expr<Scalar, typename tml::matrix<Scalar>::const_iterator> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(matrix.cbegin(), matrix.rows(), matrix.columns()), matrix.get_shape().transpose());
 		}
 
 		template<typename Scalar, typename T>
-		ExprOP<Scalar, TransposeExpr<Scalar, ExprOP<Scalar, T>>>
-			Transpose(const ExprOP<Scalar, T>& expr)
+		expr_op<Scalar, transpose_expr<Scalar, expr_op<Scalar, T>>>
+			transpose(const expr_op<Scalar, T>& expr)
 		{
-			typedef TransposeExpr<Scalar, ExprOP<Scalar, T>> ExprType;
-			return ExprOP<Scalar, ExprType>(ExprType(expr, expr.shape.Rows, expr.shape.Columns), expr.shape.Transpose());
+			typedef transpose_expr<Scalar, expr_op<Scalar, T>> ExprType;
+			return expr_op<Scalar, ExprType>(ExprType(expr, expr.shape.rows, expr.shape.columns), expr.shape.transpose());
 		}
 	}
 }

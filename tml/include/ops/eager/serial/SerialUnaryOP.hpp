@@ -12,10 +12,10 @@ namespace tml
 			namespace backend
 			{
 				template<typename Scalar>
-				struct UnaryOPBackend<Scalar, SEQ>
+				struct unary_op_backend<Scalar, SEQ>
 				{
 					template<typename OP>
-					TML_STRONG_INLINE void DoOP(const tml::Matrix<Scalar>& matrix, tml::Matrix<Scalar>& result, OP&& op)
+					TML_STRONG_INLINE void do_op(const tml::matrix<Scalar>& matrix, tml::matrix<Scalar>& result, OP&& op)
 					{
 						TML_LOG_BACKEND("seq");
 						std::transform(matrix.cbegin(), matrix.cend(), result.begin(), op);
