@@ -10,17 +10,18 @@ namespace tml
         {
             namespace backend
             {
-                class Counter
+                template<typename Scalar=std::size_t>
+                class counter
                 {
                 public:
                     class iterator
                     {
                     public:
                         using iterator_category = std::random_access_iterator_tag;
-                        using value_type = int;
-                        using difference_type = int;
-                        using pointer = int*;
-                        using reference = int&;
+                        using value_type = Scalar;
+                        using difference_type = Scalar;
+                        using pointer = Scalar*;
+                        using reference = Scalar&;
 
                         iterator() : m_Value(0) {}
                         iterator(value_type val) : m_Value(val) {}
@@ -58,7 +59,7 @@ namespace tml
                     iterator m_Begin;
                     iterator m_End;
                 public:
-                    Counter(const int begin, const int end) : m_Begin(begin), m_End(end) {}
+                    counter(const Scalar begin, const Scalar end) : m_Begin(begin), m_End(end) {}
                     iterator begin() const {return m_Begin;}
                     iterator end() const {return m_End;}
                 };

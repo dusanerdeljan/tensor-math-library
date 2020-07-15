@@ -226,7 +226,7 @@ namespace tml
 #elif TML_HAS_OMP
 			omp_set_num_threads(tml::hardware_concurrency);
 			#pragma omp parallel for
-			for (int64_t i = 0; i < m_shape.size; ++i)
+			for (int64_t i = 0; i < (int64_t)m_shape.size; ++i)
 				m_data[i] = expr[i];
 #else
 			iterator beginIter = begin();

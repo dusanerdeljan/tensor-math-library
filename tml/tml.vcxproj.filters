@@ -449,5 +449,8 @@
     <ClInclude Include="include\ops\eager\parallel\backends\stl\Argmax.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\ops\eager\parallel\backends\stl\CountingIterator.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

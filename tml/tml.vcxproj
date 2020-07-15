@@ -189,6 +189,7 @@
     <ClInclude Include="include\ops\eager\parallel\backends\omp\Sum.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\Argmax.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\Argmin.hpp" />
+    <ClInclude Include="include\ops\eager\parallel\backends\stl\CountingIterator.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\Max.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\Mean.hpp" />
     <ClInclude Include="include\ops\eager\parallel\backends\stl\Min.hpp" />

@@ -26,7 +26,7 @@ namespace tml
 					{
 						TML_LOG_BACKEND("stl");
 						size_t rows = matrix.rows(), cols = matrix.columns();
-						Counter cnt(0, rows);
+						counter cnt(0, rows);
 						std::for_each(std::execution::par, cnt.begin(), cnt.end(), [&](int i) {
 							result[i] = *std::max_element(matrix.cbegin() + i * cols, matrix.cbegin() + (i + 1) * cols);
 						});
