@@ -4,6 +4,7 @@
 #include <iostream>
 #include <iomanip>
 #include <initializer_list>
+#include <iterator>
 
 #include "Shape.hpp"
 #include "../ops/eager/ExecutionPolicy.hpp"
@@ -11,6 +12,7 @@
 template<typename Scalar, typename T> struct expr_op;
 
 #define TML_DEBUG_CTOR_PRINTS 1
+#define TML_USE_CUSTOM_MATRIX_ITERATOR 0
 
 #if TML_HAS_TBB
 #include <tbb/parallel_for.h>
@@ -37,8 +39,13 @@ namespace tml
 		shape m_shape;
 		bool m_view = false;
 	public:
+#if TML_USE_CUSTOM_MATRIX_ITERATOR
+		class iterator;
+		class const_iterator;
+#else
 		typedef Scalar* iterator;
 		typedef const Scalar* const_iterator;
+#endif
 
 		matrix(size_t rows, size_t cols) : m_data(new Scalar[rows*cols]), m_shape(rows, cols)
 		{
@@ -195,13 +202,19 @@ namespace tml
 		inline Scalar& operator() (size_t i, size_t j) { return m_data[j + i*m_shape.columns]; }
 		inline const Scalar& operator() (size_t i, size_t j) const { return m_data[j + i*m_shape.columns]; }
 
+#if TML_USE_CUSTOM_MATRIX_ITERATOR
+		inline iterator begin() { return iterator(m_data, m_data); }
+		inline const_iterator cbegin() const { return const_iterator(m_data, m_data); }
+		inline iterator end() { return iterator(m_data + m_shape.size, m_data); }
+		inline const_iterator cend() const { return const_iterator(m_data + m_shape.size, m_data); }
+#else
 		inline iterator begin() { return m_data; }
-
-		inline const_iterator cbegin() const noexcept { return m_data; }
-
+		inline const_iterator cbegin() const { return m_data; }
 		inline iterator end() { return m_data + m_shape.size; }
-
 		inline const_iterator cend() const { return m_data + m_shape.size; }
+#endif
+		inline const_iterator begin() const { return cbegin(); }
+		inline const_iterator end() const { return cend(); }
 
 		inline size_t size() const { return m_shape.size; }
 
@@ -212,6 +225,103 @@ namespace tml
 		Scalar& operator[] (size_t index) { return m_data[index]; }
 
 		const Scalar& operator[] (size_t index) const { return m_data[index]; }
+
+#if TML_USE_CUSTOM_MATRIX_ITERATOR
+		class iterator
+		{
+		public:
+			using iterator_category = std::random_access_iterator_tag;
+			using value_type = Scalar;
+			using difference_type = std::ptrdiff_t;
+			using pointer = Scalar*;
+			using reference = Scalar&;
+
+			iterator() = default;
+			iterator(pointer val, pointer start) : m_ptr(val), m_start(start) {}
+			iterator(const iterator& iter) : m_ptr(iter.m_ptr), m_start(iter.m_start) {}
+			iterator& operator=(const iterator& iter)
+			{
+				m_ptr = iter.m_ptr;
+				m_start = iter.m_start;
+				return *this;
+			}
+			//iterator& operator=(pointer val)
+			//{
+			//	m_ptr = val;
+			//	return *this;
+			//}
+
+			bool operator==(const iterator& rhs) const { return m_ptr == rhs.m_ptr; }
+			bool operator!=(const iterator& rhs) const { return m_ptr != rhs.m_ptr; }
+			iterator& operator+=(difference_type val) { m_ptr += val; return*this; }
+			iterator& operator-=(difference_type val) { m_ptr -= val; return *this; }
+			iterator operator+(difference_type val) const { return iterator(m_ptr + val, m_start); }
+			difference_type operator-(difference_type val) const { return m_ptr - val; }
+			iterator operator+(iterator iter) const { return iterator(m_ptr + iter.m_ptr, m_start); }
+			difference_type operator-(iterator iter) const { return m_ptr - iter.m_ptr; }
+			iterator& operator++() { ++m_ptr; return *this; }
+			iterator operator++(int) { auto iter{ *this }; ++m_ptr; return iter; }
+			iterator& operator--() { --m_ptr; return *this; }
+			iterator operator--(int) { auto iter{ *this }; --m_ptr; return iter; }
+			const value_type& operator*() const { return *m_ptr; }
+			value_type& operator*() { return *m_ptr; }
+			pointer operator->() { return m_ptr; }
+			const pointer operator->() const { return m_ptr; }
+			operator const_iterator() const { return const_iterator(m_ptr); }
+			// TODO: Probably remove this later
+			reference operator[] (std::size_t index) { return m_start[index]; }
+			const reference operator[] (std::size_t index) const { return m_start[index]; }
+		private:
+			pointer m_start = nullptr;
+			pointer m_ptr = nullptr;
+		};
+
+		class const_iterator
+		{
+		public:
+			using iterator_category = std::random_access_iterator_tag;
+			using value_type = Scalar;
+			using difference_type = std::ptrdiff_t;
+			using pointer = Scalar*;
+			using reference = Scalar&;
+
+			const_iterator() = default;
+			const_iterator(pointer val, pointer start) : m_ptr(val), m_start(start) {}
+			const_iterator(const const_iterator& iter) : m_ptr(iter.m_ptr), m_start(iter.m_start) {}
+			const_iterator& operator=(const const_iterator& iter)
+			{
+				m_ptr = iter.m_ptr;
+				m_start = iter.m_start;
+				return *this;
+			}
+			//const_iterator& operator=(pointer val)
+			//{
+			//	m_ptr = val;
+			//	return *this;
+			//}
+
+			bool operator==(const const_iterator& rhs) const { return m_ptr == rhs.m_ptr; }
+			bool operator!=(const const_iterator& rhs) const { return m_ptr != rhs.m_ptr; }
+			const_iterator& operator+=(difference_type val) { m_ptr += val; return*this; }
+			const_iterator& operator-=(difference_type val) { m_ptr -= val; return *this; }
+			const_iterator operator+(difference_type val) const { return const_iterator(m_ptr + val, m_start); }
+			difference_type operator-(difference_type val) const { return m_ptr - val; }
+			const_iterator operator+(const_iterator iter) const { return const_iterator(m_ptr + iter.m_ptr, m_start); }
+			difference_type operator-(const_iterator iter) const { return m_ptr - iter.m_ptr; }
+			const_iterator& operator++() { ++m_ptr; return *this; }
+			const_iterator operator++(int) { auto iter{ *this }; ++m_ptr; return iter; }
+			const_iterator& operator--() { --m_ptr; return *this; }
+			const_iterator operator--(int) { auto iter{ *this }; --m_ptr; return iter; }
+			const value_type& operator*() const { return *m_ptr; }
+			const pointer operator->() const { return m_ptr; }
+			// TODO: Probably remove this later
+			reference operator[] (std::size_t index) { return m_start[index]; }
+			const reference operator[] (std::size_t index) const { return m_start[index]; }
+		private:
+			pointer m_start = nullptr;
+			pointer m_ptr = nullptr;
+		};
+#endif
 	private:
 		template<typename T>
 		void assign_expr(const expr_op<Scalar, T>& expr)
@@ -251,4 +361,4 @@ namespace tml
 		}
 		return out;
 	}
-}
+};
