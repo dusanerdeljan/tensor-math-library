@@ -10,7 +10,7 @@ namespace tml
 	namespace eager
 	{
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE Scalar mean(const tml::matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
+		TML_INLINE Scalar mean(const tml::matrix<Scalar>& matrix, Backend = tml::execution::seq)
 		{
 			Scalar result;
 			details::backend::mean_backend<Scalar, Backend>::mean(matrix, result);
@@ -18,7 +18,7 @@ namespace tml
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE Scalar mean(const expr_op<Scalar, T>& expr, Backend backend = tml::execution::seq)
+		TML_INLINE Scalar mean(const expr_op<Scalar, T>& expr, Backend = tml::execution::seq)
 		{
 			const tml::matrix<Scalar> matrix = expr;
 			Scalar result;
@@ -27,7 +27,7 @@ namespace tml
 		}
 
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE tml::matrix<Scalar> mean_rows(const tml::matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> mean_rows(const tml::matrix<Scalar>& matrix, Backend = tml::execution::seq)
 		{
 			tml::matrix<Scalar> result(shape{ 1, matrix.rows() });
 			details::backend::mean_backend<Scalar, Backend>::rows(matrix, result);
@@ -35,7 +35,7 @@ namespace tml
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE tml::matrix<Scalar> mean_rows(const expr_op<Scalar, T>& expr, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> mean_rows(const expr_op<Scalar, T>& expr, Backend = tml::execution::seq)
 		{
 			tml::matrix<Scalar> result(shape{ 1, expr.shape.rows });
 			const tml::matrix<Scalar> matrix = expr;
@@ -44,7 +44,7 @@ namespace tml
 		}
 
 		template<typename Scalar, typename Backend = details::SEQ>
-		TML_INLINE tml::matrix<Scalar> mean_columns(const tml::matrix<Scalar>& matrix, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> mean_columns(const tml::matrix<Scalar>& matrix, Backend = tml::execution::seq)
 		{
 			tml::matrix<Scalar> result(shape{ 1, matrix.columns() });
 			details::backend::mean_backend<Scalar, Backend>::columns(matrix, result);
@@ -52,7 +52,7 @@ namespace tml
 		}
 
 		template<typename Scalar, typename T, typename Backend = details::SEQ>
-		TML_INLINE tml::matrix<Scalar> mean_columns(const expr_op<Scalar, T>& expr, Backend backend = tml::execution::seq)
+		TML_INLINE tml::matrix<Scalar> mean_columns(const expr_op<Scalar, T>& expr, Backend = tml::execution::seq)
 		{
 			tml::matrix<Scalar> result(shape{ 1, expr.shape.columns });
 			const tml::matrix<Scalar> matrix = expr;

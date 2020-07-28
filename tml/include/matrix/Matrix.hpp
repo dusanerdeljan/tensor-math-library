@@ -164,7 +164,7 @@ namespace tml
 		{
 			matrix<Scalar> matrix(shape);
 			std::fill(matrix.begin(), matrix.end(), static_cast<Scalar>(0.0));
-			return std::move(matrix);
+			return matrix;
 		}
 
 		template<typename DType>
