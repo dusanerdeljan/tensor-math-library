@@ -11,5 +11,5 @@ namespace internal {
     using sclar_type = Scalar;
     constexpr static std::size_t size = indices_product_v<Indices...>;
   };
-}
-}
+}// namespace internal
+}// namespace tml

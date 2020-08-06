@@ -7,4 +7,4 @@ namespace internal {
   template<std::size_t... Indices>
   constexpr std::size_t indices_product_v = (Indices * ...);
 }
-}
+}// namespace tml

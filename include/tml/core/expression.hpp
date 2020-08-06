@@ -1,5 +1,5 @@
 #pragma once
 
-struct expression {
-
+struct expression
+{
 };
