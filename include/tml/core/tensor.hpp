@@ -23,6 +23,9 @@ public:
   template<typename ExpressionType>
   constexpr tensor(const expression<ExpressionType, Indices...> &expr) : m_data{}
   {
+    for (auto i = 0; i < m_data.size(); ++i) {
+      m_data[i] = expr[i];
+    }
   }
 
   // Getting reference to data
