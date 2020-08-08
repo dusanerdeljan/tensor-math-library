@@ -1,7 +1,10 @@
+// TML core includes
+#include <tml/core/fwd.hpp>
 #include <tml/core/tensor.hpp>
 #include <tml/core/expression.hpp>
+#include <tml/core/operators.hpp>
 
-int test_func()
-{
-  return 16;
-}
+// TML internal includes
+#include <tml/internal/tensor_traits.hpp>
+#include <tml/internal/utility.hpp>
+#include <tml/internal/functors.hpp>

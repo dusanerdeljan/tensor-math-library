@@ -20,11 +20,10 @@ public:
   ~tensor() = default;
 
   // Expression constructor and assignment operators
-  //template<typename ExpressionType>
-  //constexpr tensor(const expression<tensor, ExpressionType> &expr) : m_data{}
-  //{
-  //  assign_op{}(*this, expr);
-  //}
+  template<typename ExpressionType>
+  constexpr tensor(const expression<ExpressionType, Indices...> &expr) : m_data{}
+  {
+  }
 
   // Getting reference to data
   constexpr std::size_t size() const { return internal::indices_product_v<Indices...>; }
