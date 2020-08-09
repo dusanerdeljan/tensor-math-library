@@ -19,9 +19,15 @@ class expression;
 template<typename LeftIter, typename RightIter, typename Operand>
 class binary_expression;
 
+template<typename Scalar, std::size_t... Indices>
+class tensor_expression;
+
 namespace internal {
   template<typename Tensor>
   struct tensor_traits;
+
+  template<typename T>
+  struct is_tensor;
 
   template<typename Operator>
   struct operator_traits;

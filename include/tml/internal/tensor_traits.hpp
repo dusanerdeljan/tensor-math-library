@@ -17,5 +17,17 @@ namespace internal {
   {
     using scalar_type = typename Operator::result_type;
   };
+
+  template<typename T>
+  struct is_tensor
+  {
+    constexpr static bool value = false;
+  };
+
+  template<typename Scalar, std::size_t... Indices>
+  struct is_tensor<tensor<Scalar, Indices...>>
+  {
+    constexpr static bool value = true;
+  };
 }// namespace internal
 }// namespace tml
