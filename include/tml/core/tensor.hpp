@@ -10,7 +10,7 @@ template<typename Scalar, std::size_t... Indices>
 class tensor
 {
 public:
-  using containter_t = std::array<Scalar, internal::indices_product_v<Indices...>>;
+  using containter_t = std::array<Scalar, internal::tensor_traits<tensor<Scalar, Indices...>>::size>;
 
   tensor() = default;
   tensor(tensor &&) = default;
@@ -24,12 +24,12 @@ public:
   constexpr tensor(const expression<ExpressionType, Indices...> &expr) : m_data{}
   {
     for (auto i = 0; i < m_data.size(); ++i) {
-      m_data[i] = expr[i];
+      m_data[i] = static_cast<Scalar>(expr[i]);
     }
   }
 
   // Getting reference to data
-  constexpr std::size_t size() const { return internal::indices_product_v<Indices...>; }
+  constexpr std::size_t size() const { return internal::tensor_traits<tensor<Scalar, Indices...>>::size; }
   constexpr containter_t &containter() { return m_data; }
   constexpr const containter_t &containter() const { return m_data; }
   constexpr Scalar *data() { return &m_data[0]; }
@@ -40,13 +40,6 @@ public:
   constexpr auto cend() const { return m_data.cend(); }
   constexpr auto begin() const { return cbegin(); }
   constexpr auto end() const { return m_data.end(); }
-
-  constexpr static tensor arange() noexcept
-  {
-    tensor t;
-    std::generate(t.begin(), t.end(), [i = 0]() mutable { return static_cast<Scalar>(i++); });
-    return t;
-  }
 
 private:
   containter_t m_data{};

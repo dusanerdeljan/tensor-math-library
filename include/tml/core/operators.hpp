@@ -1,9 +1,6 @@
 #pragma once
 
 #include <tml/core/fwd.hpp>
-#include <tml/core/tensor.hpp>
-#include <tml/core/expression.hpp>
-#include <tml/internal/tensor_traits.hpp>
 #include <tml/internal/functors.hpp>
 
 namespace tml {

@@ -1,6 +1,7 @@
 // TML core includes
 #include <tml/core/fwd.hpp>
 #include <tml/core/tensor.hpp>
+#include <tml/core/initialization.hpp>
 #include <tml/core/expression.hpp>
 #include <tml/core/operators.hpp>
 
