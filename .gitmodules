@@ -1,3 +1,0 @@
-[submodule "external/picobench"]
-	path = external/picobench
-	url = https://github.com/iboB/picobench
